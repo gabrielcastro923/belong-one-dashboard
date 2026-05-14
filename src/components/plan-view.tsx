@@ -1,23 +1,50 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import {
-  Line,
-  LineChart,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-  Cell,
-} from "recharts";
+import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { mockOpportunities, mockPlan } from "@/data/data";
-import type { Opportunity } from "@/data/data";
-import { scoreOpportunity, stageWeight } from "@/lib/score";
-import { expectedClosesThisMonth, funnelByStage, pacePerBdRequired } from "@/lib/plan";
+import type { DueWindow, Opportunity } from "@/data/data";
+import { scoreOpportunity } from "@/lib/score";
+import { pacePerBdRequired } from "@/lib/plan";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { AlertTriangle, ArrowDownUp, CalendarDays, CheckCircle2, ClipboardCheck, Home, SearchCheck, Target } from "lucide-react";
+
+const INSPECTION_TO_REPORT = 0.6;
+const REPORT_TO_LISTING = 0.7;
+const INSPECTION_TO_LISTING = INSPECTION_TO_REPORT * REPORT_TO_LISTING;
+
+type WindowView = "today" | "week" | "month";
+type SortKey = "inspection" | "report" | "impact" | "risk";
+type ActivityType = "inspection" | "report" | "listing-ready";
+
+type ActivityRow = {
+  o: Opportunity;
+  score: number;
+  type: ActivityType;
+  dueWindow: DueWindow;
+  impact: number;
+  urgency: number;
+  primaryAction: string;
+};
+
+const WINDOW_LABELS: Record<WindowView, string> = {
+  today: "Today",
+  week: "This week",
+  month: "This month",
+};
+
+function dueRank(w: DueWindow): number {
+  if (w === "today") return 0;
+  if (w === "week") return 1;
+  return 2;
+}
+
+function inWindow(due: DueWindow | null, view: WindowView): due is DueWindow {
+  if (!due) return false;
+  return dueRank(due) <= dueRank(view);
+}
 
 function byPhoneCount(opps: Opportunity[]) {
   const m = new Map<string, number>();
@@ -25,131 +52,304 @@ function byPhoneCount(opps: Opportunity[]) {
   return m;
 }
 
+function isInspectionToBook(o: Opportunity, view: WindowView): boolean {
+  return o.stage === "Schedule Inspection" && !o.inspectionBooked && inWindow(o.inspectionDueWindow, view);
+}
+
+function isReportToConfirm(o: Opportunity, view: WindowView): boolean {
+  return !o.reportConfirmed && inWindow(o.reportDueWindow, view);
+}
+
+function isListingReady(o: Opportunity, view: WindowView): boolean {
+  return o.stage === "Ready For Handoff" && view === "month";
+}
+
+function rowTypeLabel(type: ActivityType): string {
+  if (type === "inspection") return "Inspection to book";
+  if (type === "report") return "Report to confirm";
+  return "Listing-ready";
+}
+
+function actionFor(row: ActivityRow): string {
+  if (row.type === "inspection") return "Book inspection and get agreement signature";
+  if (row.type === "report") return "Confirm report review and pricing alignment";
+  return "Close handoff so listing can go live";
+}
+
+function impactFor(type: ActivityType, o: Opportunity): number {
+  if (type === "inspection") return INSPECTION_TO_LISTING;
+  if (type === "report") return REPORT_TO_LISTING;
+  return o.listingProbability;
+}
+
+function urgencyFor(o: Opportunity, dueWindow: DueWindow, score: number): number {
+  const due = dueWindow === "today" ? 40 : dueWindow === "week" ? 22 : 8;
+  const vacancy = Math.min(o.vacancyDays, 35);
+  const stale = Math.min(o.lastContactDaysAgo * 2, 24);
+  return Math.round(due + vacancy + stale + score / 5);
+}
+
+function formatHomes(n: number): string {
+  return (Math.round(n * 10) / 10).toFixed(1);
+}
+
+function makeRows(opps: Opportunity[], view: WindowView): ActivityRow[] {
+  const counts = byPhoneCount(opps);
+  const rows: ActivityRow[] = [];
+
+  for (const o of opps) {
+    const score = scoreOpportunity(o, counts.get(o.phone) ?? 0);
+    if (isInspectionToBook(o, view)) {
+      rows.push({
+        o,
+        score,
+        type: "inspection",
+        dueWindow: o.inspectionDueWindow,
+        impact: impactFor("inspection", o),
+        urgency: urgencyFor(o, o.inspectionDueWindow, score),
+        primaryAction: "Book inspection and get agreement signature",
+      });
+    }
+    if (isReportToConfirm(o, view)) {
+      const reportDueWindow = o.reportDueWindow;
+      if (!reportDueWindow) continue;
+      rows.push({
+        o,
+        score,
+        type: "report",
+        dueWindow: reportDueWindow,
+        impact: impactFor("report", o),
+        urgency: urgencyFor(o, reportDueWindow, score),
+        primaryAction: "Confirm report review and pricing alignment",
+      });
+    }
+    if (isListingReady(o, view)) {
+      rows.push({
+        o,
+        score,
+        type: "listing-ready",
+        dueWindow: "month",
+        impact: impactFor("listing-ready", o),
+        urgency: urgencyFor(o, "month", score),
+        primaryAction: "Close handoff so listing can go live",
+      });
+    }
+  }
+
+  return rows;
+}
+
+function sortRows(rows: ActivityRow[], sortKey: SortKey): ActivityRow[] {
+  const typeRank: Record<ActivityType, number> = { inspection: 3, report: 2, "listing-ready": 1 };
+  return [...rows].sort((a, b) => {
+    if (sortKey === "inspection") {
+      return Number(b.type === "inspection") - Number(a.type === "inspection") || dueRank(a.dueWindow) - dueRank(b.dueWindow) || b.urgency - a.urgency;
+    }
+    if (sortKey === "report") {
+      return Number(b.type === "report") - Number(a.type === "report") || dueRank(a.dueWindow) - dueRank(b.dueWindow) || b.urgency - a.urgency;
+    }
+    if (sortKey === "risk") return b.urgency - a.urgency || b.impact - a.impact;
+    return b.impact - a.impact || typeRank[b.type] - typeRank[a.type] || b.urgency - a.urgency;
+  });
+}
+
 export function PlanView() {
   const { target, banked, businessDaysRemaining } = mockPlan;
   const remaining = Math.max(0, target - banked);
   const pace = pacePerBdRequired(remaining, businessDaysRemaining);
-  const projectedPipeline = expectedClosesThisMonth(mockOpportunities);
-  const needFromNew = Math.max(0, Math.round((target - projectedPipeline) * 10) / 10);
-  const funnel = funnelByStage(mockOpportunities);
-  const byPhone = useMemo(() => byPhoneCount(mockOpportunities), []);
-  const ranked = useMemo(
-    () =>
-      [...mockOpportunities]
-        .map((o) => ({ o, score: scoreOpportunity(o, byPhone.get(o.phone) ?? 0) }))
-        .sort((a, b) => b.score - a.score),
-    [byPhone]
-  );
-  const top5 = ranked.slice(0, 5);
-  const [done, setDone] = useState<Record<string, boolean>>(() => Object.fromEntries(top5.map((r) => [r.o.id, false])));
+  const [view, setView] = useState<WindowView>("today");
+  const [sortKey, setSortKey] = useState<SortKey>("impact");
 
-  const checkedWeight = useMemo(
-    () => top5.reduce((s, r) => (done[r.o.id] ? s : s + stageWeight(r.o.stage)), 0),
-    [done, top5]
-  );
+  const rows = useMemo(() => makeRows(mockOpportunities, view), [view]);
+  const sortedRows = useMemo(() => sortRows(rows, sortKey), [rows, sortKey]);
 
-  const chartData = useMemo(() => {
-    const rows: { d: number; pace: number; projected: number }[] = [];
-    for (let d = 0; d <= businessDaysRemaining; d++) {
-      const paceTotal = Math.min(target, banked + pace * d);
-      const bump = checkedWeight * Math.min(d / 5, 1);
-      const projected = Math.min(target, banked + bump);
-      rows.push({ d, pace: Math.round(paceTotal * 100) / 100, projected: Math.round(projected * 100) / 100 });
-    }
-    return rows;
-  }, [banked, businessDaysRemaining, checkedWeight, pace, target]);
+  const inspectionsToBook = rows.filter((r) => r.type === "inspection").length;
+  const reportsToConfirm = rows.filter((r) => r.type === "report").length;
+  const listingReady = rows.filter((r) => r.type === "listing-ready").length;
+  const inspectionImpact = inspectionsToBook * INSPECTION_TO_LISTING;
+  const reportImpact = reportsToConfirm * REPORT_TO_LISTING;
+  const listingReadyImpact = rows.filter((r) => r.type === "listing-ready").reduce((sum, r) => sum + r.impact, 0);
+  const expectedImpact = inspectionImpact + reportImpact + listingReadyImpact;
+  const projectedTotal = banked + expectedImpact;
+  const gapToTarget = Math.max(0, target - projectedTotal);
+  const isOnTrack = projectedTotal >= target || (view !== "month" && expectedImpact >= pace);
+  const statusLabel = projectedTotal >= target ? "Covers 15" : isOnTrack ? "On pace" : "Behind pace";
+  const statusClass = projectedTotal >= target || isOnTrack ? "border-primary/40 bg-primary/15 text-primary-foreground" : "border-red-500/40 bg-red-500/15 text-red-100";
 
-  const barColors = ["#34d399", "#38bdf8", "#a78bfa", "#fbbf24", "#fb923c", "#94a3b8"];
+  const chartData = [
+    { name: "Book inspections", listings: Math.round(inspectionImpact * 10) / 10 },
+    { name: "Confirm reports", listings: Math.round(reportImpact * 10) / 10 },
+    { name: "Listing-ready", listings: Math.round(listingReadyImpact * 10) / 10 },
+  ];
+
+  const sortOptions: { key: SortKey; label: string }[] = [
+    { key: "inspection", label: "Inspections" },
+    { key: "report", label: "Reports" },
+    { key: "impact", label: "Listing impact" },
+    { key: "risk", label: "Risk / urgency" },
+  ];
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-lg font-semibold tracking-tight">Plan</h1>
-        <p className="text-sm text-muted-foreground">May burndown, pipeline truth, and today&apos;s commitments.</p>
+      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div>
+          <h1 className="text-lg font-semibold tracking-tight">Funnel Activity Plan</h1>
+          <p className="text-sm text-muted-foreground">Book inspections, confirm reports, and convert the inspection path into 15 May listings.</p>
+        </div>
+        <div className="flex w-fit rounded-lg border border-border bg-card p-1">
+          {(["today", "week", "month"] as WindowView[]).map((w) => (
+            <Button key={w} size="sm" variant={view === w ? "secondary" : "ghost"} className="h-8" onClick={() => setView(w)}>
+              {WINDOW_LABELS[w]}
+            </Button>
+          ))}
+        </div>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid gap-3 md:grid-cols-4">
+        <Card className="border-sky-500/25 bg-sky-500/5">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between text-xs text-muted-foreground">
+              <span>{WINDOW_LABELS[view]} inspections</span>
+              <SearchCheck className="h-4 w-4 text-sky-300" />
+            </div>
+            <p className="mt-2 text-2xl font-semibold tabular-nums">{inspectionsToBook}</p>
+            <p className="text-xs text-muted-foreground">to book to create report flow</p>
+          </CardContent>
+        </Card>
+        <Card className="border-amber-500/25 bg-amber-500/5">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between text-xs text-muted-foreground">
+              <span>{WINDOW_LABELS[view]} reports</span>
+              <ClipboardCheck className="h-4 w-4 text-amber-300" />
+            </div>
+            <p className="mt-2 text-2xl font-semibold tabular-nums">{reportsToConfirm}</p>
+            <p className="text-xs text-muted-foreground">to confirm into listing approval</p>
+          </CardContent>
+        </Card>
+        <Card className="border-primary/25 bg-primary/10">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between text-xs text-muted-foreground">
+              <span>Expected listings</span>
+              <Home className="h-4 w-4 text-primary" />
+            </div>
+            <p className="mt-2 text-2xl font-semibold tabular-nums">{formatHomes(expectedImpact)}</p>
+            <p className="text-xs text-muted-foreground">from selected funnel activity</p>
+          </CardContent>
+        </Card>
         <Card>
-          <CardHeader>
-            <CardTitle className="text-sm">Burndown</CardTitle>
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between text-xs text-muted-foreground">
+              <span>Gap to 15</span>
+              <Target className="h-4 w-4 text-red-300" />
+            </div>
+            <p className="mt-2 text-2xl font-semibold tabular-nums">{formatHomes(gapToTarget)}</p>
+            <p className="text-xs text-muted-foreground">{banked} banked · {remaining} left</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+        <Card className="border-border/80">
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center gap-2 text-sm">
+              <CheckCircle2 className="h-4 w-4 text-primary" />
+              Stay on Track
+            </CardTitle>
             <p className="text-xs text-muted-foreground">
-              Solid: on-pace cumulative ({pace} / BD). Dotted: projection from commitments still open ({checkedWeight.toFixed(2)} wt).
+              Defaults: 60% inspection-to-report, 70% report-to-listing. Today pace target is {pace} listings per business day.
             </p>
           </CardHeader>
-          <CardContent className="h-64 pl-0">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={chartData} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(217 19% 18%)" />
-                <XAxis dataKey="d" tick={{ fill: "#94a3b8", fontSize: 10 }} label={{ value: "BD ahead", position: "insideBottom", offset: -2, fill: "#64748b", fontSize: 10 }} />
-                <YAxis domain={[0, target]} tick={{ fill: "#94a3b8", fontSize: 10 }} width={28} />
-                <Tooltip contentStyle={{ background: "hsl(222 40% 9%)", border: "1px solid hsl(217 19% 18%)", fontSize: 12 }} />
-                <Line type="monotone" dataKey="pace" name="Required pace" stroke="hsl(152 55% 42%)" strokeWidth={2} dot={false} />
-                <Line type="monotone" dataKey="projected" name="Commitment projection" stroke="#94a3b8" strokeWidth={2} strokeDasharray="4 4" dot={false} />
-              </LineChart>
-            </ResponsiveContainer>
+          <CardContent className="space-y-3">
+            <div className={`w-fit rounded-md border px-2 py-1 text-xs font-medium ${statusClass}`}>{statusLabel}</div>
+            <div className="grid gap-2 text-sm">
+              <div className="flex items-center justify-between rounded-md border border-border/70 bg-background/35 px-3 py-2">
+                <span className="text-muted-foreground">Reports confirmed impact</span>
+                <span className="font-semibold tabular-nums">{reportsToConfirm} x 0.70 = {formatHomes(reportImpact)}</span>
+              </div>
+              <div className="flex items-center justify-between rounded-md border border-border/70 bg-background/35 px-3 py-2">
+                <span className="text-muted-foreground">Inspections booked impact</span>
+                <span className="font-semibold tabular-nums">{inspectionsToBook} x 0.60 x 0.70 = {formatHomes(inspectionImpact)}</span>
+              </div>
+              <div className="flex items-center justify-between rounded-md border border-border/70 bg-background/35 px-3 py-2">
+                <span className="text-muted-foreground">Listing-ready coverage</span>
+                <span className="font-semibold tabular-nums">{listingReady} homes = {formatHomes(listingReadyImpact)}</span>
+              </div>
+            </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardHeader>
-            <CardTitle className="text-sm">Pipeline funnel</CardTitle>
-            <p className="text-xs text-muted-foreground">
-              Existing pipeline projects <span className="font-semibold text-foreground">{Math.round(projectedPipeline * 10) / 10}</span> closes (stage-weighted).
-              {needFromNew > 0 ? (
-                <>
-                  {" "}
-                  Need <span className="font-semibold text-foreground">{needFromNew}</span> more from new pipeline.
-                </>
-              ) : (
-                " On track if execution holds."
-              )}
-            </p>
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center gap-2 text-sm">
+              <CalendarDays className="h-4 w-4 text-sky-300" />
+              Listing Impact by Lever
+            </CardTitle>
+            <p className="text-xs text-muted-foreground">The Plan page only models inspection booking and report confirmation as controllable funnel activity.</p>
           </CardHeader>
-          <CardContent className="h-64 pl-0">
+          <CardContent className="h-60 pl-0">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart layout="vertical" data={funnel} margin={{ top: 4, right: 8, left: 4, bottom: 4 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(217 19% 18%)" horizontal={false} />
-                <XAxis type="number" tick={{ fill: "#94a3b8", fontSize: 10 }} />
-                <YAxis type="category" dataKey="stage" width={120} tick={{ fill: "#cbd5e1", fontSize: 9 }} />
+              <BarChart data={chartData} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="hsl(217 19% 18%)" vertical={false} />
+                <XAxis dataKey="name" tick={{ fill: "#94a3b8", fontSize: 10 }} />
+                <YAxis tick={{ fill: "#94a3b8", fontSize: 10 }} width={28} />
                 <Tooltip contentStyle={{ background: "hsl(222 40% 9%)", border: "1px solid hsl(217 19% 18%)", fontSize: 12 }} />
-                <Bar dataKey="count" name="Count" radius={[0, 4, 4, 0]}>
-                  {funnel.map((_, i) => (
-                    <Cell key={i} fill={barColors[i % barColors.length]} />
-                  ))}
-                </Bar>
+                <Bar dataKey="listings" name="Expected listings" fill="hsl(152 55% 42%)" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
-            <div className="mt-2 grid grid-cols-2 gap-1 text-[10px] text-muted-foreground">
-              {funnel.map((f) => (
-                <span key={f.stage}>
-                  {f.stage}: {f.expected} exp
-                </span>
-              ))}
-            </div>
           </CardContent>
         </Card>
       </div>
 
       <Card>
-        <CardHeader>
-          <CardTitle className="text-sm">Today&apos;s commitments</CardTitle>
-          <p className="text-xs text-muted-foreground">Pulled from Today&apos;s Calls top 5. Toggle done to stress-test the projection.</p>
+        <CardHeader className="pb-3">
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div>
+              <CardTitle className="flex items-center gap-2 text-sm">
+                <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
+                Activity Queue
+              </CardTitle>
+              <p className="mt-1 text-xs text-muted-foreground">Sort by the lever you need to work to keep the 15-listing target on track.</p>
+            </div>
+            <div className="flex flex-wrap gap-1">
+              {sortOptions.map((option) => (
+                <Button key={option.key} size="sm" variant={sortKey === option.key ? "secondary" : "outline"} onClick={() => setSortKey(option.key)}>
+                  {option.label}
+                </Button>
+              ))}
+            </div>
+          </div>
         </CardHeader>
         <CardContent className="space-y-2">
-          {top5.map((r, i) => (
-            <label key={r.o.id} className="flex cursor-pointer items-start gap-3 rounded-md border border-border/60 bg-muted/20 px-3 py-2">
-              <input
-                type="checkbox"
-                checked={!!done[r.o.id]}
-                onChange={() => setDone((d) => ({ ...d, [r.o.id]: !d[r.o.id] }))}
-                className="mt-1 h-4 w-4 rounded border-border"
-              />
-              <span className="text-sm">
-                <span className="text-muted-foreground">#{i + 1}</span> {r.o.owner} · {r.o.address}{" "}
-                <span className="text-xs text-muted-foreground">({stageWeight(r.o.stage)} wt)</span>
-              </span>
-            </label>
-          ))}
+          {sortedRows.map((row) => {
+            const tel = row.o.phone.replace(/[^\d+]/g, "");
+            return (
+              <div key={`${row.o.id}-${row.type}`} className="grid gap-3 rounded-lg border border-border/80 bg-background/35 p-3 md:grid-cols-[1fr_150px_124px_92px] md:items-center">
+                <div className="min-w-0 space-y-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <a href={`tel:${tel}`} className="text-sm font-medium text-foreground hover:underline">
+                      {row.o.owner}
+                    </a>
+                    <Badge variant={row.type === "report" ? "destructive" : row.type === "inspection" ? "outline" : "success"}>{rowTypeLabel(row.type)}</Badge>
+                    <span className="text-xs text-muted-foreground">{row.o.stage}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    {row.o.address} · {row.o.market}
+                  </p>
+                  <p className="text-xs text-foreground/85">{actionFor(row)}</p>
+                </div>
+                <div className="rounded-md border border-border bg-card px-2 py-1 text-xs">
+                  Due {WINDOW_LABELS[row.dueWindow]} · score {row.score}
+                </div>
+                <div className="rounded-md border border-primary/25 bg-primary/10 px-2 py-1 text-xs text-primary-foreground/90">+{formatHomes(row.impact)} expected listings</div>
+                <div className="flex items-center justify-between gap-2 md:justify-end">
+                  <Badge variant={row.urgency >= 95 ? "destructive" : "default"} className="gap-1">
+                    {row.urgency >= 95 && <AlertTriangle className="h-3 w-3" />}
+                    Risk {row.urgency}
+                  </Badge>
+                </div>
+              </div>
+            );
+          })}
         </CardContent>
       </Card>
     </div>
