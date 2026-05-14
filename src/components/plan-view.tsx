@@ -90,6 +90,10 @@ function urgencyFor(o: Opportunity, dueWindow: DueWindow, score: number): number
 }
 
 function formatHomes(n: number): string {
+  return `${Math.ceil(n)}`;
+}
+
+function formatDecimal(n: number): string {
   return (Math.round(n * 10) / 10).toFixed(1);
 }
 
@@ -161,6 +165,7 @@ export function PlanView() {
   const [sortKey, setSortKey] = useState<SortKey>("impact");
 
   const rows = useMemo(() => makeRows(mockOpportunities, view), [view]);
+  const todayRows = useMemo(() => makeRows(mockOpportunities, "today"), []);
   const sortedRows = useMemo(() => sortRows(rows, sortKey), [rows, sortKey]);
 
   const inspectionsToBook = rows.filter((r) => r.type === "inspection").length;
@@ -172,14 +177,20 @@ export function PlanView() {
   const expectedImpact = inspectionImpact + reportImpact + listingReadyImpact;
   const projectedTotal = banked + expectedImpact;
   const gapToTarget = Math.max(0, target - projectedTotal);
+  const dailyListingTarget = Math.ceil(pace);
+  const reportTargetToday = Math.ceil(dailyListingTarget / REPORT_TO_LISTING);
+  const inspectionTargetToday = Math.ceil(dailyListingTarget / INSPECTION_TO_LISTING);
+  const todayInspectionsAvailable = todayRows.filter((r) => r.type === "inspection").length;
+  const todayReportsAvailable = todayRows.filter((r) => r.type === "report").length;
+  const todayExpectedImpact = todayInspectionsAvailable * INSPECTION_TO_LISTING + todayReportsAvailable * REPORT_TO_LISTING;
   const isOnTrack = projectedTotal >= target || (view !== "month" && expectedImpact >= pace);
   const statusLabel = projectedTotal >= target ? "Covers 15" : isOnTrack ? "On pace" : "Behind pace";
   const statusClass = projectedTotal >= target || isOnTrack ? "border-primary/40 bg-primary/15 text-primary-foreground" : "border-red-500/40 bg-red-500/15 text-red-100";
 
   const chartData = [
-    { name: "Book inspections", listings: Math.round(inspectionImpact * 10) / 10 },
-    { name: "Confirm reports", listings: Math.round(reportImpact * 10) / 10 },
-    { name: "Listing-ready", listings: Math.round(listingReadyImpact * 10) / 10 },
+    { name: "Book inspections", listings: Math.ceil(inspectionImpact) },
+    { name: "Confirm reports", listings: Math.ceil(reportImpact) },
+    { name: "Listing-ready", listings: Math.ceil(listingReadyImpact) },
   ];
 
   const sortOptions: { key: SortKey; label: string }[] = [
@@ -248,6 +259,40 @@ export function PlanView() {
         </Card>
       </div>
 
+      <Card className="border-primary/30 bg-primary/10">
+        <CardHeader className="pb-3">
+          <CardTitle className="flex items-center gap-2 text-sm">
+            <Target className="h-4 w-4 text-primary" />
+            Targets to Hit Today
+          </CardTitle>
+          <p className="text-xs text-muted-foreground">
+            Daily pace rounds up to {dailyListingTarget} listing. Cover that by confirming reports or booking enough inspections to feed reports.
+          </p>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-4">
+          <div className="rounded-lg border border-border bg-background/35 p-3">
+            <p className="text-xs text-muted-foreground">Listing target</p>
+            <p className="mt-1 text-2xl font-semibold tabular-nums">{dailyListingTarget}</p>
+            <p className="text-xs text-muted-foreground">{formatDecimal(pace)} raw pace rounded up</p>
+          </div>
+          <div className="rounded-lg border border-border bg-background/35 p-3">
+            <p className="text-xs text-muted-foreground">Reports to confirm</p>
+            <p className="mt-1 text-2xl font-semibold tabular-nums">{reportTargetToday}</p>
+            <p className="text-xs text-muted-foreground">{todayReportsAvailable} in today&apos;s queue</p>
+          </div>
+          <div className="rounded-lg border border-border bg-background/35 p-3">
+            <p className="text-xs text-muted-foreground">Inspections to book</p>
+            <p className="mt-1 text-2xl font-semibold tabular-nums">{inspectionTargetToday}</p>
+            <p className="text-xs text-muted-foreground">{todayInspectionsAvailable} in today&apos;s queue</p>
+          </div>
+          <div className="rounded-lg border border-border bg-background/35 p-3">
+            <p className="text-xs text-muted-foreground">Today&apos;s coverage</p>
+            <p className="mt-1 text-2xl font-semibold tabular-nums">{formatHomes(todayExpectedImpact)}</p>
+            <p className="text-xs text-muted-foreground">{formatDecimal(todayExpectedImpact)} expected rounded up</p>
+          </div>
+        </CardContent>
+      </Card>
+
       <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
         <Card className="border-border/80">
           <CardHeader className="pb-3">
@@ -256,7 +301,7 @@ export function PlanView() {
               Stay on Track
             </CardTitle>
             <p className="text-xs text-muted-foreground">
-              Defaults: 60% inspection-to-report, 70% report-to-listing. Today pace target is {pace} listings per business day.
+              Defaults: 60% inspection-to-report, 70% report-to-listing. Today pace target is {dailyListingTarget} listing.
             </p>
           </CardHeader>
           <CardContent className="space-y-3">
