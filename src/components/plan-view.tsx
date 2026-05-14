@@ -158,8 +158,9 @@ function sortRows(rows: ActivityRow[], sortKey: SortKey): ActivityRow[] {
 }
 
 export function PlanView() {
-  const { target, banked, businessDaysRemaining } = mockPlan;
-  const remaining = Math.max(0, target - banked);
+  const { target: defaultTarget, banked, businessDaysRemaining } = mockPlan;
+  const [goalTarget, setGoalTarget] = useState(defaultTarget);
+  const remaining = Math.max(0, goalTarget - banked);
   const pace = pacePerBdRequired(remaining, businessDaysRemaining);
   const [view, setView] = useState<WindowView>("today");
   const [sortKey, setSortKey] = useState<SortKey>("impact");
@@ -176,16 +177,16 @@ export function PlanView() {
   const listingReadyImpact = rows.filter((r) => r.type === "listing-ready").reduce((sum, r) => sum + r.impact, 0);
   const expectedImpact = inspectionImpact + reportImpact + listingReadyImpact;
   const projectedTotal = banked + expectedImpact;
-  const gapToTarget = Math.max(0, target - projectedTotal);
+  const gapToTarget = Math.max(0, goalTarget - projectedTotal);
   const dailyListingTarget = Math.ceil(pace);
   const reportTargetToday = Math.ceil(dailyListingTarget / REPORT_TO_LISTING);
   const inspectionTargetToday = Math.ceil(dailyListingTarget / INSPECTION_TO_LISTING);
   const todayInspectionsAvailable = todayRows.filter((r) => r.type === "inspection").length;
   const todayReportsAvailable = todayRows.filter((r) => r.type === "report").length;
   const todayExpectedImpact = todayInspectionsAvailable * INSPECTION_TO_LISTING + todayReportsAvailable * REPORT_TO_LISTING;
-  const isOnTrack = projectedTotal >= target || (view !== "month" && expectedImpact >= pace);
-  const statusLabel = projectedTotal >= target ? "Covers 15" : isOnTrack ? "On pace" : "Behind pace";
-  const statusClass = projectedTotal >= target || isOnTrack ? "border-primary/40 bg-primary/15 text-primary-foreground" : "border-red-500/40 bg-red-500/15 text-red-100";
+  const isOnTrack = projectedTotal >= goalTarget || (view !== "month" && expectedImpact >= pace);
+  const statusLabel = projectedTotal >= goalTarget ? `Covers ${goalTarget}` : isOnTrack ? "On pace" : "Behind pace";
+  const statusClass = projectedTotal >= goalTarget || isOnTrack ? "border-primary/40 bg-primary/15 text-primary-foreground" : "border-red-500/40 bg-red-500/15 text-red-100";
 
   const chartData = [
     { name: "Book inspections", listings: Math.ceil(inspectionImpact) },
@@ -205,7 +206,7 @@ export function PlanView() {
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
           <h1 className="text-lg font-semibold tracking-tight">Funnel Activity Plan</h1>
-          <p className="text-sm text-muted-foreground">Book inspections, confirm reports, and convert the inspection path into 15 May listings.</p>
+          <p className="text-sm text-muted-foreground">Book inspections, confirm reports, and convert the inspection path into {goalTarget} May listings.</p>
         </div>
         <div className="flex w-fit rounded-lg border border-border bg-card p-1">
           {(["today", "week", "month"] as WindowView[]).map((w) => (
@@ -215,6 +216,36 @@ export function PlanView() {
           ))}
         </div>
       </div>
+
+      <Card className="border-border/80">
+        <CardContent className="p-4">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-baseline gap-2">
+                <p className="text-sm font-medium">Monthly home goal</p>
+                <span className="text-2xl font-semibold tabular-nums">{goalTarget}</span>
+              </div>
+              <p className="text-xs text-muted-foreground">Slide from 15 to 40 homes and the daily inspection/report targets update.</p>
+            </div>
+            <div className="w-full md:max-w-md">
+              <input
+                type="range"
+                min={15}
+                max={40}
+                step={1}
+                value={goalTarget}
+                onChange={(event) => setGoalTarget(Number(event.target.value))}
+                className="h-2 w-full cursor-pointer appearance-none rounded-full bg-muted accent-primary"
+                aria-label="Monthly home goal"
+              />
+              <div className="mt-2 flex justify-between text-[11px] text-muted-foreground">
+                <span>15 homes</span>
+                <span>40 homes</span>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       <div className="grid gap-3 md:grid-cols-4">
         <Card className="border-sky-500/25 bg-sky-500/5">
@@ -250,7 +281,7 @@ export function PlanView() {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center justify-between text-xs text-muted-foreground">
-              <span>Gap to 15</span>
+              <span>Gap to {goalTarget}</span>
               <Target className="h-4 w-4 text-red-300" />
             </div>
             <p className="mt-2 text-2xl font-semibold tabular-nums">{formatHomes(gapToTarget)}</p>
@@ -353,7 +384,7 @@ export function PlanView() {
                 <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
                 Activity Queue
               </CardTitle>
-              <p className="mt-1 text-xs text-muted-foreground">Sort by the lever you need to work to keep the 15-listing target on track.</p>
+              <p className="mt-1 text-xs text-muted-foreground">Sort by the lever you need to work to keep the {goalTarget}-listing target on track.</p>
             </div>
             <div className="flex flex-wrap gap-1">
               {sortOptions.map((option) => (
