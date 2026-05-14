@@ -18,6 +18,14 @@ const INSPECTION_TO_LISTING = INSPECTION_TO_REPORT * REPORT_TO_LISTING;
 type WindowView = "today" | "week" | "month";
 type SortKey = "inspection" | "report" | "impact" | "risk";
 type ActivityType = "inspection" | "report" | "listing-ready";
+type ProgressionField =
+  | "AdoptedLeaseExecuted"
+  | "AgreementSigned"
+  | "ImprovementsRepairsReadyToStartWork"
+  | "OnboardingCompleted"
+  | "OnboardingScheduledOn"
+  | "ReportsConfirmed"
+  | "ReportsPublished";
 
 type ActivityRow = {
   o: Opportunity;
@@ -34,6 +42,16 @@ const WINDOW_LABELS: Record<WindowView, string> = {
   week: "This week",
   month: "This month",
 };
+
+const PROGRESSION_FIELDS: { key: ProgressionField; label: string }[] = [
+  { key: "AgreementSigned", label: "Agreement signed" },
+  { key: "OnboardingScheduledOn", label: "Onboarding scheduled" },
+  { key: "OnboardingCompleted", label: "Onboarding completed" },
+  { key: "ReportsPublished", label: "Reports published" },
+  { key: "ReportsConfirmed", label: "Reports confirmed" },
+  { key: "ImprovementsRepairsReadyToStartWork", label: "Repairs ready" },
+  { key: "AdoptedLeaseExecuted", label: "Lease executed" },
+];
 
 function dueRank(w: DueWindow): number {
   if (w === "today") return 0;
@@ -95,6 +113,20 @@ function formatHomes(n: number): string {
 
 function formatDecimal(n: number): string {
   return (Math.round(n * 10) / 10).toFixed(1);
+}
+
+function isProgressionComplete(o: Opportunity, field: ProgressionField): boolean {
+  if (field === "AgreementSigned") return o.stage !== "Open";
+  if (field === "OnboardingScheduledOn") return o.inspectionBooked;
+  if (field === "OnboardingCompleted") return o.stage === "Pending Inspection" || o.stage === "Repair Report Neg" || o.stage === "Agreement Neg" || o.stage === "Ready For Handoff";
+  if (field === "ReportsPublished") return o.reportDueWindow !== null || o.reportConfirmed || o.stage === "Ready For Handoff";
+  if (field === "ReportsConfirmed") return o.reportConfirmed || o.stage === "Ready For Handoff";
+  if (field === "ImprovementsRepairsReadyToStartWork") return o.stage === "Ready For Handoff";
+  return o.stage === "Ready For Handoff";
+}
+
+function isInProgressionWindow(o: Opportunity, view: WindowView): boolean {
+  return inWindow(o.inspectionDueWindow, view) || inWindow(o.reportDueWindow, view) || (view === "month" && o.stage === "Ready For Handoff");
 }
 
 function makeRows(opps: Opportunity[], view: WindowView): ActivityRow[] {
@@ -188,11 +220,13 @@ export function PlanView() {
   const statusLabel = projectedTotal >= goalTarget ? `Covers ${goalTarget}` : isOnTrack ? "On pace" : "Behind pace";
   const statusClass = projectedTotal >= goalTarget || isOnTrack ? "border-primary/40 bg-primary/15 text-primary-foreground" : "border-red-500/40 bg-red-500/15 text-red-100";
 
-  const chartData = [
-    { name: "Book inspections", listings: Math.ceil(inspectionImpact) },
-    { name: "Confirm reports", listings: Math.ceil(reportImpact) },
-    { name: "Listing-ready", listings: Math.ceil(listingReadyImpact) },
-  ];
+  const progressionOpportunities = useMemo(() => mockOpportunities.filter((o) => isInProgressionWindow(o, view)), [view]);
+  const progressionData = PROGRESSION_FIELDS.map((field) => ({
+    name: field.label,
+    points: progressionOpportunities.filter((o) => isProgressionComplete(o, field.key)).length,
+  }));
+  const completedProgressionPoints = progressionData.reduce((sum, item) => sum + item.points, 0);
+  const totalProgressionPoints = progressionOpportunities.length * PROGRESSION_FIELDS.length;
 
   const sortOptions: { key: SortKey; label: string }[] = [
     { key: "inspection", label: "Inspections" },
@@ -358,20 +392,31 @@ export function PlanView() {
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-sm">
               <CalendarDays className="h-4 w-4 text-sky-300" />
-              Listing Impact by Lever
+              Progression Points
             </CardTitle>
-            <p className="text-xs text-muted-foreground">The Plan page only models inspection booking and report confirmation as controllable funnel activity.</p>
+            <p className="text-xs text-muted-foreground">
+              {completedProgressionPoints} of {totalProgressionPoints} field checkpoints complete across {WINDOW_LABELS[view].toLowerCase()} funnel homes.
+            </p>
           </CardHeader>
-          <CardContent className="h-60 pl-0">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={chartData} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(217 19% 18%)" vertical={false} />
-                <XAxis dataKey="name" tick={{ fill: "#94a3b8", fontSize: 10 }} />
-                <YAxis tick={{ fill: "#94a3b8", fontSize: 10 }} width={28} />
-                <Tooltip contentStyle={{ background: "hsl(222 40% 9%)", border: "1px solid hsl(217 19% 18%)", fontSize: 12 }} />
-                <Bar dataKey="listings" name="Expected listings" fill="hsl(152 55% 42%)" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
+          <CardContent className="space-y-3">
+            <div className="h-60 pl-0">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={progressionData} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(217 19% 18%)" vertical={false} />
+                  <XAxis dataKey="name" tick={{ fill: "#94a3b8", fontSize: 9 }} interval={0} angle={-18} textAnchor="end" height={70} />
+                  <YAxis allowDecimals={false} tick={{ fill: "#94a3b8", fontSize: 10 }} width={28} />
+                  <Tooltip contentStyle={{ background: "hsl(222 40% 9%)", border: "1px solid hsl(217 19% 18%)", fontSize: 12 }} />
+                  <Bar dataKey="points" name="Homes with field complete" fill="hsl(152 55% 42%)" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+            <div className="grid gap-1 text-[11px] text-muted-foreground md:grid-cols-2">
+              {PROGRESSION_FIELDS.map((field) => (
+                <span key={field.key} className="rounded border border-border/60 bg-background/35 px-2 py-1">
+                  {field.key}
+                </span>
+              ))}
+            </div>
           </CardContent>
         </Card>
       </div>
