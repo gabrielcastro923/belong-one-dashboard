@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 222 47% 6%;
+  --foreground: 210 20% 96%;
+  --card: 222 40% 9%;
+  --card-foreground: 210 20% 96%;
+  --muted: 217 19% 18%;
+  --muted-foreground: 215 14% 62%;
+  --primary: 152 55% 42%;
+  --primary-foreground: 210 20% 98%;
+  --destructive: 0 72% 51%;
+  --accent: 217 19% 16%;
+  --border: 217 19% 18%;
+  --ring: 152 55% 42%;
+  --radius: 0.5rem;
+}
+
+body {
+  @apply bg-background text-foreground antialiased;
+}
