@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-10T12:49-05:00",
+ "generated": "2026-11-10T12:50-05:00",
  "days": [
   {
    "date": "2026-11-10",
@@ -154,14 +154,14 @@
        "phone": null,
        "tz": "America/New_York",
        "local_time": "10:00am EST",
-       "goal": "push_live",
+       "goal": "adoption",
        "script_hint": "Meyrav, Gabriel at Belong. Your pricing is confirmed; the last step to go live is ADOPTION. Can we clear that today?",
        "admin": "https://admin.bln.hm/homes/f6bebfd9108565b1",
        "bucket": "7_report_confirmed_no_hrtsw",
        "stage_label": "Report confirmed, not live",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-10:140149:push_live"
+       "key": "2026-11-10:140149:adoption"
       },
       {
        "home_id": 168528,
@@ -584,21 +584,6 @@
        "key": "2026-11-10:165063:signature"
       },
       {
-       "home_id": 230877,
-       "name": "Alex Brooks",
-       "phone": null,
-       "tz": "America/Chicago",
-       "local_time": "2:00pm CST",
-       "goal": "signature",
-       "script_hint": "Alex, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/25b5416778cf0d90",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-10:230877:signature"
-      },
-      {
        "home_id": 229734,
        "name": "Marky Lynn Quayle",
        "phone": null,
@@ -612,6 +597,21 @@
        "verdict": "work",
        "note": "",
        "key": "2026-11-10:229734:signature"
+      },
+      {
+       "home_id": 63143,
+       "name": "Gopi Kondameda",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Gopi, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/60cf4b22e674450b",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-10:63143:signature"
       }
      ]
     },
@@ -1015,14 +1015,14 @@
        "phone": null,
        "tz": "America/New_York",
        "local_time": "10:00am EST",
-       "goal": "book_report_call",
+       "goal": "adoption",
        "script_hint": "Pramod, Gabriel at Belong. Your report is ready. I have Tue 2pm or Wed 11am ET to walk through the price together; which works? (Who else should be on?)",
        "admin": "https://admin.bln.hm/homes/e92914c7a0a9281c",
        "bucket": "6_report_published_no_confirm",
        "stage_label": "Report out, unconfirmed",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-11:166033:book_report_call"
+       "key": "2026-11-11:166033:adoption"
       },
       {
        "home_id": 150651,
@@ -1285,14 +1285,14 @@
        "phone": null,
        "tz": "America/Los_Angeles",
        "local_time": "10:00am PST",
-       "goal": "confirm_inspection",
+       "goal": "adoption",
        "script_hint": "Rod, Gabriel at Belong. Confirming the walkthrough on 2026-06-29: access is set? And let's book the results call 2 days after.",
        "admin": "https://admin.bln.hm/homes/91442d52d73d66d9",
        "bucket": "4_inspection_scheduled_no_complete",
        "stage_label": "Inspection scheduled",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-11:160912:confirm_inspection"
+       "key": "2026-11-11:160912:adoption"
       },
       {
        "home_id": 103318,
@@ -1430,36 +1430,6 @@
        "key": "2026-11-11:170503:book_inspection"
       },
       {
-       "home_id": 232341,
-       "name": "Stacie Shapiro",
-       "phone": null,
-       "tz": "America/New_York",
-       "local_time": "3:00pm EST",
-       "goal": "signature",
-       "script_hint": "Stacie, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/6194ed9b906e7dad",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-11:232341:signature"
-      },
-      {
-       "home_id": 63143,
-       "name": "Gopi Kondameda",
-       "phone": null,
-       "tz": "America/Chicago",
-       "local_time": "2:00pm CST",
-       "goal": "signature",
-       "script_hint": "Gopi, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/60cf4b22e674450b",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-11:63143:signature"
-      },
-      {
        "home_id": 215529,
        "name": "Tracie George",
        "phone": null,
@@ -1473,6 +1443,36 @@
        "verdict": "work",
        "note": "",
        "key": "2026-11-11:215529:signature"
+      },
+      {
+       "home_id": 216237,
+       "name": "Ira Tanga Tanga",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Ira, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/72067879ea58d8c8",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-11:216237:signature"
+      },
+      {
+       "home_id": 47084,
+       "name": "Emad Pulous",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Emad, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/c0f421d8d6d7bf8",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-11:47084:signature"
       }
      ]
     },
@@ -1870,14 +1870,14 @@
        "phone": null,
        "tz": "America/New_York",
        "local_time": "10:00am EST",
-       "goal": "push_live",
+       "goal": "adoption",
        "script_hint": "Meyrav, Gabriel at Belong. Your pricing is confirmed; the last step to go live is ADOPTION. Can we clear that today?",
        "admin": "https://admin.bln.hm/homes/f6bebfd9108565b1",
        "bucket": "7_report_confirmed_no_hrtsw",
        "stage_label": "Report confirmed, not live",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-12:140149:push_live"
+       "key": "2026-11-12:140149:adoption"
       },
       {
        "home_id": 168528,
@@ -2300,21 +2300,6 @@
        "key": "2026-11-12:165063:signature"
       },
       {
-       "home_id": 230877,
-       "name": "Alex Brooks",
-       "phone": null,
-       "tz": "America/Chicago",
-       "local_time": "2:00pm CST",
-       "goal": "signature",
-       "script_hint": "Alex, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/25b5416778cf0d90",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-12:230877:signature"
-      },
-      {
        "home_id": 229734,
        "name": "Marky Lynn Quayle",
        "phone": null,
@@ -2328,6 +2313,21 @@
        "verdict": "work",
        "note": "",
        "key": "2026-11-12:229734:signature"
+      },
+      {
+       "home_id": 63143,
+       "name": "Gopi Kondameda",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Gopi, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/60cf4b22e674450b",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-12:63143:signature"
       }
      ]
     },
@@ -2725,14 +2725,14 @@
        "phone": null,
        "tz": "America/New_York",
        "local_time": "10:00am EST",
-       "goal": "book_report_call",
+       "goal": "adoption",
        "script_hint": "Pramod, Gabriel at Belong. Your report is ready. I have Tue 2pm or Wed 11am ET to walk through the price together; which works? (Who else should be on?)",
        "admin": "https://admin.bln.hm/homes/e92914c7a0a9281c",
        "bucket": "6_report_published_no_confirm",
        "stage_label": "Report out, unconfirmed",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-13:166033:book_report_call"
+       "key": "2026-11-13:166033:adoption"
       },
       {
        "home_id": 150651,
@@ -2995,14 +2995,14 @@
        "phone": null,
        "tz": "America/Los_Angeles",
        "local_time": "10:00am PST",
-       "goal": "confirm_inspection",
+       "goal": "adoption",
        "script_hint": "Rod, Gabriel at Belong. Confirming the walkthrough on 2026-06-29: access is set? And let's book the results call 2 days after.",
        "admin": "https://admin.bln.hm/homes/91442d52d73d66d9",
        "bucket": "4_inspection_scheduled_no_complete",
        "stage_label": "Inspection scheduled",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-13:160912:confirm_inspection"
+       "key": "2026-11-13:160912:adoption"
       },
       {
        "home_id": 103318,
@@ -3140,36 +3140,6 @@
        "key": "2026-11-13:170503:book_inspection"
       },
       {
-       "home_id": 232341,
-       "name": "Stacie Shapiro",
-       "phone": null,
-       "tz": "America/New_York",
-       "local_time": "3:00pm EST",
-       "goal": "signature",
-       "script_hint": "Stacie, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/6194ed9b906e7dad",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-13:232341:signature"
-      },
-      {
-       "home_id": 63143,
-       "name": "Gopi Kondameda",
-       "phone": null,
-       "tz": "America/Chicago",
-       "local_time": "2:00pm CST",
-       "goal": "signature",
-       "script_hint": "Gopi, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/60cf4b22e674450b",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-13:63143:signature"
-      },
-      {
        "home_id": 215529,
        "name": "Tracie George",
        "phone": null,
@@ -3183,6 +3153,36 @@
        "verdict": "work",
        "note": "",
        "key": "2026-11-13:215529:signature"
+      },
+      {
+       "home_id": 216237,
+       "name": "Ira Tanga Tanga",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Ira, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/72067879ea58d8c8",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-13:216237:signature"
+      },
+      {
+       "home_id": 47084,
+       "name": "Emad Pulous",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Emad, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/c0f421d8d6d7bf8",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-13:47084:signature"
       }
      ]
     },
@@ -3586,14 +3586,14 @@
        "phone": null,
        "tz": "America/New_York",
        "local_time": "10:00am EST",
-       "goal": "push_live",
+       "goal": "adoption",
        "script_hint": "Meyrav, Gabriel at Belong. Your pricing is confirmed; the last step to go live is ADOPTION. Can we clear that today?",
        "admin": "https://admin.bln.hm/homes/f6bebfd9108565b1",
        "bucket": "7_report_confirmed_no_hrtsw",
        "stage_label": "Report confirmed, not live",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-16:140149:push_live"
+       "key": "2026-11-16:140149:adoption"
       },
       {
        "home_id": 168528,
@@ -4009,21 +4009,6 @@
        "key": "2026-11-16:165063:signature"
       },
       {
-       "home_id": 230877,
-       "name": "Alex Brooks",
-       "phone": null,
-       "tz": "America/Chicago",
-       "local_time": "2:00pm CST",
-       "goal": "signature",
-       "script_hint": "Alex, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/25b5416778cf0d90",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-16:230877:signature"
-      },
-      {
        "home_id": 229734,
        "name": "Marky Lynn Quayle",
        "phone": null,
@@ -4037,6 +4022,21 @@
        "verdict": "work",
        "note": "",
        "key": "2026-11-16:229734:signature"
+      },
+      {
+       "home_id": 63143,
+       "name": "Gopi Kondameda",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Gopi, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/60cf4b22e674450b",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-16:63143:signature"
       }
      ]
     },
@@ -4434,14 +4434,14 @@
        "phone": null,
        "tz": "America/New_York",
        "local_time": "10:00am EST",
-       "goal": "book_report_call",
+       "goal": "adoption",
        "script_hint": "Pramod, Gabriel at Belong. Your report is ready. I have Tue 2pm or Wed 11am ET to walk through the price together; which works? (Who else should be on?)",
        "admin": "https://admin.bln.hm/homes/e92914c7a0a9281c",
        "bucket": "6_report_published_no_confirm",
        "stage_label": "Report out, unconfirmed",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-17:166033:book_report_call"
+       "key": "2026-11-17:166033:adoption"
       },
       {
        "home_id": 150651,
@@ -4704,14 +4704,14 @@
        "phone": null,
        "tz": "America/Los_Angeles",
        "local_time": "10:00am PST",
-       "goal": "confirm_inspection",
+       "goal": "adoption",
        "script_hint": "Rod, Gabriel at Belong. Confirming the walkthrough on 2026-06-29: access is set? And let's book the results call 2 days after.",
        "admin": "https://admin.bln.hm/homes/91442d52d73d66d9",
        "bucket": "4_inspection_scheduled_no_complete",
        "stage_label": "Inspection scheduled",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-17:160912:confirm_inspection"
+       "key": "2026-11-17:160912:adoption"
       },
       {
        "home_id": 103318,
@@ -4849,36 +4849,6 @@
        "key": "2026-11-17:170503:book_inspection"
       },
       {
-       "home_id": 232341,
-       "name": "Stacie Shapiro",
-       "phone": null,
-       "tz": "America/New_York",
-       "local_time": "3:00pm EST",
-       "goal": "signature",
-       "script_hint": "Stacie, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/6194ed9b906e7dad",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-17:232341:signature"
-      },
-      {
-       "home_id": 63143,
-       "name": "Gopi Kondameda",
-       "phone": null,
-       "tz": "America/Chicago",
-       "local_time": "2:00pm CST",
-       "goal": "signature",
-       "script_hint": "Gopi, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/60cf4b22e674450b",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-17:63143:signature"
-      },
-      {
        "home_id": 215529,
        "name": "Tracie George",
        "phone": null,
@@ -4892,6 +4862,36 @@
        "verdict": "work",
        "note": "",
        "key": "2026-11-17:215529:signature"
+      },
+      {
+       "home_id": 216237,
+       "name": "Ira Tanga Tanga",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Ira, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/72067879ea58d8c8",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-17:216237:signature"
+      },
+      {
+       "home_id": 47084,
+       "name": "Emad Pulous",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Emad, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/c0f421d8d6d7bf8",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-17:47084:signature"
       }
      ]
     },
@@ -5307,14 +5307,14 @@
        "phone": null,
        "tz": "America/New_York",
        "local_time": "10:00am EST",
-       "goal": "push_live",
+       "goal": "adoption",
        "script_hint": "Meyrav, Gabriel at Belong. Your pricing is confirmed; the last step to go live is ADOPTION. Can we clear that today?",
        "admin": "https://admin.bln.hm/homes/f6bebfd9108565b1",
        "bucket": "7_report_confirmed_no_hrtsw",
        "stage_label": "Report confirmed, not live",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-18:140149:push_live"
+       "key": "2026-11-18:140149:adoption"
       },
       {
        "home_id": 168528,
@@ -5737,21 +5737,6 @@
        "key": "2026-11-18:165063:signature"
       },
       {
-       "home_id": 230877,
-       "name": "Alex Brooks",
-       "phone": null,
-       "tz": "America/Chicago",
-       "local_time": "2:00pm CST",
-       "goal": "signature",
-       "script_hint": "Alex, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/25b5416778cf0d90",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-18:230877:signature"
-      },
-      {
        "home_id": 229734,
        "name": "Marky Lynn Quayle",
        "phone": null,
@@ -5765,6 +5750,21 @@
        "verdict": "work",
        "note": "",
        "key": "2026-11-18:229734:signature"
+      },
+      {
+       "home_id": 63143,
+       "name": "Gopi Kondameda",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Gopi, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/60cf4b22e674450b",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-18:63143:signature"
       }
      ]
     },
@@ -6155,14 +6155,14 @@
        "phone": null,
        "tz": "America/New_York",
        "local_time": "10:00am EST",
-       "goal": "book_report_call",
+       "goal": "adoption",
        "script_hint": "Pramod, Gabriel at Belong. Your report is ready. I have Tue 2pm or Wed 11am ET to walk through the price together; which works? (Who else should be on?)",
        "admin": "https://admin.bln.hm/homes/e92914c7a0a9281c",
        "bucket": "6_report_published_no_confirm",
        "stage_label": "Report out, unconfirmed",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-19:166033:book_report_call"
+       "key": "2026-11-19:166033:adoption"
       },
       {
        "home_id": 150651,
@@ -6425,14 +6425,14 @@
        "phone": null,
        "tz": "America/Los_Angeles",
        "local_time": "10:00am PST",
-       "goal": "confirm_inspection",
+       "goal": "adoption",
        "script_hint": "Rod, Gabriel at Belong. Confirming the walkthrough on 2026-06-29: access is set? And let's book the results call 2 days after.",
        "admin": "https://admin.bln.hm/homes/91442d52d73d66d9",
        "bucket": "4_inspection_scheduled_no_complete",
        "stage_label": "Inspection scheduled",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-19:160912:confirm_inspection"
+       "key": "2026-11-19:160912:adoption"
       },
       {
        "home_id": 103318,
@@ -6570,36 +6570,6 @@
        "key": "2026-11-19:170503:book_inspection"
       },
       {
-       "home_id": 232341,
-       "name": "Stacie Shapiro",
-       "phone": null,
-       "tz": "America/New_York",
-       "local_time": "3:00pm EST",
-       "goal": "signature",
-       "script_hint": "Stacie, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/6194ed9b906e7dad",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-19:232341:signature"
-      },
-      {
-       "home_id": 63143,
-       "name": "Gopi Kondameda",
-       "phone": null,
-       "tz": "America/Chicago",
-       "local_time": "2:00pm CST",
-       "goal": "signature",
-       "script_hint": "Gopi, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/60cf4b22e674450b",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-19:63143:signature"
-      },
-      {
        "home_id": 215529,
        "name": "Tracie George",
        "phone": null,
@@ -6613,6 +6583,36 @@
        "verdict": "work",
        "note": "",
        "key": "2026-11-19:215529:signature"
+      },
+      {
+       "home_id": 216237,
+       "name": "Ira Tanga Tanga",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Ira, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/72067879ea58d8c8",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-19:216237:signature"
+      },
+      {
+       "home_id": 47084,
+       "name": "Emad Pulous",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Emad, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/c0f421d8d6d7bf8",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-19:47084:signature"
       }
      ]
     },
@@ -7010,14 +7010,14 @@
        "phone": null,
        "tz": "America/New_York",
        "local_time": "10:00am EST",
-       "goal": "push_live",
+       "goal": "adoption",
        "script_hint": "Meyrav, Gabriel at Belong. Your pricing is confirmed; the last step to go live is ADOPTION. Can we clear that today?",
        "admin": "https://admin.bln.hm/homes/f6bebfd9108565b1",
        "bucket": "7_report_confirmed_no_hrtsw",
        "stage_label": "Report confirmed, not live",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-20:140149:push_live"
+       "key": "2026-11-20:140149:adoption"
       },
       {
        "home_id": 168528,
@@ -7440,21 +7440,6 @@
        "key": "2026-11-20:165063:signature"
       },
       {
-       "home_id": 230877,
-       "name": "Alex Brooks",
-       "phone": null,
-       "tz": "America/Chicago",
-       "local_time": "2:00pm CST",
-       "goal": "signature",
-       "script_hint": "Alex, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/25b5416778cf0d90",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-20:230877:signature"
-      },
-      {
        "home_id": 229734,
        "name": "Marky Lynn Quayle",
        "phone": null,
@@ -7468,6 +7453,21 @@
        "verdict": "work",
        "note": "",
        "key": "2026-11-20:229734:signature"
+      },
+      {
+       "home_id": 63143,
+       "name": "Gopi Kondameda",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Gopi, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/60cf4b22e674450b",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-20:63143:signature"
       }
      ]
     },
@@ -7865,14 +7865,14 @@
        "phone": null,
        "tz": "America/New_York",
        "local_time": "10:00am EST",
-       "goal": "book_report_call",
+       "goal": "adoption",
        "script_hint": "Pramod, Gabriel at Belong. Your report is ready. I have Tue 2pm or Wed 11am ET to walk through the price together; which works? (Who else should be on?)",
        "admin": "https://admin.bln.hm/homes/e92914c7a0a9281c",
        "bucket": "6_report_published_no_confirm",
        "stage_label": "Report out, unconfirmed",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-23:166033:book_report_call"
+       "key": "2026-11-23:166033:adoption"
       },
       {
        "home_id": 150651,
@@ -8128,14 +8128,14 @@
        "phone": null,
        "tz": "America/Los_Angeles",
        "local_time": "10:00am PST",
-       "goal": "confirm_inspection",
+       "goal": "adoption",
        "script_hint": "Rod, Gabriel at Belong. Confirming the walkthrough on 2026-06-29: access is set? And let's book the results call 2 days after.",
        "admin": "https://admin.bln.hm/homes/91442d52d73d66d9",
        "bucket": "4_inspection_scheduled_no_complete",
        "stage_label": "Inspection scheduled",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-23:160912:confirm_inspection"
+       "key": "2026-11-23:160912:adoption"
       },
       {
        "home_id": 103318,
@@ -8273,36 +8273,6 @@
        "key": "2026-11-23:170503:book_inspection"
       },
       {
-       "home_id": 232341,
-       "name": "Stacie Shapiro",
-       "phone": null,
-       "tz": "America/New_York",
-       "local_time": "3:00pm EST",
-       "goal": "signature",
-       "script_hint": "Stacie, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/6194ed9b906e7dad",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-23:232341:signature"
-      },
-      {
-       "home_id": 63143,
-       "name": "Gopi Kondameda",
-       "phone": null,
-       "tz": "America/Chicago",
-       "local_time": "2:00pm CST",
-       "goal": "signature",
-       "script_hint": "Gopi, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/60cf4b22e674450b",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-23:63143:signature"
-      },
-      {
        "home_id": 215529,
        "name": "Tracie George",
        "phone": null,
@@ -8316,6 +8286,36 @@
        "verdict": "work",
        "note": "",
        "key": "2026-11-23:215529:signature"
+      },
+      {
+       "home_id": 216237,
+       "name": "Ira Tanga Tanga",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Ira, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/72067879ea58d8c8",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-23:216237:signature"
+      },
+      {
+       "home_id": 47084,
+       "name": "Emad Pulous",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Emad, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/c0f421d8d6d7bf8",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-23:47084:signature"
       }
      ]
     },
@@ -8706,14 +8706,14 @@
        "phone": null,
        "tz": "America/New_York",
        "local_time": "10:00am EST",
-       "goal": "push_live",
+       "goal": "adoption",
        "script_hint": "Meyrav, Gabriel at Belong. Your pricing is confirmed; the last step to go live is ADOPTION. Can we clear that today?",
        "admin": "https://admin.bln.hm/homes/f6bebfd9108565b1",
        "bucket": "7_report_confirmed_no_hrtsw",
        "stage_label": "Report confirmed, not live",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-24:140149:push_live"
+       "key": "2026-11-24:140149:adoption"
       },
       {
        "home_id": 168528,
@@ -9136,21 +9136,6 @@
        "key": "2026-11-24:165063:signature"
       },
       {
-       "home_id": 230877,
-       "name": "Alex Brooks",
-       "phone": null,
-       "tz": "America/Chicago",
-       "local_time": "2:00pm CST",
-       "goal": "signature",
-       "script_hint": "Alex, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/25b5416778cf0d90",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-24:230877:signature"
-      },
-      {
        "home_id": 229734,
        "name": "Marky Lynn Quayle",
        "phone": null,
@@ -9164,6 +9149,21 @@
        "verdict": "work",
        "note": "",
        "key": "2026-11-24:229734:signature"
+      },
+      {
+       "home_id": 63143,
+       "name": "Gopi Kondameda",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Gopi, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/60cf4b22e674450b",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-24:63143:signature"
       }
      ]
     },
@@ -9554,14 +9554,14 @@
        "phone": null,
        "tz": "America/New_York",
        "local_time": "10:00am EST",
-       "goal": "book_report_call",
+       "goal": "adoption",
        "script_hint": "Pramod, Gabriel at Belong. Your report is ready. I have Tue 2pm or Wed 11am ET to walk through the price together; which works? (Who else should be on?)",
        "admin": "https://admin.bln.hm/homes/e92914c7a0a9281c",
        "bucket": "6_report_published_no_confirm",
        "stage_label": "Report out, unconfirmed",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-25:166033:book_report_call"
+       "key": "2026-11-25:166033:adoption"
       },
       {
        "home_id": 150651,
@@ -9824,14 +9824,14 @@
        "phone": null,
        "tz": "America/Los_Angeles",
        "local_time": "10:00am PST",
-       "goal": "confirm_inspection",
+       "goal": "adoption",
        "script_hint": "Rod, Gabriel at Belong. Confirming the walkthrough on 2026-06-29: access is set? And let's book the results call 2 days after.",
        "admin": "https://admin.bln.hm/homes/91442d52d73d66d9",
        "bucket": "4_inspection_scheduled_no_complete",
        "stage_label": "Inspection scheduled",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-25:160912:confirm_inspection"
+       "key": "2026-11-25:160912:adoption"
       },
       {
        "home_id": 103318,
@@ -9969,36 +9969,6 @@
        "key": "2026-11-25:170503:book_inspection"
       },
       {
-       "home_id": 232341,
-       "name": "Stacie Shapiro",
-       "phone": null,
-       "tz": "America/New_York",
-       "local_time": "3:00pm EST",
-       "goal": "signature",
-       "script_hint": "Stacie, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/6194ed9b906e7dad",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-25:232341:signature"
-      },
-      {
-       "home_id": 63143,
-       "name": "Gopi Kondameda",
-       "phone": null,
-       "tz": "America/Chicago",
-       "local_time": "2:00pm CST",
-       "goal": "signature",
-       "script_hint": "Gopi, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/60cf4b22e674450b",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-25:63143:signature"
-      },
-      {
        "home_id": 215529,
        "name": "Tracie George",
        "phone": null,
@@ -10012,6 +9982,36 @@
        "verdict": "work",
        "note": "",
        "key": "2026-11-25:215529:signature"
+      },
+      {
+       "home_id": 216237,
+       "name": "Ira Tanga Tanga",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Ira, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/72067879ea58d8c8",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-25:216237:signature"
+      },
+      {
+       "home_id": 47084,
+       "name": "Emad Pulous",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Emad, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/c0f421d8d6d7bf8",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-25:47084:signature"
       }
      ]
     },
@@ -10409,14 +10409,14 @@
        "phone": null,
        "tz": "America/New_York",
        "local_time": "10:00am EST",
-       "goal": "push_live",
+       "goal": "adoption",
        "script_hint": "Meyrav, Gabriel at Belong. Your pricing is confirmed; the last step to go live is ADOPTION. Can we clear that today?",
        "admin": "https://admin.bln.hm/homes/f6bebfd9108565b1",
        "bucket": "7_report_confirmed_no_hrtsw",
        "stage_label": "Report confirmed, not live",
        "verdict": "work",
        "note": "",
-       "key": "2026-11-30:140149:push_live"
+       "key": "2026-11-30:140149:adoption"
       },
       {
        "home_id": 168528,
@@ -10832,21 +10832,6 @@
        "key": "2026-11-30:165063:signature"
       },
       {
-       "home_id": 230877,
-       "name": "Alex Brooks",
-       "phone": null,
-       "tz": "America/Chicago",
-       "local_time": "2:00pm CST",
-       "goal": "signature",
-       "script_hint": "Alex, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
-       "admin": "https://admin.bln.hm/homes/25b5416778cf0d90",
-       "bucket": "2_agreement_sent_not_signed",
-       "stage_label": "Agreement sent, unsigned",
-       "verdict": "work",
-       "note": "",
-       "key": "2026-11-30:230877:signature"
-      },
-      {
        "home_id": 229734,
        "name": "Marky Lynn Quayle",
        "phone": null,
@@ -10860,6 +10845,21 @@
        "verdict": "work",
        "note": "",
        "key": "2026-11-30:229734:signature"
+      },
+      {
+       "home_id": 63143,
+       "name": "Gopi Kondameda",
+       "phone": null,
+       "tz": "America/Chicago",
+       "local_time": "2:00pm CST",
+       "goal": "signature",
+       "script_hint": "Gopi, Gabriel at Belong. The agreement is in your inbox; nothing is due up front. What is holding it up? Happy to walk it through in 15 minutes.",
+       "admin": "https://admin.bln.hm/homes/60cf4b22e674450b",
+       "bucket": "2_agreement_sent_not_signed",
+       "stage_label": "Agreement sent, unsigned",
+       "verdict": "work",
+       "note": "",
+       "key": "2026-11-30:63143:signature"
       }
      ]
     },
@@ -11136,7 +11136,7 @@
   "2026-11-10:215820:reply",
   "2026-11-10:215820:push_live",
   "2026-11-10:57555:push_live",
-  "2026-11-10:140149:push_live",
+  "2026-11-10:140149:adoption",
   "2026-11-10:168528:book_report_call",
   "2026-11-10:170139:book_report_call",
   "2026-11-10:127621:book_report_call",
@@ -11162,8 +11162,8 @@
   "2026-11-10:167918:book_inspection",
   "2026-11-10:58546:book_inspection",
   "2026-11-10:165063:signature",
-  "2026-11-10:230877:signature",
   "2026-11-10:229734:signature",
+  "2026-11-10:63143:signature",
   "2026-11-10:215820:redial",
   "2026-11-10:57555:redial",
   "2026-11-10:140149:redial",
@@ -11186,7 +11186,7 @@
   "2026-11-11:215820:reply",
   "2026-11-11:167667:book_report_call",
   "2026-11-11:172267:book_report_call",
-  "2026-11-11:166033:book_report_call",
+  "2026-11-11:166033:adoption",
   "2026-11-11:150651:book_report_call",
   "2026-11-11:167187:book_report_call",
   "2026-11-11:169094:book_report_call",
@@ -11202,7 +11202,7 @@
   "2026-11-11:168886:book_report_call",
   "2026-11-11:169920:book_report_call",
   "2026-11-11:215790:book_report_call",
-  "2026-11-11:160912:confirm_inspection",
+  "2026-11-11:160912:adoption",
   "2026-11-11:103318:confirm_inspection",
   "2026-11-11:162896:push_live",
   "2026-11-11:164107:book_report_call",
@@ -11211,9 +11211,9 @@
   "2026-11-11:158212:book_inspection",
   "2026-11-11:169299:book_inspection",
   "2026-11-11:170503:book_inspection",
-  "2026-11-11:232341:signature",
-  "2026-11-11:63143:signature",
   "2026-11-11:215529:signature",
+  "2026-11-11:216237:signature",
+  "2026-11-11:47084:signature",
   "2026-11-11:167667:redial",
   "2026-11-11:172267:redial",
   "2026-11-11:166033:redial",
@@ -11236,7 +11236,7 @@
   "2026-11-12:215820:reply",
   "2026-11-12:215820:push_live",
   "2026-11-12:57555:push_live",
-  "2026-11-12:140149:push_live",
+  "2026-11-12:140149:adoption",
   "2026-11-12:168528:book_report_call",
   "2026-11-12:170139:book_report_call",
   "2026-11-12:127621:book_report_call",
@@ -11262,8 +11262,8 @@
   "2026-11-12:167918:book_inspection",
   "2026-11-12:58546:book_inspection",
   "2026-11-12:165063:signature",
-  "2026-11-12:230877:signature",
   "2026-11-12:229734:signature",
+  "2026-11-12:63143:signature",
   "2026-11-12:215820:redial",
   "2026-11-12:57555:redial",
   "2026-11-12:140149:redial",
@@ -11286,7 +11286,7 @@
   "2026-11-13:215820:reply",
   "2026-11-13:167667:book_report_call",
   "2026-11-13:172267:book_report_call",
-  "2026-11-13:166033:book_report_call",
+  "2026-11-13:166033:adoption",
   "2026-11-13:150651:book_report_call",
   "2026-11-13:167187:book_report_call",
   "2026-11-13:169094:book_report_call",
@@ -11302,7 +11302,7 @@
   "2026-11-13:168886:book_report_call",
   "2026-11-13:169920:book_report_call",
   "2026-11-13:215790:book_report_call",
-  "2026-11-13:160912:confirm_inspection",
+  "2026-11-13:160912:adoption",
   "2026-11-13:103318:confirm_inspection",
   "2026-11-13:162896:push_live",
   "2026-11-13:164107:book_report_call",
@@ -11311,9 +11311,9 @@
   "2026-11-13:158212:book_inspection",
   "2026-11-13:169299:book_inspection",
   "2026-11-13:170503:book_inspection",
-  "2026-11-13:232341:signature",
-  "2026-11-13:63143:signature",
   "2026-11-13:215529:signature",
+  "2026-11-13:216237:signature",
+  "2026-11-13:47084:signature",
   "2026-11-13:167667:redial",
   "2026-11-13:172267:redial",
   "2026-11-13:166033:redial",
@@ -11336,7 +11336,7 @@
   "2026-11-16:215820:reply",
   "2026-11-16:215820:push_live",
   "2026-11-16:57555:push_live",
-  "2026-11-16:140149:push_live",
+  "2026-11-16:140149:adoption",
   "2026-11-16:168528:book_report_call",
   "2026-11-16:170139:book_report_call",
   "2026-11-16:127621:book_report_call",
@@ -11362,8 +11362,8 @@
   "2026-11-16:167918:book_inspection",
   "2026-11-16:58546:book_inspection",
   "2026-11-16:165063:signature",
-  "2026-11-16:230877:signature",
   "2026-11-16:229734:signature",
+  "2026-11-16:63143:signature",
   "2026-11-16:215820:redial",
   "2026-11-16:57555:redial",
   "2026-11-16:140149:redial",
@@ -11386,7 +11386,7 @@
   "2026-11-17:215820:reply",
   "2026-11-17:167667:book_report_call",
   "2026-11-17:172267:book_report_call",
-  "2026-11-17:166033:book_report_call",
+  "2026-11-17:166033:adoption",
   "2026-11-17:150651:book_report_call",
   "2026-11-17:167187:book_report_call",
   "2026-11-17:169094:book_report_call",
@@ -11402,7 +11402,7 @@
   "2026-11-17:168886:book_report_call",
   "2026-11-17:169920:book_report_call",
   "2026-11-17:215790:book_report_call",
-  "2026-11-17:160912:confirm_inspection",
+  "2026-11-17:160912:adoption",
   "2026-11-17:103318:confirm_inspection",
   "2026-11-17:162896:push_live",
   "2026-11-17:164107:book_report_call",
@@ -11411,9 +11411,9 @@
   "2026-11-17:158212:book_inspection",
   "2026-11-17:169299:book_inspection",
   "2026-11-17:170503:book_inspection",
-  "2026-11-17:232341:signature",
-  "2026-11-17:63143:signature",
   "2026-11-17:215529:signature",
+  "2026-11-17:216237:signature",
+  "2026-11-17:47084:signature",
   "2026-11-17:167667:redial",
   "2026-11-17:172267:redial",
   "2026-11-17:166033:redial",
@@ -11436,7 +11436,7 @@
   "2026-11-18:215820:reply",
   "2026-11-18:215820:push_live",
   "2026-11-18:57555:push_live",
-  "2026-11-18:140149:push_live",
+  "2026-11-18:140149:adoption",
   "2026-11-18:168528:book_report_call",
   "2026-11-18:170139:book_report_call",
   "2026-11-18:127621:book_report_call",
@@ -11462,8 +11462,8 @@
   "2026-11-18:167918:book_inspection",
   "2026-11-18:58546:book_inspection",
   "2026-11-18:165063:signature",
-  "2026-11-18:230877:signature",
   "2026-11-18:229734:signature",
+  "2026-11-18:63143:signature",
   "2026-11-18:215820:redial",
   "2026-11-18:57555:redial",
   "2026-11-18:140149:redial",
@@ -11486,7 +11486,7 @@
   "2026-11-19:215820:reply",
   "2026-11-19:167667:book_report_call",
   "2026-11-19:172267:book_report_call",
-  "2026-11-19:166033:book_report_call",
+  "2026-11-19:166033:adoption",
   "2026-11-19:150651:book_report_call",
   "2026-11-19:167187:book_report_call",
   "2026-11-19:169094:book_report_call",
@@ -11502,7 +11502,7 @@
   "2026-11-19:168886:book_report_call",
   "2026-11-19:169920:book_report_call",
   "2026-11-19:215790:book_report_call",
-  "2026-11-19:160912:confirm_inspection",
+  "2026-11-19:160912:adoption",
   "2026-11-19:103318:confirm_inspection",
   "2026-11-19:162896:push_live",
   "2026-11-19:164107:book_report_call",
@@ -11511,9 +11511,9 @@
   "2026-11-19:158212:book_inspection",
   "2026-11-19:169299:book_inspection",
   "2026-11-19:170503:book_inspection",
-  "2026-11-19:232341:signature",
-  "2026-11-19:63143:signature",
   "2026-11-19:215529:signature",
+  "2026-11-19:216237:signature",
+  "2026-11-19:47084:signature",
   "2026-11-19:167667:redial",
   "2026-11-19:172267:redial",
   "2026-11-19:166033:redial",
@@ -11536,7 +11536,7 @@
   "2026-11-20:215820:reply",
   "2026-11-20:215820:push_live",
   "2026-11-20:57555:push_live",
-  "2026-11-20:140149:push_live",
+  "2026-11-20:140149:adoption",
   "2026-11-20:168528:book_report_call",
   "2026-11-20:170139:book_report_call",
   "2026-11-20:127621:book_report_call",
@@ -11562,8 +11562,8 @@
   "2026-11-20:167918:book_inspection",
   "2026-11-20:58546:book_inspection",
   "2026-11-20:165063:signature",
-  "2026-11-20:230877:signature",
   "2026-11-20:229734:signature",
+  "2026-11-20:63143:signature",
   "2026-11-20:215820:redial",
   "2026-11-20:57555:redial",
   "2026-11-20:140149:redial",
@@ -11586,7 +11586,7 @@
   "2026-11-23:215820:reply",
   "2026-11-23:167667:book_report_call",
   "2026-11-23:172267:book_report_call",
-  "2026-11-23:166033:book_report_call",
+  "2026-11-23:166033:adoption",
   "2026-11-23:150651:book_report_call",
   "2026-11-23:167187:book_report_call",
   "2026-11-23:169094:book_report_call",
@@ -11602,7 +11602,7 @@
   "2026-11-23:168886:book_report_call",
   "2026-11-23:169920:book_report_call",
   "2026-11-23:215790:book_report_call",
-  "2026-11-23:160912:confirm_inspection",
+  "2026-11-23:160912:adoption",
   "2026-11-23:103318:confirm_inspection",
   "2026-11-23:162896:push_live",
   "2026-11-23:164107:book_report_call",
@@ -11611,9 +11611,9 @@
   "2026-11-23:158212:book_inspection",
   "2026-11-23:169299:book_inspection",
   "2026-11-23:170503:book_inspection",
-  "2026-11-23:232341:signature",
-  "2026-11-23:63143:signature",
   "2026-11-23:215529:signature",
+  "2026-11-23:216237:signature",
+  "2026-11-23:47084:signature",
   "2026-11-23:167667:redial",
   "2026-11-23:172267:redial",
   "2026-11-23:166033:redial",
@@ -11636,7 +11636,7 @@
   "2026-11-24:215820:reply",
   "2026-11-24:215820:push_live",
   "2026-11-24:57555:push_live",
-  "2026-11-24:140149:push_live",
+  "2026-11-24:140149:adoption",
   "2026-11-24:168528:book_report_call",
   "2026-11-24:170139:book_report_call",
   "2026-11-24:127621:book_report_call",
@@ -11662,8 +11662,8 @@
   "2026-11-24:167918:book_inspection",
   "2026-11-24:58546:book_inspection",
   "2026-11-24:165063:signature",
-  "2026-11-24:230877:signature",
   "2026-11-24:229734:signature",
+  "2026-11-24:63143:signature",
   "2026-11-24:215820:redial",
   "2026-11-24:57555:redial",
   "2026-11-24:140149:redial",
@@ -11686,7 +11686,7 @@
   "2026-11-25:215820:reply",
   "2026-11-25:167667:book_report_call",
   "2026-11-25:172267:book_report_call",
-  "2026-11-25:166033:book_report_call",
+  "2026-11-25:166033:adoption",
   "2026-11-25:150651:book_report_call",
   "2026-11-25:167187:book_report_call",
   "2026-11-25:169094:book_report_call",
@@ -11702,7 +11702,7 @@
   "2026-11-25:168886:book_report_call",
   "2026-11-25:169920:book_report_call",
   "2026-11-25:215790:book_report_call",
-  "2026-11-25:160912:confirm_inspection",
+  "2026-11-25:160912:adoption",
   "2026-11-25:103318:confirm_inspection",
   "2026-11-25:162896:push_live",
   "2026-11-25:164107:book_report_call",
@@ -11711,9 +11711,9 @@
   "2026-11-25:158212:book_inspection",
   "2026-11-25:169299:book_inspection",
   "2026-11-25:170503:book_inspection",
-  "2026-11-25:232341:signature",
-  "2026-11-25:63143:signature",
   "2026-11-25:215529:signature",
+  "2026-11-25:216237:signature",
+  "2026-11-25:47084:signature",
   "2026-11-25:167667:redial",
   "2026-11-25:172267:redial",
   "2026-11-25:166033:redial",
@@ -11736,7 +11736,7 @@
   "2026-11-30:215820:reply",
   "2026-11-30:215820:push_live",
   "2026-11-30:57555:push_live",
-  "2026-11-30:140149:push_live",
+  "2026-11-30:140149:adoption",
   "2026-11-30:168528:book_report_call",
   "2026-11-30:170139:book_report_call",
   "2026-11-30:127621:book_report_call",
@@ -11762,8 +11762,8 @@
   "2026-11-30:167918:book_inspection",
   "2026-11-30:58546:book_inspection",
   "2026-11-30:165063:signature",
-  "2026-11-30:230877:signature",
   "2026-11-30:229734:signature",
+  "2026-11-30:63143:signature",
   "2026-11-30:215820:redial",
   "2026-11-30:57555:redial",
   "2026-11-30:140149:redial",
