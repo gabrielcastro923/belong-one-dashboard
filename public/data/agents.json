@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-10T13:39-05:00",
+ "generated": "2026-11-10T15:20-05:00",
  "agents": [
   {
    "name": "reportcall-b56",
@@ -8,15 +8,6 @@
    "schedule": "2x daily",
    "owned_metric": "",
    "note": "last exit 2",
-   "proposal_path": null
-  },
-  {
-   "name": "walkthrough-queue",
-   "kind": "launchd",
-   "status": "FAILING",
-   "schedule": "06:50 daily",
-   "owned_metric": "",
-   "note": "last exit 1",
    "proposal_path": null
   },
   {
@@ -168,6 +159,15 @@
    "kind": "launchd",
    "status": "OK",
    "schedule": "15:07 daily",
+   "owned_metric": "",
+   "note": "",
+   "proposal_path": null
+  },
+  {
+   "name": "walkthrough-queue",
+   "kind": "launchd",
+   "status": "OK",
+   "schedule": "06:50 daily",
    "owned_metric": "",
    "note": "",
    "proposal_path": null
