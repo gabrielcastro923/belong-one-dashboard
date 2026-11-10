@@ -24,3 +24,10 @@ export function fmtDay(ymd: string): string {
 export function hoursSince(iso: string, now: Date = new Date()): number {
   return (now.getTime() - new Date(iso).getTime()) / 36e5;
 }
+
+/** "13:39" (24h, ET) for the header pill. */
+export function fmtClock(iso: string): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "--:--";
+  return new Intl.DateTimeFormat("en-GB", { timeZone: ET, hour: "2-digit", minute: "2-digit", hour12: false }).format(d);
+}

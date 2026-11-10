@@ -1,13 +1,24 @@
 import { cn } from "@/lib/utils";
 
-/** Bullet-style meter: fill = actual, tick = floor, right edge = target. */
-export function Meter({ value, target, floor, className }: { value: number; target: number; floor?: number; className?: string }) {
-  const max = Math.max(target, value, 1);
-  const w = (v: number) => `${Math.min(100, (v / max) * 100)}%`;
+/**
+ * Tick bar: one tick per unit of the goal. Filled ticks take the entity colour; the floor tick is a dark marker.
+ * Goals above 70 fall back to 60 proportional ticks so a tick never gets thinner than a hairline.
+ */
+export function TickBar({ value, target, floor, color, className }: { value: number; target: number; floor?: number; color: string; className?: string }) {
+  if (target <= 0) return null;
+  const n = target <= 70 ? target : 60;
+  const per = target / n;
+  const filled = Math.min(n, Math.round(value / per));
+  const floorIdx = floor !== undefined ? Math.max(0, Math.round(floor / per) - 1) : -1;
   return (
-    <div className={cn("relative h-2 w-full rounded-sm bg-track", className)} aria-hidden>
-      <div className="absolute inset-y-0 left-0 rounded-sm bg-series" style={{ width: w(value) }} />
-      {floor !== undefined && <div className="absolute -inset-y-1 w-0.5 bg-foreground/60" style={{ left: w(floor) }} title={`Floor ${floor}`} />}
+    <div className={cn("ticks", className)} aria-hidden>
+      {Array.from({ length: n }, (_, i) => (
+        <i
+          key={i}
+          className={i === floorIdx && i >= filled ? "!bg-ink/45" : undefined}
+          style={i < filled ? { background: color } : undefined}
+        />
+      ))}
     </div>
   );
 }

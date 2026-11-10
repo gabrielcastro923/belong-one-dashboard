@@ -9,9 +9,8 @@ export interface ChartRow {
   target?: number;
 }
 
-const ACTUAL = "hsl(var(--series-1))";
-const TARGET = "hsl(var(--muted-foreground))";
-const GRID = "hsl(var(--border))";
+const TARGET = "rgb(var(--muted))";
+const GRID = "rgb(var(--line))";
 
 function Tip({ active, payload, label }: { active?: boolean; payload?: { dataKey: string; value: number }[]; label?: string }) {
   if (!active || !payload?.length || !label) return null;
@@ -19,37 +18,43 @@ function Tip({ active, payload, label }: { active?: boolean; payload?: { dataKey
   const a = get("actual");
   const t = get("target");
   return (
-    <div className="tnum rounded-md border border-border bg-card px-2.5 py-1.5 text-xs shadow-sm">
-      <div className="font-medium">{fmtDay(label)}</div>
-      {a !== undefined && <div>Actual {a}</div>}
-      {t !== undefined && <div className="text-muted-foreground">Pace {t.toFixed(1)}</div>}
+    <div className="tnum rounded-md bg-tip px-3 py-2 text-xs text-white shadow-[0_12px_32px_-8px_rgb(0_0_0/.35)]">
+      <div className="text-white/70">{fmtDay(label)}</div>
+      {a !== undefined && (
+        <div className="flex items-baseline gap-1.5">
+          <span className="text-[17px] font-semibold leading-6">{a}</span>
+          <span className="text-white/70">actual</span>
+        </div>
+      )}
+      {t !== undefined && <div className="text-white/70">Pace {t.toFixed(1)}</div>}
     </div>
   );
 }
 
-export function MetricChart({ title, rows, goal, last }: { title: string; rows: ChartRow[]; goal: number; last?: number }) {
+export function MetricChart({ title, rows, goal, last, color }: { title: string; rows: ChartRow[]; goal: number; last?: number; color: string }) {
+  const ACTUAL = color;
   return (
-    <section className="min-w-0 rounded-lg border border-border bg-card p-3">
-      <div className="mb-1 flex flex-wrap items-baseline justify-between gap-2">
-        <h2 className="text-sm font-semibold">
-          {title}{" "}
-          <span className="tnum font-normal text-muted-foreground">
-            {last ?? 0} / {goal}
-          </span>
-        </h2>
-        <p className="flex items-center gap-3 text-xs text-muted-foreground">
-          <span className="inline-flex items-center gap-1">
-            <span className="h-0.5 w-3 bg-series" aria-hidden /> Actual
-          </span>
-          <span className="inline-flex items-center gap-1">
-            <span className="w-3 border-t border-dashed border-muted-foreground" aria-hidden /> Checkpoint pace
-          </span>
-        </p>
+    <section className="min-w-0 rounded-lg border border-line bg-card p-5">
+      <div className="flex items-center gap-2">
+        <span className="h-2 w-2 rounded-full" style={{ background: color }} aria-hidden />
+        <h2 className="text-sm font-medium text-ink-2">{title}</h2>
       </div>
-      <div className="h-44">
+      <p className="mt-2 flex items-baseline gap-1.5">
+        <span className="num text-[32px] font-semibold leading-9">{last ?? 0}</span>
+        <span className="tnum text-sm text-muted">of {goal}</span>
+      </p>
+      <p className="mt-1 flex items-center gap-3 text-2xs text-muted">
+        <span className="inline-flex items-center gap-1.5">
+          <span className="h-0.5 w-3 rounded-full" style={{ background: color }} aria-hidden /> Actual
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <span className="w-3 border-t border-dashed border-muted" aria-hidden /> Checkpoint pace
+        </span>
+      </p>
+      <div className="mt-3 h-44 touch-pan-y">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart data={rows} margin={{ top: 8, right: 8, bottom: 0, left: -20 }}>
-            <CartesianGrid stroke={GRID} strokeOpacity={0.6} vertical={false} />
+            <CartesianGrid stroke={GRID} vertical={false} />
             <XAxis
               dataKey="date"
               tickFormatter={(d: string) => d.slice(8).replace(/^0/, "")}
@@ -67,11 +72,11 @@ export function MetricChart({ title, rows, goal, last }: { title: string; rows: 
               stroke={ACTUAL}
               strokeWidth={2}
               fill={ACTUAL}
-              fillOpacity={0.12}
+              fillOpacity={0.14}
               type="monotone"
               connectNulls
               dot={false}
-              activeDot={{ r: 4, stroke: "hsl(var(--card))", strokeWidth: 2, fill: ACTUAL }}
+              activeDot={{ r: 4, stroke: "rgb(var(--card))", strokeWidth: 2, fill: ACTUAL }}
               isAnimationActive={false}
             />
           </ComposedChart>

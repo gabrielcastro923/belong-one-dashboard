@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
-const t = (v: string) => `hsl(var(--${v}) / <alpha-value>)`;
+// Every colour is an RGB triplet token in globals.css (light + dark), so Tailwind alpha works: bg-report/10.
+const t = (v: string) => `rgb(var(--${v}) / <alpha-value>)`;
 
 const config: Config = {
   darkMode: "media",
@@ -9,30 +10,41 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],
-        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
+        mono: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       colors: {
-        border: t("border"),
-        background: t("background"),
-        foreground: t("foreground"),
-        muted: t("muted"),
-        "muted-foreground": t("muted-foreground"),
+        // chrome
+        page: t("page"),
         card: t("card"),
-        "card-foreground": t("card-foreground"),
-        primary: t("primary"),
-        "primary-foreground": t("primary-foreground"),
-        accent: t("accent"),
-        ring: t("ring"),
-        series: t("series-1"),
-        track: t("series-track"),
-        good: t("good"),
-        "good-ink": t("good-ink"),
+        soft: t("soft"),
+        ink: t("ink"),
+        "ink-2": t("ink-2"),
+        muted: t("muted"),
+        line: t("line"),
+        "line-strong": t("line-strong"),
+        focus: t("focus"),
+        tip: t("tip"),
+        // stage families: colour follows the entity
+        agree: t("st-agree"),
+        insp: t("st-insp"),
+        report: t("st-report"),
+        live: t("st-live"),
+        // problems only
         warn: t("warn"),
         "warn-ink": t("warn-ink"),
         critical: t("critical"),
         "critical-ink": t("critical-ink"),
+        "good-ink": t("good-ink"),
       },
-      borderRadius: { lg: "var(--radius)", md: "calc(var(--radius) - 1px)", sm: "calc(var(--radius) - 2px)" },
+      fontSize: {
+        "2xs": ["11px", "16px"],
+        xs: ["12px", "16px"],
+        sm: ["13px", "20px"],
+        base: ["14px", "22px"],
+      },
+      borderRadius: { DEFAULT: "6px", md: "6px", lg: "10px", xl: "12px" },
+      keyframes: { pulse2: { "0%,100%": { opacity: "1" }, "50%": { opacity: ".35" } } },
+      animation: { pulse2: "pulse2 2.4s ease-in-out infinite" },
     },
   },
   plugins: [require("tailwindcss-animate")],

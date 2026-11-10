@@ -1,4 +1,5 @@
 import type { Verdict } from "@/lib/types";
+import { Segmented } from "@/components/ui/section";
 
 export interface Filters {
   q: string;
@@ -11,7 +12,8 @@ export interface Filters {
 
 export type SortKey = "owner_event_age" | "stuck" | "p_list";
 
-const sel = "h-9 min-w-0 rounded-md border border-border bg-card px-2 text-sm";
+const field = "h-9 w-full min-w-0 rounded-lg border border-line-strong bg-card px-3 text-sm text-ink placeholder:text-muted hover:border-ink-2/50 focus:border-focus focus:outline-none focus:ring-2 focus:ring-focus/20";
+const sel = `${field} select-chev`;
 
 export function LeadFilters({
   f,
@@ -33,8 +35,8 @@ export function LeadFilters({
   excluded: number;
 }) {
   return (
-    <div className="space-y-2">
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-6">
+    <div className="space-y-3">
+      <div className="grid grid-cols-2 gap-2 md:grid-cols-6">
         <input
           id="lead-q"
           type="search"
@@ -42,7 +44,7 @@ export function LeadFilters({
           onChange={(e) => set({ q: e.target.value })}
           placeholder="Search name, city, note"
           aria-label="Search"
-          className={`${sel} col-span-2`}
+          className={`${field} col-span-2`}
         />
         <select id="lead-bucket" aria-label="Bucket" value={f.bucket} onChange={(e) => set({ bucket: e.target.value })} className={sel}>
           <option value="">All buckets</option>
@@ -75,30 +77,23 @@ export function LeadFilters({
           ))}
         </select>
       </div>
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
-        <span className="flex flex-wrap items-center gap-1">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+        <span className="flex min-w-0 items-center gap-2 text-xs text-muted">
           Sort
-          {(
-            [
+          <Segmented<SortKey>
+            label="Sort"
+            value={sort.key}
+            dir={sort.dir}
+            onChange={setSort}
+            options={[
               ["owner_event_age", "Event age"],
               ["stuck", "Stuck"],
               ["p_list", "P(list)"],
-            ] as [SortKey, string][]
-          ).map(([k, l]) => (
-            <button
-              key={k}
-              type="button"
-              onClick={() => setSort(k)}
-              aria-pressed={sort.key === k}
-              className={`rounded-sm border px-1.5 py-0.5 ${sort.key === k ? "border-foreground/50 text-foreground" : "border-border hover:text-foreground"}`}
-            >
-              {l}
-              {sort.key === k && (sort.dir === 1 ? " ↑" : " ↓")}
-            </button>
-          ))}
+            ]}
+          />
         </span>
-        <label className="inline-flex items-center gap-1.5">
-          <input id="lead-excl" type="checkbox" checked={f.showExcluded} onChange={(e) => set({ showExcluded: e.target.checked })} />
+        <label className="inline-flex cursor-pointer items-center gap-2 text-xs text-ink-2">
+          <input id="lead-excl" type="checkbox" checked={f.showExcluded} onChange={(e) => set({ showExcluded: e.target.checked })} className="h-4 w-4" />
           Show {excluded} excluded
         </label>
       </div>

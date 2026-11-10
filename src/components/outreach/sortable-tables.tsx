@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import type { SubjectRow, TemplateRow } from "@/lib/types";
 import { per1k, tooSmall } from "@/lib/outreach";
 import { Rate, SectionHead, TooSmall } from "./shared";
+import { Segmented } from "@/components/ui/section";
 
 type Key = "per_1k" | "sent" | "replies";
 const KEYS: [Key, string][] = [
@@ -22,26 +23,6 @@ interface Row {
   per_1k: number | null;
 }
 
-function SortButtons({ sort, setSort }: { sort: { key: Key; dir: 1 | -1 }; setSort: (k: Key) => void }) {
-  return (
-    <span className="flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
-      Sort
-      {KEYS.map(([k, l]) => (
-        <button
-          key={k}
-          type="button"
-          onClick={() => setSort(k)}
-          aria-pressed={sort.key === k}
-          className={`rounded-sm border px-1.5 py-0.5 ${sort.key === k ? "border-foreground/50 text-foreground" : "border-border hover:text-foreground"}`}
-        >
-          {l}
-          {sort.key === k && (sort.dir === 1 ? " ↑" : " ↓")}
-        </button>
-      ))}
-    </span>
-  );
-}
-
 function SortableTable({ title, sub, nameHead, rows }: { title: string; sub: string; nameHead: string; rows: Row[] }) {
   const [sort, setSortState] = useState<{ key: Key; dir: 1 | -1 }>({ key: "per_1k", dir: -1 });
   const setSort = (key: Key) => setSortState((s) => (s.key === key ? { key, dir: s.dir === 1 ? -1 : 1 } : { key, dir: -1 }));
@@ -53,20 +34,19 @@ function SortableTable({ title, sub, nameHead, rows }: { title: string; sub: str
   }, [rows, sort]);
 
   return (
-    <section className="min-w-0 space-y-2">
-      <div className="flex flex-wrap items-end justify-between gap-2">
-        <SectionHead title={title} sub={sub} />
-        <SortButtons sort={sort} setSort={setSort} />
-      </div>
+    <section className="min-w-0 space-y-3">
+      <SectionHead title={title} sub={sub}>
+        <Segmented<Key> label={`Sort ${title}`} options={KEYS} value={sort.key} dir={sort.dir} onChange={setSort} />
+      </SectionHead>
       {rows.length === 0 ? (
-        <p className="text-sm text-muted-foreground">None in outreach.json.</p>
+        <p className="text-sm text-muted">None in outreach.json.</p>
       ) : (
         <>
-          <div className="hidden overflow-x-auto rounded-lg border border-border sm:block">
+          <div className="hidden overflow-x-auto rounded-lg border border-line bg-card sm:block">
             <table className="w-full text-sm">
-              <thead className="bg-muted/50 text-left text-xs text-muted-foreground">
+              <thead className="bg-soft/50 text-left text-xs text-muted">
                 <tr>
-                  <th className="px-3 py-2 font-medium">{nameHead}</th>
+                  <th className="px-3 py-2 pl-4 font-medium">{nameHead}</th>
                   <th className="px-3 py-2 text-right font-medium">Sent</th>
                   <th className="px-3 py-2 text-right font-medium">Replies</th>
                   <th className="px-3 py-2 text-right font-medium">Booked</th>
@@ -75,15 +55,15 @@ function SortableTable({ title, sub, nameHead, rows }: { title: string; sub: str
               </thead>
               <tbody className="tnum">
                 {sorted.map((r) => (
-                  <tr key={r.id} className="border-t border-border align-top">
-                    <td className="max-w-[22rem] px-3 py-2">
+                  <tr key={r.id} className="border-t border-line align-top hover:bg-soft/40">
+                    <td className="max-w-[24rem] px-3 py-2.5 pl-4">
                       <div className="break-words">{r.name}</div>
-                      {r.meta && <div className="text-xs text-muted-foreground">{r.meta}</div>}
+                      {r.meta && <div className="text-xs text-muted">{r.meta}</div>}
                     </td>
-                    <td className="px-3 py-2 text-right">{r.sent}</td>
-                    <td className="px-3 py-2 text-right">{r.replies}</td>
-                    <td className="px-3 py-2 text-right">{r.bookings}</td>
-                    <td className="px-3 py-2">
+                    <td className="px-3 py-2.5 text-right">{r.sent}</td>
+                    <td className="px-3 py-2.5 text-right">{r.replies}</td>
+                    <td className="px-3 py-2.5 text-right">{r.bookings}</td>
+                    <td className="px-3 py-2.5">
                       <span className="flex flex-wrap items-center gap-1.5">
                         <Rate num={r.bookings} den={r.sent} given={r.per_1k} />
                         <TooSmall n={r.sent} />
@@ -94,15 +74,15 @@ function SortableTable({ title, sub, nameHead, rows }: { title: string; sub: str
               </tbody>
             </table>
           </div>
-          <ul className="rounded-lg border border-border px-3 sm:hidden">
+          <ul className="rounded-lg border border-line bg-card px-4 sm:hidden">
             {sorted.map((r) => (
-              <li key={r.id} className="space-y-1 border-t border-border py-3 first:border-t-0">
+              <li key={r.id} className="space-y-1 border-t border-line py-3 first:border-t-0">
                 <div className="flex flex-wrap items-center gap-1.5">
                   <span className="min-w-0 break-words font-medium">{r.name}</span>
                   <TooSmall n={r.sent} />
                 </div>
-                {r.meta && <p className="text-xs text-muted-foreground">{r.meta}</p>}
-                <p className="tnum text-xs text-muted-foreground">
+                {r.meta && <p className="text-xs text-muted">{r.meta}</p>}
+                <p className="tnum text-xs text-muted">
                   {r.sent} sent · {r.replies} replies · {r.bookings} booked
                 </p>
                 <p className="text-xs">

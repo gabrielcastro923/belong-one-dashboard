@@ -43,44 +43,48 @@ export function LeadTable({ deals, buckets }: { deals: Deal[]; buckets: Bucket[]
     return out.sort((a, b) => (v(a) - v(b)) * sort.dir);
   }, [deals, f, sort]);
 
+  const TH = "px-3 py-2 text-xs font-medium text-muted";
   return (
     <div className="space-y-3">
       <LeadFilters f={f} set={set} buckets={bucketOpts} states={states} pendings={pendings} sort={sort} setSort={setSort} excluded={excluded} />
-      <p className="tnum text-xs text-muted-foreground">
-        {rows.length} of {deals.length} deals
-      </p>
-      <div className="hidden overflow-x-auto rounded-lg border border-border sm:block">
-        <table className="w-full text-sm">
-          <thead className="bg-muted/50 text-left text-xs text-muted-foreground">
-            <tr>
-              <th className="px-3 py-2 font-medium">Name</th>
-              <th className="px-3 py-2 font-medium">City</th>
-              <th className="px-3 py-2 font-medium">Bucket</th>
-              <th className="px-3 py-2 text-right font-medium">Stuck</th>
-              <th className="px-3 py-2 text-right font-medium">Event age</th>
-              <th className="px-3 py-2 text-right font-medium" title="Attempts / connects">
-                Att/Con
-              </th>
-              <th className="px-3 py-2 font-medium" title="Flags are not directional">
-                Pending
-              </th>
-              <th className="px-3 py-2 font-medium">Next action</th>
-              <th className="px-3 py-2 font-medium">Phone</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((d) => (
-              <LeadTableRow key={d.home_id} d={d} />
-            ))}
-          </tbody>
-        </table>
+      <div className="overflow-hidden rounded-lg border border-line bg-card">
+        <div className="tnum flex items-center justify-between border-b border-line px-4 py-2.5 text-xs text-muted">
+          <span>
+            <span className="font-semibold text-ink">{rows.length}</span> of {deals.length} deals
+          </span>
+        </div>
+        <div className="hidden overflow-x-auto md:block">
+          <table className="w-full text-sm">
+            <thead className="bg-soft/50 text-left">
+              <tr>
+                <th className={`${TH} pl-4`}>Name</th>
+                <th className={TH}>Bucket</th>
+                <th className={`${TH} text-right`}>Stuck</th>
+                <th className={`${TH} text-right`}>Event age</th>
+                <th className={`${TH} text-right`} title="Attempts / connects">
+                  Att/Con
+                </th>
+                <th className={TH} title="Flags are not directional: they do not mean the owner wrote to us.">
+                  Pending
+                </th>
+                <th className={TH}>Next action</th>
+                <th className={`${TH} pr-4`}>Phone</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((d) => (
+                <LeadTableRow key={d.home_id} d={d} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <ul className="md:hidden">
+          {rows.map((d) => (
+            <LeadCard key={d.home_id} d={d} />
+          ))}
+        </ul>
+        {rows.length === 0 && <p className="px-4 py-10 text-center text-sm text-muted">No deals match these filters.</p>}
       </div>
-      <ul className="rounded-lg border border-border px-3 sm:hidden">
-        {rows.map((d) => (
-          <LeadCard key={d.home_id} d={d} />
-        ))}
-      </ul>
-      {rows.length === 0 && <p className="py-6 text-center text-sm text-muted-foreground">No deals match these filters.</p>}
     </div>
   );
 }

@@ -2,82 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Layout: one 72rem column, 16px gutters, dense operator tables that fold to cards under 640px.
-   Tokens are HSL triplets so Tailwind can apply alpha. Light values first, dark redefines only tokens. */
+/* Path to 20 — tokens. One name, two values (light, dark). RGB triplets so Tailwind can apply alpha.
+   Chrome is cool neutral and calm; saturated colour is spent only on stage families, send lanes and problems.
+   Stage families: agree (b1–b2) indigo · insp (b3–b4) cyan · report (b5–b6) violet · live (b7 + listed) green.
+   Problems: warn amber, critical red. Nothing else is coloured. */
 :root {
-  --background: 210 20% 98%;
-  --foreground: 220 30% 10%;
-  --card: 0 0% 100%;
-  --card-foreground: 220 30% 10%;
-  --muted: 214 20% 93%;
-  --muted-foreground: 218 11% 40%;
-  --primary: 162 70% 30%;
-  --primary-foreground: 0 0% 100%;
-  --accent: 214 24% 95%;
-  --border: 216 18% 86%;
-  --ring: 162 70% 30%;
-  /* data + status (dataviz reference palette) */
-  --series-1: 213 67% 50%;
-  --series-track: 214 30% 90%;
-  --good: 120 86% 34%;
-  --good-ink: 120 100% 22%;
-  --warn: 41 96% 54%;
-  --warn-ink: 36 100% 28%;
-  --critical: 0 61% 52%;
-  --critical-ink: 0 65% 42%;
-  --radius: 0.375rem;
-  /* categorical slots for per-lane series (dataviz reference palette, fixed order) */
-  --cat-1: #2a78d6; --cat-2: #eb6834; --cat-3: #1baf7a; --cat-4: #eda100;
-  --cat-5: #e87ba4; --cat-6: #008300; --cat-7: #4a3aa7;
+  --page: 245 246 248;        /* #f5f6f8 */
+  --card: 255 255 255;
+  --soft: 238 240 243;        /* #eef0f3 hover, segmented track */
+  --ink: 17 21 28;            /* #11151c */
+  --ink-2: 68 75 87;          /* #444b57 */
+  --muted: 96 103 116;        /* #606774, >= 4.5:1 on card and soft */
+  --line: 226 229 234;        /* #e2e5ea hairlines */
+  --line-strong: 205 210 218; /* #cdd2da inputs */
+  --focus: 59 99 221;         /* #3b63dd */
+  --tip: 21 25 32;            /* #151920 tooltip surface */
+
+  --st-agree: 79 91 213;      /* #4f5bd5 */
+  --st-insp: 8 145 178;       /* #0891b2 */
+  --st-report: 132 76 222;    /* #844cde */
+  --st-live: 18 146 88;       /* #129258 */
+
+  --warn: 224 150 10;         /* #e0960a */
+  --warn-ink: 146 92 0;       /* #925c00 */
+  --critical: 214 66 46;      /* #d6422e */
+  --critical-ink: 178 46 28;  /* #b22e1c */
+  --good-ink: 14 118 70;      /* #0e7646 */
+
+  /* send lanes, fixed slots assigned by volume; slot 1 (the bulk backfill lane) is deliberately quiet */
+  --cat-1: #8a95ad; --cat-2: #0f9f8f; --cat-3: #3274f0; --cat-4: #d03f97;
+  --cat-5: #6d55cc; --cat-6: #789512; --cat-7: #0a93c4;
   color-scheme: light;
 }
+
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --background: 222 24% 7%;
-    --foreground: 210 20% 95%;
-    --card: 222 20% 10%;
-    --card-foreground: 210 20% 95%;
-    --muted: 220 16% 17%;
-    --muted-foreground: 216 12% 64%;
-    --primary: 162 60% 42%;
-    --primary-foreground: 222 24% 7%;
-    --accent: 220 16% 14%;
-    --border: 220 14% 21%;
-    --ring: 162 60% 42%;
-    --series-1: 213 76% 56%;
-    --series-track: 220 16% 19%;
-    --good-ink: 120 86% 44%;
-    --warn-ink: 41 96% 60%;
-    --critical-ink: 0 75% 66%;
-    --cat-1: #3987e5; --cat-2: #d95926; --cat-3: #199e70; --cat-4: #c98500;
-    --cat-5: #d55181; --cat-6: #008300; --cat-7: #9085e9;
+    --page: 11 12 15; --card: 20 22 26; --soft: 30 33 38; --ink: 236 238 242; --ink-2: 192 197 206;
+    --muted: 141 149 163; --line: 38 42 49; --line-strong: 58 63 72; --focus: 123 150 255; --tip: 44 50 60;
+    --st-agree: 130 141 245; --st-insp: 45 190 222; --st-report: 170 128 247; --st-live: 52 196 128;
+    --warn: 242 178 51; --warn-ink: 245 196 96; --critical: 240 98 76; --critical-ink: 255 140 120; --good-ink: 86 214 152;
+    --cat-1: #8d98b0; --cat-2: #2cc3b0; --cat-3: #5c93ff; --cat-4: #ec5fb4; --cat-5: #9a86f0; --cat-6: #9dbd2f; --cat-7: #2bb6e6;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --background: 222 24% 7%;
-  --foreground: 210 20% 95%;
-  --card: 222 20% 10%;
-  --card-foreground: 210 20% 95%;
-  --muted: 220 16% 17%;
-  --muted-foreground: 216 12% 64%;
-  --primary: 162 60% 42%;
-  --primary-foreground: 222 24% 7%;
-  --accent: 220 16% 14%;
-  --border: 220 14% 21%;
-  --ring: 162 60% 42%;
-  --series-1: 213 76% 56%;
-  --series-track: 220 16% 19%;
-  --good-ink: 120 86% 44%;
-  --warn-ink: 41 96% 60%;
-  --critical-ink: 0 75% 66%;
-  --cat-1: #3987e5; --cat-2: #d95926; --cat-3: #199e70; --cat-4: #c98500;
-  --cat-5: #d55181; --cat-6: #008300; --cat-7: #9085e9;
+  --page: 11 12 15; --card: 20 22 26; --soft: 30 33 38; --ink: 236 238 242; --ink-2: 192 197 206;
+  --muted: 141 149 163; --line: 38 42 49; --line-strong: 58 63 72; --focus: 123 150 255; --tip: 44 50 60;
+  --st-agree: 130 141 245; --st-insp: 45 190 222; --st-report: 170 128 247; --st-live: 52 196 128;
+  --warn: 242 178 51; --warn-ink: 245 196 96; --critical: 240 98 76; --critical-ink: 255 140 120; --good-ink: 86 214 152;
+  --cat-1: #8d98b0; --cat-2: #2cc3b0; --cat-3: #5c93ff; --cat-4: #ec5fb4; --cat-5: #9a86f0; --cat-6: #9dbd2f; --cat-7: #2bb6e6;
   color-scheme: dark;
 }
 
 html, body { overflow-x: hidden; }
-body { @apply bg-background text-foreground antialiased; font-size: 14px; }
+body {
+  @apply bg-page text-ink antialiased;
+  font-size: 14px;
+  line-height: 22px;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
 .tnum { font-variant-numeric: tabular-nums; }
+/* Archivo's width axis: big figures run semi-condensed so a KPI reads as one shape. */
+.num { font-variant-numeric: tabular-nums; font-variation-settings: "wdth" 86; letter-spacing: -0.02em; }
 h1, h2, h3 { text-wrap: balance; }
-:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
+::selection { background: rgb(var(--focus) / 0.22); }
+:focus-visible { outline: 2px solid rgb(var(--focus)); outline-offset: 2px; border-radius: 4px; }
+input[type="checkbox"] { accent-color: rgb(var(--ink)); }
+a { text-underline-offset: 3px; }
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+* { scrollbar-color: rgb(var(--line-strong)) transparent; scrollbar-width: thin; }
+
+/* Tick bar: one tick per unit of the goal (Listed 20, Calls 45, Inspections 22). */
+.ticks { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 2px; height: 26px; }
+.ticks > i { display: block; border-radius: 1px; background: rgb(var(--line)); }
+@media (max-width: 420px) { .ticks { gap: 1px; } }
+
+/* Native select, calm: own chevron, no OS chrome. */
+.select-chev {
+  appearance: none;
+  padding-right: 2rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 3.5 5 6.5 8 3.5' fill='none' stroke='%23808796' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: 10px 10px;
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat;
+}

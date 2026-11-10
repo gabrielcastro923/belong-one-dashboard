@@ -1,5 +1,6 @@
 import type { Outreach } from "@/lib/types";
 import { MiniBars, type MiniRow } from "./mini-bars";
+import { SENT } from "./chart-bits";
 import { SectionHead } from "./shared";
 
 const DOW = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -18,12 +19,12 @@ export function TimingSection({ o }: { o: Outreach }) {
   const rows = <R extends T>(xs: R[], x: (r: R) => string, pick: "sent" | "bookings"): MiniRow[] =>
     xs.map((r) => ({ x: x(r), y: r[pick], tip: tip(r) }));
   return (
-    <section className="min-w-0 space-y-2">
+    <section className="min-w-0 space-y-3">
       <SectionHead title="Timing" sub="When the email went out, Eastern Time. Bookings are credited to the send before them, so a busy hour collects more by volume alone." />
-      <div className="grid gap-3 sm:grid-cols-2">
-        <MiniBars title="Sent by day of week" rows={rows(dow, (r) => r.dow, "sent")} />
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        <MiniBars color={SENT} title="Sent by day of week" rows={rows(dow, (r) => r.dow, "sent")} />
         <MiniBars title="Bookings by day of week" rows={rows(dow, (r) => r.dow, "bookings")} />
-        <MiniBars title="Sent by hour (ET)" rows={rows(hours, (r) => hourLabel(r.hour), "sent")} />
+        <MiniBars color={SENT} title="Sent by hour (ET)" rows={rows(hours, (r) => hourLabel(r.hour), "sent")} />
         <MiniBars title="Bookings by hour (ET)" rows={rows(hours, (r) => hourLabel(r.hour), "bookings")} />
       </div>
     </section>

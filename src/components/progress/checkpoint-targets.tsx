@@ -4,10 +4,10 @@ import { fmtDay } from "@/lib/dates";
 export function CheckpointTargets({ checkpoints }: { checkpoints: Checkpoint[] }) {
   return (
     <section className="min-w-0 space-y-2">
-      <p className="text-sm text-muted-foreground">No daily progress series in pipeline.json yet. Checkpoint targets:</p>
-      <div className="overflow-x-auto rounded-lg border border-border">
+      <p className="text-sm text-muted">No daily progress series in pipeline.json yet. Checkpoint targets:</p>
+      <div className="overflow-x-auto rounded-lg border border-line bg-card">
         <table className="w-full text-sm">
-          <thead className="bg-muted/50 text-left text-xs text-muted-foreground">
+          <thead className="bg-soft/50 text-left text-xs text-muted">
             <tr>
               <th className="px-3 py-2 font-medium">Date</th>
               <th className="px-3 py-2 text-right font-medium">Calls held</th>
@@ -18,7 +18,7 @@ export function CheckpointTargets({ checkpoints }: { checkpoints: Checkpoint[] }
           </thead>
           <tbody className="tnum">
             {checkpoints.map((c) => (
-              <tr key={c.date} className="border-t border-border">
+              <tr key={c.date} className="border-t border-line">
                 <td className="px-3 py-2">{fmtDay(c.date)}</td>
                 <td className="px-3 py-2 text-right">{c.calls_target}</td>
                 <td className="px-3 py-2 text-right">{c.calls_floor}</td>

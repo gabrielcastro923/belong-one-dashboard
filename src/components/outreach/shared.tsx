@@ -1,22 +1,24 @@
+import type { ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
+import { SectionHead as Head } from "@/components/ui/section";
 import { fmt1k, per1k, tooSmall } from "@/lib/outreach";
 
 export function TooSmall({ n }: { n: number }) {
   if (!tooSmall(n)) return null;
   return (
-    <Badge variant="warn" title={`${n} sends. Under 100, a rate is noise.`}>
-      Too small to read
+    <Badge variant="default" title={`${n} sends. Under 100, a rate is noise.`}>
+      n&lt;100
     </Badge>
   );
 }
 
-/** "12.3 per 1k" with the raw counts beside it. Never a bare rate. */
+/** "12.3 /1k · 4 booked of 325". Never a bare rate. */
 export function Rate({ num, den, given, unit = "booked" }: { num: number; den: number; given?: number | null; unit?: string }) {
   const v = per1k(num, den, given);
   return (
     <span className="tnum whitespace-nowrap">
-      <span className={tooSmall(den) ? "text-muted-foreground" : "font-medium"}>{fmt1k(v)}</span>
-      <span className="text-muted-foreground">
+      <span className={tooSmall(den) ? "text-muted" : "font-semibold text-ink"}>{fmt1k(v)}</span>
+      <span className="text-muted">
         {" "}
         /1k · {num} {unit} of {den}
       </span>
@@ -24,11 +26,11 @@ export function Rate({ num, den, given, unit = "booked" }: { num: number; den: n
   );
 }
 
-export function SectionHead({ title, sub }: { title: string; sub?: string }) {
+/** Section title; the old sub-line is now the tooltip. */
+export function SectionHead({ title, sub, children }: { title: string; sub?: string; children?: ReactNode }) {
   return (
-    <div className="space-y-0.5">
-      <h2 className="text-sm font-semibold">{title}</h2>
-      {sub && <p className="text-xs text-muted-foreground">{sub}</p>}
-    </div>
+    <Head title={title} hint={sub}>
+      {children}
+    </Head>
   );
 }

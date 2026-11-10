@@ -110,6 +110,7 @@ export interface PlanCall {
   script_hint: string;
   admin: string;
   bucket: string;
+  stage_label?: string;
   key?: string;
 }
 

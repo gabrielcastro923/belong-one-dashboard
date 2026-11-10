@@ -12,9 +12,11 @@ export function PlanBoard({ plan }: { plan: Plan }) {
   return (
     <div className="space-y-3">
       {today && !hasToday && (
-        <p className="text-sm text-muted-foreground">Today ({today}) is not in this plan. Rebuild plan.json to get fresh days.</p>
+        <p className="rounded-lg border border-warn/40 bg-warn/10 px-4 py-2.5 text-sm text-warn-ink">
+          Today ({today}) is not in this plan. Rebuild plan.json to get fresh days.
+        </p>
       )}
-      <ol className="space-y-2">
+      <ol className="space-y-2.5">
         {plan.days.map((d) => (
           <DayCard
             key={d.date}

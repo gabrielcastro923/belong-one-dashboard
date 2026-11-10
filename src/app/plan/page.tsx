@@ -1,27 +1,38 @@
+import { ArrowUpRight } from "lucide-react";
 import { getPlan } from "@/lib/data";
 import { PlanBoard } from "@/components/plan/plan-board";
+import { PageHead, Pill } from "@/components/ui/section";
+import { Tip } from "@/components/ui/hint";
 
 export const metadata = { title: "Plan · Path to 20" };
 
 export default function PlanPage() {
   const plan = getPlan();
   return (
-    <div className="space-y-4">
-      <div className="space-y-1">
-        <h1 className="text-lg font-semibold">Daily schedule</h1>
-        <p className="text-sm text-muted-foreground">
-          Times are ET. Phone first; every call that answers ends with a booked report call or inspection. Checkboxes and counters save in this browser only.
-        </p>
+    <div>
+      <PageHead
+        title="Daily schedule"
+        hint="Times are ET. Phone first; every call that answers ends with a booked report call or inspection. Checkboxes and counters save in this browser only. Days marked Projection are drafted from today's book and will change as the plan rebuilds."
+      >
+        <Tip text="Block times are Eastern; each call shows the owner's local time." align="end">
+          <Pill>
+            <span tabIndex={0}>Times ET</span>
+          </Pill>
+        </Tip>
         {plan.booking_link && (
-          <p className="text-sm">
-            Report call booking link:{" "}
-            <a href={plan.booking_link} target="_blank" rel="noreferrer" className="break-all text-series underline underline-offset-2">
-              {plan.booking_link}
+          <Tip text={plan.booking_link} align="end">
+            <a
+              href={plan.booking_link}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex h-7 items-center gap-1 rounded-full bg-ink px-3 text-xs font-medium text-card transition-opacity hover:opacity-90"
+            >
+              Report call booking link
+              <ArrowUpRight className="h-3 w-3" strokeWidth={1.75} aria-hidden />
             </a>
-          </p>
+          </Tip>
         )}
-        <p className="text-xs text-muted-foreground">Days marked Projection are drafted from today&apos;s book and will change as the plan rebuilds.</p>
-      </div>
+      </PageHead>
       <PlanBoard plan={plan} />
     </div>
   );

@@ -1,6 +1,7 @@
 import type { Checkpoint, Pipeline } from "@/lib/types";
 import { monthTargets } from "@/lib/pace";
 import { MetricChart, type ChartRow } from "./metric-chart";
+import { FAM } from "@/lib/stage";
 
 function monthDays(month: string): string[] {
   const [y, m] = month.split("-").map(Number);
@@ -29,15 +30,15 @@ export function ProgressCharts({ p }: { p: Pipeline }) {
   const prog = new Map((p.progress ?? []).map((x) => [x.date, x]));
   const t = monthTargets(p);
   const series = [
-    { title: "Listed MTD", key: "listed" as const, pick: (c: Checkpoint) => c.listed, goal: p.target, last: p.listed_mtd },
-    { title: "Report calls held", key: "calls_held" as const, pick: (c: Checkpoint) => c.calls_target, goal: t.calls, last: p.report_calls_held_mtd },
-    { title: "Inspections completed", key: "insp_done" as const, pick: (c: Checkpoint) => c.insp, goal: t.insp, last: p.inspections_completed_mtd },
+    { title: "Listed MTD", color: FAM.live.var, key: "listed" as const, pick: (c: Checkpoint) => c.listed, goal: p.target, last: p.listed_mtd },
+    { title: "Report calls held", color: FAM.report.var, key: "calls_held" as const, pick: (c: Checkpoint) => c.calls_target, goal: t.calls, last: p.report_calls_held_mtd },
+    { title: "Inspections completed", color: FAM.insp.var, key: "insp_done" as const, pick: (c: Checkpoint) => c.insp, goal: t.insp, last: p.inspections_completed_mtd },
   ];
   return (
-    <div className="grid gap-3 lg:grid-cols-3">
+    <div className="grid gap-4 lg:grid-cols-3">
       {series.map((s) => {
         const rows: ChartRow[] = days.map((d) => ({ date: d, actual: prog.get(d)?.[s.key], target: paceAt(d, days[0], cps, s.pick) }));
-        return <MetricChart key={s.key} title={s.title} rows={rows} goal={s.goal} last={s.last} />;
+        return <MetricChart key={s.key} color={s.color} title={s.title} rows={rows} goal={s.goal} last={s.last} />;
       })}
     </div>
   );

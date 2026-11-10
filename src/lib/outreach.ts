@@ -33,7 +33,7 @@ export function sortLanes(lanes: Lane[]): Lane[] {
 
 /** Seven categorical slots, assigned once by total sends in the window so a lane keeps its color everywhere. */
 export const CAT = Array.from({ length: 7 }, (_, i) => `var(--cat-${i + 1})`);
-export const OTHER = "hsl(var(--muted-foreground))";
+export const OTHER = "rgb(var(--muted))";
 
 export function laneColors(lanes: Lane[]): { colored: Lane[]; other: Lane[]; color: Record<string, string> } {
   const byVol = [...lanes].sort((a, b) => sum(b) - sum(a) || a.key.localeCompare(b.key)).filter((l) => sum(l) > 0);

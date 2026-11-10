@@ -35,3 +35,12 @@ export function fmtPhone(phone: string | null | undefined): string {
   const n = d.length === 11 && d.startsWith("1") ? d.slice(1) : d;
   return n.length === 10 ? `(${n.slice(0, 3)}) ${n.slice(3, 6)}-${n.slice(6)}` : phone;
 }
+
+/** Goal label, with unknown goals ("adoption") shown as a capitalised word rather than a raw key. */
+export const goalLabel = (g: string) => (GOAL_LABEL as Record<string, string>)[g] ?? g.charAt(0).toUpperCase() + g.slice(1).replace(/_/g, " ");
+
+/** "6:30am PST" → ["6:30am", "PST"]. */
+export function splitLocal(t: string): [string, string] {
+  const m = /^(.*?)\s*([A-Z]{2,5})$/.exec(t ?? "");
+  return m ? [m[1], m[2]] : [t ?? "", ""];
+}

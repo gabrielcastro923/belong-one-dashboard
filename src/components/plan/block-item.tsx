@@ -1,6 +1,6 @@
-import { Badge } from "@/components/ui/badge";
 import type { FixedEvent, PlanBlock } from "@/lib/types";
 import { KIND_LABEL } from "@/lib/labels";
+import { cn } from "@/lib/utils";
 import { CallRow } from "./call-row";
 
 export const callKey = (date: string, c: { home_id: number; goal: string; key?: string }) => c.key ?? `${date}:${c.home_id}:${c.goal}`;
@@ -18,29 +18,40 @@ export function BlockItem({
 }) {
   const fixed = !("calls" in block) || block.calls === undefined;
   const calls = block.calls ?? [];
+  const doneN = calls.filter((c) => done.has(callKey(date, c))).length;
   return (
-    <li className="grid grid-cols-[4.25rem_1fr] gap-3 py-2.5">
-      <div className="tnum pt-0.5 text-xs text-muted-foreground">
-        <div className="font-medium text-foreground">{block.time_et}</div>
-        <div>{block.end_et}</div>
+    <li className={cn("py-3 sm:grid sm:grid-cols-[4.5rem_1fr] sm:gap-4", fixed && "py-2")}>
+      <div className="tnum flex items-baseline gap-1.5 text-xs sm:block sm:pt-0.5">
+        <span className={cn("font-semibold", fixed ? "text-ink-2" : "text-ink")}>{block.time_et}</span>
+        <span className="text-muted">
+          <span className="-ml-1 sm:hidden">–</span>
+          {block.end_et}
+        </span>
       </div>
       <div className="min-w-0">
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge variant={fixed ? "outline" : "default"}>{KIND_LABEL[block.kind] ?? block.kind}</Badge>
-          <span className={fixed ? "text-sm text-muted-foreground" : "text-sm font-medium"}>{block.title}</span>
+        <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 sm:mt-0">
+          <span
+            className={cn(
+              "inline-flex h-5 items-center rounded-md px-1.5 text-2xs font-medium",
+              fixed ? "text-muted ring-1 ring-inset ring-line-strong" : "bg-ink text-card"
+            )}
+          >
+            {KIND_LABEL[block.kind] ?? block.kind}
+          </span>
+          <span className={cn("min-w-0 text-sm", fixed ? "text-ink-2" : "font-medium text-ink")}>{block.title}</span>
           {calls.length > 0 && (
-            <span className="tnum text-xs text-muted-foreground">
-              {calls.filter((c) => done.has(callKey(date, c))).length}/{calls.length}
+            <span className={cn("tnum ml-auto text-xs", doneN === calls.length ? "font-semibold text-good-ink" : "text-muted")}>
+              {doneN}/{calls.length}
             </span>
           )}
         </div>
         {calls.length > 0 && (
-          <ul className="mt-1">
-            {calls.map((c) => {
+          <ol className="mt-1">
+            {calls.map((c, i) => {
               const id = callKey(date, c);
-              return <CallRow key={id} id={id} call={c} done={done.has(id)} onToggle={() => toggle(id)} />;
+              return <CallRow key={id} id={id} n={i + 1} call={c} done={done.has(id)} onToggle={() => toggle(id)} />;
             })}
-          </ul>
+          </ol>
         )}
       </div>
     </li>
