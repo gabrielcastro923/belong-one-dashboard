@@ -1,0 +1,887 @@
+[
+ {
+  "key": "apmg",
+  "label": "APM / Google / Zillow walkthrough ask",
+  "launchd_label": "com.belong.apm-google-enqueue",
+  "wrapper": "/Users/gabrielcastro/.openclaw/agents/apm-google-enqueue.sh",
+  "entry_script": "scripts/enqueue_apm_google.py",
+  "schedule": "hourly :35, 08:35-20:35 (13/day), weekends included",
+  "cap_per_run": 80,
+  "cap_per_day": null,
+  "env_var": "APMG_CAP (default 80, wrapper line 27); APMG_SOURCES (line 39)",
+  "families": [
+   "apmg-t1",
+   "apmg-t2",
+   "apmg-t3"
+  ],
+  "gates": [
+   "source in APMG_SOURCES",
+   "bucket in b00/b1/b2/b3",
+   "advisor is Gabriel or unassigned",
+   "not archived/DNC",
+   "is_bad_email",
+   "no pending reply flag",
+   "not already queued",
+   "<3 sends in 90d (touch_ceiling_90d)",
+   "12d min gap from any engine (not_due_yet)",
+   "cadence not complete (t3 sent)",
+   "enqueue UNIQUE/holdout/bounce triggers (silent: counted as dup-skipped)",
+   "drain send-time: 21d stale, 5d cross-engine gap"
+  ],
+  "status_today": "running, 3 due per run (all holdout-blocked), 13 sent today",
+  "binding_constraint": "supply: first-touch inflow ~3/day; every in-scope clean b00-b3 record already touched",
+  "sends_last_14d": [
+   {
+    "date": "2026-10-28",
+    "n": 0
+   },
+   {
+    "date": "2026-10-29",
+    "n": 0
+   },
+   {
+    "date": "2026-10-30",
+    "n": 0
+   },
+   {
+    "date": "2026-10-31",
+    "n": 48
+   },
+   {
+    "date": "2026-11-01",
+    "n": 6
+   },
+   {
+    "date": "2026-11-02",
+    "n": 10
+   },
+   {
+    "date": "2026-11-03",
+    "n": 10
+   },
+   {
+    "date": "2026-11-04",
+    "n": 3
+   },
+   {
+    "date": "2026-11-05",
+    "n": 5
+   },
+   {
+    "date": "2026-11-06",
+    "n": 2
+   },
+   {
+    "date": "2026-11-07",
+    "n": 0
+   },
+   {
+    "date": "2026-11-08",
+    "n": 0
+   },
+   {
+    "date": "2026-11-09",
+    "n": 0
+   },
+   {
+    "date": "2026-11-10",
+    "n": 13
+   }
+  ]
+ },
+ {
+  "key": "sql_walkthrough",
+  "label": "SQL/PQL consult email (sql-walkthrough-v1 + brochure)",
+  "launchd_label": "com.belong.sql-walkthrough-enqueue",
+  "wrapper": "/Users/gabrielcastro/.openclaw/agents/sql-walkthrough-enqueue.sh",
+  "entry_script": "scripts/enqueue_consult.py --include-tosign",
+  "schedule": "hourly :05, 08:05-20:05, weekdays only (script exits on Sat/Sun)",
+  "cap_per_run": null,
+  "cap_per_day": null,
+  "env_var": "none (--limit default 0 = uncapped; --cooloff-days default 30; --max-age-days 90)",
+  "families": [
+   "consult-"
+  ],
+  "gates": [
+   "bucket b00/b1 (+unassigned b2)",
+   "not archived/DNC",
+   "advisor Gabriel/unassigned (Gabriel's b2 skipped as other_advisor)",
+   "is_bad_email",
+   "lead_age <=90d (min of sql_dt, last_any_owner_event_dt)",
+   "no queued row",
+   "no agreement_sent_at in DB",
+   "30d cooloff since last email",
+   "enqueue triggers (holdout reported by name)",
+   "drain send-time gates"
+  ],
+  "status_today": "running; 0-1 queueable per run, 5 sent today",
+  "binding_constraint": "supply: of 54 clean own b00+b1 owners only 8 are past 30d cooloff; unassigned pool has 1 b1",
+  "sends_last_14d": [
+   {
+    "date": "2026-10-28",
+    "n": 0
+   },
+   {
+    "date": "2026-10-29",
+    "n": 0
+   },
+   {
+    "date": "2026-10-30",
+    "n": 0
+   },
+   {
+    "date": "2026-10-31",
+    "n": 0
+   },
+   {
+    "date": "2026-11-01",
+    "n": 0
+   },
+   {
+    "date": "2026-11-02",
+    "n": 17
+   },
+   {
+    "date": "2026-11-03",
+    "n": 4
+   },
+   {
+    "date": "2026-11-04",
+    "n": 3
+   },
+   {
+    "date": "2026-11-05",
+    "n": 4
+   },
+   {
+    "date": "2026-11-06",
+    "n": 1
+   },
+   {
+    "date": "2026-11-07",
+    "n": 0
+   },
+   {
+    "date": "2026-11-08",
+    "n": 0
+   },
+   {
+    "date": "2026-11-09",
+    "n": 0
+   },
+   {
+    "date": "2026-11-10",
+    "n": 5
+   }
+  ]
+ },
+ {
+  "key": "inspection_adoption",
+  "label": "Inspection booker (b3 + b2 consult-first); adoption off",
+  "launchd_label": "com.belong.inspection-adoption-enqueue",
+  "wrapper": "/Users/gabrielcastro/.openclaw/agents/inspection-adoption-enqueue.sh",
+  "entry_script": "scripts/enqueue_inspection_consult.py --send",
+  "schedule": "hourly :30, 08:30-18:30 (11/day), weekdays only",
+  "cap_per_run": 200,
+  "cap_per_day": null,
+  "env_var": "INSPECTION_CAP=200 and COOLOFF_DAYS=14 (both set in plist EnvironmentVariables); ADOPTION_ENABLED unset=off",
+  "families": [
+   "consult-inspection-"
+  ],
+  "gates": [
+   "snapshot refresh must succeed",
+   "bucket b2/b3",
+   "not archived/DNC",
+   "advisor Gabriel/unassigned",
+   "is_bad_email",
+   "90d freshness",
+   "no queued row",
+   "no agreement_sent_at in DB (30 skipped)",
+   "COOLOFF_DAYS=14 since any email",
+   "enqueue triggers (silent dup-skipped)",
+   "drain send-time gates"
+  ],
+  "status_today": "running; 52 sent today as one pulse when the 10-22..10-27 cohort cleared 14d cooloff",
+  "binding_constraint": "schedule/cooloff clock: output arrives in ~14-day pulses; remaining b2 queueable are holdout-blocked",
+  "sends_last_14d": [
+   {
+    "date": "2026-10-28",
+    "n": 0
+   },
+   {
+    "date": "2026-10-29",
+    "n": 0
+   },
+   {
+    "date": "2026-10-30",
+    "n": 0
+   },
+   {
+    "date": "2026-10-31",
+    "n": 0
+   },
+   {
+    "date": "2026-11-01",
+    "n": 0
+   },
+   {
+    "date": "2026-11-02",
+    "n": 28
+   },
+   {
+    "date": "2026-11-03",
+    "n": 16
+   },
+   {
+    "date": "2026-11-04",
+    "n": 2
+   },
+   {
+    "date": "2026-11-05",
+    "n": 2
+   },
+   {
+    "date": "2026-11-06",
+    "n": 0
+   },
+   {
+    "date": "2026-11-07",
+    "n": 0
+   },
+   {
+    "date": "2026-11-08",
+    "n": 0
+   },
+   {
+    "date": "2026-11-09",
+    "n": 0
+   },
+   {
+    "date": "2026-11-10",
+    "n": 52
+   }
+  ]
+ },
+ {
+  "key": "reportcall_b56",
+  "label": "Report-call booking ask, buckets 5+6 (direct sender)",
+  "launchd_label": "com.belong.reportcall-b56",
+  "wrapper": "/Users/gabrielcastro/.openclaw/agents/reportcall-b56.sh",
+  "entry_script": "outreach/report_call_bucket_send.py --send (after outreach/dashboard_buckets.py)",
+  "schedule": "09:20 and 14:20 daily (2/day)",
+  "cap_per_run": 25,
+  "cap_per_day": 50,
+  "env_var": "RC_CAP (25), RC_DAILY_MAX (50), RC_BOOKED_MAX_AGE_H (36)",
+  "families": [
+   "report-call"
+  ],
+  "gates": [
+   "dashboard auth (DashboardAuthError aborts)",
+   "calendar_booked.txt age <=36h (exit 2)",
+   "hard-exclude names",
+   "booked on calendar (email or name)",
+   "is_disqualified_by_status",
+   "is_bad_email",
+   "10d cooldown",
+   "daily-max then per-run cap"
+  ],
+  "status_today": "recovered: 09:20 aborted on 111.5h-old calendar gate, 14:20 sent 12/12; fleet_status FAILING is stale",
+  "binding_constraint": "supply+gate: 42 candidates, 30 excluded (booked/hard-exclude), 12 sendable; was dark 11-06 pm to 11-09 on auth/calendar",
+  "sends_last_14d": [
+   {
+    "date": "2026-10-28",
+    "n": 0
+   },
+   {
+    "date": "2026-10-29",
+    "n": 0
+   },
+   {
+    "date": "2026-10-30",
+    "n": 0
+   },
+   {
+    "date": "2026-10-31",
+    "n": 9
+   },
+   {
+    "date": "2026-11-01",
+    "n": 2
+   },
+   {
+    "date": "2026-11-02",
+    "n": 1
+   },
+   {
+    "date": "2026-11-03",
+    "n": 0
+   },
+   {
+    "date": "2026-11-04",
+    "n": 0
+   },
+   {
+    "date": "2026-11-05",
+    "n": 18
+   },
+   {
+    "date": "2026-11-06",
+    "n": 0
+   },
+   {
+    "date": "2026-11-07",
+    "n": 0
+   },
+   {
+    "date": "2026-11-08",
+    "n": 0
+   },
+   {
+    "date": "2026-11-09",
+    "n": 0
+   },
+   {
+    "date": "2026-11-10",
+    "n": 12
+   }
+  ]
+ },
+ {
+  "key": "outreach_drain",
+  "label": "Queue drain + drain-backfill filler",
+  "launchd_label": "com.belong.outreach-drain",
+  "wrapper": "/Users/gabrielcastro/.openclaw/agents/outreach-drain.sh",
+  "entry_script": "python3 -m outreach.outreach drain; python3 -m outreach.drain_backfill --enqueue --only-if-empty",
+  "schedule": "every 15 min 08:00-21:45 (~56 slots), weekends on",
+  "cap_per_run": 25,
+  "cap_per_day": 250,
+  "env_var": "OUTREACH_PER_RUN=25, OUTREACH_DAILY_CAP=250 (plist overrides wrapper defaults 24/400); DRAIN_BACKFILL_PER_RUN 20, DRAIN_BACKFILL_TIER_B 20, DRAIN_BACKFILL_DAILY 60",
+  "families": [
+   "drain-backfill-"
+  ],
+  "gates": [
+   "queue only (sends other lanes' rows)",
+   "is_bad_email",
+   "stale queue 21d",
+   "5d cross-engine gap",
+   "backfill: only if queue empty; tier A never-contacted, tier B >=90d cold single-touch; LLC/entity excluded; daily 60"
+  ],
+  "status_today": "running; backfill 21/60 used, tier A new=0, all tier-B re-touch",
+  "binding_constraint": "supply: tier A exhausted; tier B pool ~3 per run after 5,970 multi-touched skips",
+  "sends_last_14d": [
+   {
+    "date": "2026-10-28",
+    "n": 57
+   },
+   {
+    "date": "2026-10-29",
+    "n": 37
+   },
+   {
+    "date": "2026-10-30",
+    "n": 0
+   },
+   {
+    "date": "2026-10-31",
+    "n": 6
+   },
+   {
+    "date": "2026-11-01",
+    "n": 8
+   },
+   {
+    "date": "2026-11-02",
+    "n": 27
+   },
+   {
+    "date": "2026-11-03",
+    "n": 3
+   },
+   {
+    "date": "2026-11-04",
+    "n": 5
+   },
+   {
+    "date": "2026-11-05",
+    "n": 1
+   },
+   {
+    "date": "2026-11-06",
+    "n": 0
+   },
+   {
+    "date": "2026-11-07",
+    "n": 0
+   },
+   {
+    "date": "2026-11-08",
+    "n": 0
+   },
+   {
+    "date": "2026-11-09",
+    "n": 0
+   },
+   {
+    "date": "2026-11-10",
+    "n": 21
+   }
+  ]
+ },
+ {
+  "key": "outreach_followup",
+  "label": "Follow-up enqueue (cold sends >7d, no agreement)",
+  "launchd_label": "com.belong.outreach-followup",
+  "wrapper": "/Users/gabrielcastro/.openclaw/agents/outreach-followup-enqueue.sh",
+  "entry_script": "python3 -m outreach.outreach followup-enqueue --min-days 7",
+  "schedule": "08:30 daily, weekdays only",
+  "cap_per_run": null,
+  "cap_per_day": null,
+  "env_var": "none",
+  "families": [],
+  "gates": [
+   "min-days 7"
+  ],
+  "status_today": "running; logs 'no follow-up candidates' every day",
+  "binding_constraint": "supply: 0 candidates (retired t2 class)",
+  "sends_last_14d": [
+   {
+    "date": "2026-10-28",
+    "n": 0
+   },
+   {
+    "date": "2026-10-29",
+    "n": 0
+   },
+   {
+    "date": "2026-10-30",
+    "n": 0
+   },
+   {
+    "date": "2026-10-31",
+    "n": 0
+   },
+   {
+    "date": "2026-11-01",
+    "n": 0
+   },
+   {
+    "date": "2026-11-02",
+    "n": 0
+   },
+   {
+    "date": "2026-11-03",
+    "n": 0
+   },
+   {
+    "date": "2026-11-04",
+    "n": 0
+   },
+   {
+    "date": "2026-11-05",
+    "n": 0
+   },
+   {
+    "date": "2026-11-06",
+    "n": 0
+   },
+   {
+    "date": "2026-11-07",
+    "n": 0
+   },
+   {
+    "date": "2026-11-08",
+    "n": 0
+   },
+   {
+    "date": "2026-11-09",
+    "n": 0
+   },
+   {
+    "date": "2026-11-10",
+    "n": 0
+   }
+  ]
+ },
+ {
+  "key": "missed_call_followup",
+  "label": "Missed-call SMS staging (not email)",
+  "launchd_label": "com.belong.missed-call-followup",
+  "wrapper": "/Users/gabrielcastro/.openclaw/agents/missed-call-followup.sh",
+  "entry_script": "python3 -m outreach.missed_call_followup --lookback 25",
+  "schedule": "every 15 min 09:00-19:45",
+  "cap_per_run": null,
+  "cap_per_day": null,
+  "env_var": "none",
+  "families": [],
+  "gates": [
+   "only No-answer calls",
+   "per-conversation state file"
+  ],
+  "status_today": "running; 0 calls scanned in last runs",
+  "binding_constraint": "supply: Gabriel's own dials; stages SMS, sends no email",
+  "sends_last_14d": [
+   {
+    "date": "2026-10-28",
+    "n": 0
+   },
+   {
+    "date": "2026-10-29",
+    "n": 0
+   },
+   {
+    "date": "2026-10-30",
+    "n": 0
+   },
+   {
+    "date": "2026-10-31",
+    "n": 0
+   },
+   {
+    "date": "2026-11-01",
+    "n": 0
+   },
+   {
+    "date": "2026-11-02",
+    "n": 0
+   },
+   {
+    "date": "2026-11-03",
+    "n": 0
+   },
+   {
+    "date": "2026-11-04",
+    "n": 0
+   },
+   {
+    "date": "2026-11-05",
+    "n": 0
+   },
+   {
+    "date": "2026-11-06",
+    "n": 0
+   },
+   {
+    "date": "2026-11-07",
+    "n": 0
+   },
+   {
+    "date": "2026-11-08",
+    "n": 0
+   },
+   {
+    "date": "2026-11-09",
+    "n": 0
+   },
+   {
+    "date": "2026-11-10",
+    "n": 0
+   }
+  ]
+ },
+ {
+  "key": "engagement_watch",
+  "label": "Reply/booking suppression gate",
+  "launchd_label": "com.belong.engagement-watch",
+  "wrapper": "/Users/gabrielcastro/.openclaw/agents/engagement-watch.sh",
+  "entry_script": "python3 -m outreach.engagement_watch --scan --days 30",
+  "schedule": "hourly :50, 08:50-20:50",
+  "cap_per_run": null,
+  "cap_per_day": null,
+  "env_var": "none",
+  "families": [],
+  "gates": [
+   "gate only, never sends"
+  ],
+  "status_today": "running",
+  "binding_constraint": "not a sender",
+  "sends_last_14d": [
+   {
+    "date": "2026-10-28",
+    "n": 0
+   },
+   {
+    "date": "2026-10-29",
+    "n": 0
+   },
+   {
+    "date": "2026-10-30",
+    "n": 0
+   },
+   {
+    "date": "2026-10-31",
+    "n": 0
+   },
+   {
+    "date": "2026-11-01",
+    "n": 0
+   },
+   {
+    "date": "2026-11-02",
+    "n": 0
+   },
+   {
+    "date": "2026-11-03",
+    "n": 0
+   },
+   {
+    "date": "2026-11-04",
+    "n": 0
+   },
+   {
+    "date": "2026-11-05",
+    "n": 0
+   },
+   {
+    "date": "2026-11-06",
+    "n": 0
+   },
+   {
+    "date": "2026-11-07",
+    "n": 0
+   },
+   {
+    "date": "2026-11-08",
+    "n": 0
+   },
+   {
+    "date": "2026-11-09",
+    "n": 0
+   },
+   {
+    "date": "2026-11-10",
+    "n": 0
+   }
+  ]
+ },
+ {
+  "key": "calendar_sync",
+  "label": "calendar_booked.txt refresher (gate)",
+  "launchd_label": "com.belong.calendar-sync",
+  "wrapper": "/Users/gabrielcastro/.openclaw/agents/calendar-sync.sh",
+  "entry_script": "python3 -m outreach.sync_calendar_booked",
+  "schedule": "every 3600s + RunAtLoad",
+  "cap_per_run": null,
+  "cap_per_day": null,
+  "env_var": "none",
+  "families": [],
+  "gates": [
+   "refuses to write if 0 bookings parsed"
+  ],
+  "status_today": "healthy since 09:23; no log lines 2026-11-05 20:02 to 11-10 09:23",
+  "binding_constraint": "not a sender; outage starved reportcall-b56",
+  "sends_last_14d": [
+   {
+    "date": "2026-10-28",
+    "n": 0
+   },
+   {
+    "date": "2026-10-29",
+    "n": 0
+   },
+   {
+    "date": "2026-10-30",
+    "n": 0
+   },
+   {
+    "date": "2026-10-31",
+    "n": 0
+   },
+   {
+    "date": "2026-11-01",
+    "n": 0
+   },
+   {
+    "date": "2026-11-02",
+    "n": 0
+   },
+   {
+    "date": "2026-11-03",
+    "n": 0
+   },
+   {
+    "date": "2026-11-04",
+    "n": 0
+   },
+   {
+    "date": "2026-11-05",
+    "n": 0
+   },
+   {
+    "date": "2026-11-06",
+    "n": 0
+   },
+   {
+    "date": "2026-11-07",
+    "n": 0
+   },
+   {
+    "date": "2026-11-08",
+    "n": 0
+   },
+   {
+    "date": "2026-11-09",
+    "n": 0
+   },
+   {
+    "date": "2026-11-10",
+    "n": 0
+   }
+  ]
+ },
+ {
+  "key": "llc_network_drain",
+  "label": "LLC network campaign (llc-network-v1)",
+  "launchd_label": "com.belong.llc-network-drain",
+  "wrapper": "/Users/gabrielcastro/.openclaw/agents/llc-network-drain.sh",
+  "entry_script": "python3 -m outreach.llc_network_drain drain --max 4",
+  "schedule": "every 15 min 09:05-16:50, weekdays 09-17 ET enforced in Python",
+  "cap_per_run": 4,
+  "cap_per_day": 50,
+  "env_var": "LLC_NETWORK_PER_RUN (4), LLC_NETWORK_DAILY_CAP (50)",
+  "families": [
+   "llc-network-"
+  ],
+  "gates": [
+   "status llc_queued only",
+   "shared sender 400/day ceiling",
+   "weekday 09-17 ET"
+  ],
+  "status_today": "running, sent=0 every run",
+  "binding_constraint": "supply: audience of 194 fully consumed 2026-10-07 (172 sent, 22 failed); no follow-up touch wired",
+  "sends_last_14d": [
+   {
+    "date": "2026-10-28",
+    "n": 0
+   },
+   {
+    "date": "2026-10-29",
+    "n": 0
+   },
+   {
+    "date": "2026-10-30",
+    "n": 0
+   },
+   {
+    "date": "2026-10-31",
+    "n": 0
+   },
+   {
+    "date": "2026-11-01",
+    "n": 0
+   },
+   {
+    "date": "2026-11-02",
+    "n": 0
+   },
+   {
+    "date": "2026-11-03",
+    "n": 0
+   },
+   {
+    "date": "2026-11-04",
+    "n": 0
+   },
+   {
+    "date": "2026-11-05",
+    "n": 0
+   },
+   {
+    "date": "2026-11-06",
+    "n": 0
+   },
+   {
+    "date": "2026-11-07",
+    "n": 0
+   },
+   {
+    "date": "2026-11-08",
+    "n": 0
+   },
+   {
+    "date": "2026-11-09",
+    "n": 0
+   },
+   {
+    "date": "2026-11-10",
+    "n": 0
+   }
+  ]
+ },
+ {
+  "key": "funnel_cadence",
+  "label": "Top-of-funnel t1-t3 cadence",
+  "launchd_label": "com.belong.funnel-cadence",
+  "wrapper": "/Users/gabrielcastro/.openclaw/agents/funnel-cadence.sh",
+  "entry_script": "python3 -m outreach.funnel_cadence --send --cap 40",
+  "schedule": "disabled 2026-10-01 (plist renamed .disabled); was 09:15 and 14:15 weekdays",
+  "cap_per_run": 40,
+  "cap_per_day": 40,
+  "env_var": "none (--cap 40 literal)",
+  "families": [
+   "funnel-cadence-"
+  ],
+  "gates": [
+   "DNC, bad email, mid-reply, per-touch dedupe, auto-stop on bucket advance"
+  ],
+  "status_today": "disabled",
+  "binding_constraint": "asleep (deliberately disabled)",
+  "sends_last_14d": [
+   {
+    "date": "2026-10-28",
+    "n": 0
+   },
+   {
+    "date": "2026-10-29",
+    "n": 0
+   },
+   {
+    "date": "2026-10-30",
+    "n": 0
+   },
+   {
+    "date": "2026-10-31",
+    "n": 0
+   },
+   {
+    "date": "2026-11-01",
+    "n": 0
+   },
+   {
+    "date": "2026-11-02",
+    "n": 0
+   },
+   {
+    "date": "2026-11-03",
+    "n": 0
+   },
+   {
+    "date": "2026-11-04",
+    "n": 0
+   },
+   {
+    "date": "2026-11-05",
+    "n": 0
+   },
+   {
+    "date": "2026-11-06",
+    "n": 0
+   },
+   {
+    "date": "2026-11-07",
+    "n": 0
+   },
+   {
+    "date": "2026-11-08",
+    "n": 0
+   },
+   {
+    "date": "2026-11-09",
+    "n": 0
+   },
+   {
+    "date": "2026-11-10",
+    "n": 0
+   }
+  ]
+ }
+]

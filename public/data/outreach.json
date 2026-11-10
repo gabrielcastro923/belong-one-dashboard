@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-10T14:55-05:00",
+ "generated": "2026-11-10T14:59-05:00",
  "db_at": "2026-11-10T14:50-05:00",
  "snapshot_at": "2026-11-10T14:50-05:00",
  "window_months": [
@@ -4505,38 +4505,45 @@
  },
  "recommendations": [
   {
-   "title": "Fix and restore report-call-b56, then raise its per-run cap",
-   "why": "23 bookings on 321 sends Aug\u2013Oct (71.7/1k), most of them report calls \u2014 the only call type that predicts a listing. It was FAILING on 2026-11-10.",
-   "change": "~/.openclaw/agents/reportcall-b56.sh: RC_CAP 25\u219240 (RC_DAILY_MAX stays 50); first clear the exit-2 failure and check calendar_booked.txt age",
-   "expected": "~28.7 bookings/week at 40/run x 2 runs x 5 days if supply exists (b5/b6 is finite: re-touches dominate after week 1)",
-   "risk": "b5/b6 converts by phone, not email; repeat touches to the same 60-70 owners; enforce the 5-day cross-engine gap"
+   "title": "Report-call-b56: first ask same day to every new b5 owner; cap follow-ups at 2",
+   "why": "walkthrough-scheduler-v2 (first ask) booked ~18 calls on 48 sends (n<100, directional); the follow-up template booked ~5 on ~306 sends to ~76 owners (~4 each). Report calls are the only booking that predicts a listing.",
+   "change": "outreach/report_call_bucket_send.py: limit walkthrough-scheduler-v2-followup to 2 per address; RC_CAP=25 in ~/.openclaw/agents/reportcall-b56.sh is not binding \u2014 leave it. Keep the lane green (FAILING exit 2 at 13:45 on 2026-11-10, recovered by 14:20).",
+   "expected": "~23 inspections/mo -> ~5.3 new b5/wk x ~0.35 = ~1.9 report bookings/wk vs ~1.3/wk observed Aug-Oct: +0.6/wk",
+   "risk": "b5 converts by phone; Gabriel's calls drive some of these bookings, so 0.35 is an upper bound. Keep the 5-day cross-engine gap with consult-inspection."
   },
   {
-   "title": "Keep consult-inspection at volume; split first touch from re-touch",
-   "why": "27 bookings on 822 sends Aug\u2013Oct (32.8/1k) \u2014 the largest absolute booker.",
-   "change": "~/Library/LaunchAgents/com.belong.inspection-adoption-enqueue.plist: keep INSPECTION_CAP=200; lower COOLOFF_DAYS 14\u219210 only for owners with touch_n<=2",
-   "expected": "current ~1.6/week at the last-30d pace; +~1/week from the shorter cool-off",
-   "risk": "double touches against apmg/consult (5-day gap), opt-outs from re-touched signed owners"
+   "title": "Answer the Gmail replies nobody answered",
+   "why": "24 Gmail replies in the last 7 days have no later send to that address.",
+   "change": "python3 -m outreach.engagement_watch --report, then the reply-responder agent (logistics auto-send only; price/contract held for Gabriel)",
+   "expected": "one-time ~1-3 bookings if ~10% are bookable (the 10-22 check found most replies were declines)",
+   "risk": "replying to declines/opt-outs; read each thread first"
   },
   {
-   "title": "apmg-t1 is the best rate in the book: widen supply, not the cap",
-   "why": "25 bookings on 325 sends Aug\u2013Oct (76.9/1k). Cap is not binding.",
-   "change": "~/.openclaw/agents/apm-google-enqueue.sh: APMG_SOURCES add remaining inbound sources (e.g. facebook, referral); APMG_CAP unchanged at 80",
-   "expected": "each +10 first touches/week ~ +1 booking/week at this rate",
-   "risk": "Intercom consent + current-customer check on every new source; t1 opens cold, which reads badly to a just-called signup"
+   "title": "Consult-inspection: hold volume, stop crediting its report bookings",
+   "why": "first touch 14 bookings on 243 (57.6/1k); re-touch 16 on 756 (21.2/1k), but >=8 of the report-call credits went to owners already in bucket 4 at send, i.e. the inspection was booked before the email.",
+   "change": "no cap change (INSPECTION_CAP=200 in com.belong.inspection-adoption-enqueue.plist is not binding); in scripts/enqueue_inspection_consult.py re-check the live bucket at send time so b4+ owners drop out",
+   "expected": "~16 first touches/wk x ~0.058 = ~0.9 bookings/wk, unchanged; removes stage-mismatched sends",
+   "risk": "COOLOFF_DAYS=14 re-touches signed owners; opt-outs from bucket 3 are the costliest"
+  },
+  {
+   "title": "apmg-t1: widen source scope to the remaining inbound sources",
+   "why": "best first-touch rate in the book: 27 bookings on 345 (78.3/1k) and the most inspections_after per send. Supply-limited; the cap is irrelevant.",
+   "change": "com.belong.apm-google-enqueue.plist EnvironmentVariables APMG_SOURCES='google ads,google seo,apm,zillow,craigslist,apartments.com,chatgpt.com,inbound_unknown,public_records,customer.io,parcl,facebook'",
+   "expected": "~12 extra SQLs since 10-01 in those sources = ~2/wk x ~0.08 = +0.15 bookings/wk",
+   "risk": "Intercom consent + current-customer pass on each new source; consult lane also touches SQLs (5-day gap); t1 opens cold, wrong for a signup Gabriel just phoned"
   },
   {
    "title": "Cut drain-backfill tier B",
-   "why": "11 bookings on 4841 sends Aug\u2013Oct (2.27/1k) \u2014 the bulk of volume, almost none of the bookings.",
-   "change": "~/Library/LaunchAgents/com.belong.outreach-drain.plist: add DRAIN_BACKFILL_TIER_B=0 (tier A fresh leads keep flowing)",
-   "expected": "~0 bookings/week lost; removes ~20-60 re-touches/day and their opt-out/bounce exposure",
+   "why": "last 30d 813 sends -> 2 bookings (2.5/1k); since 09-09 ~11 bookings on ~4,900 sends, indistinguishable from the organic rate on a pool that large.",
+   "change": "com.belong.outreach-drain.plist EnvironmentVariables: DRAIN_BACKFILL_TIER_B=0",
+   "expected": "<=0.5 bookings/wk lost; ~800 fewer re-touches/mo",
    "risk": "drain idles when the queue is empty \u2014 that is the honest state"
   },
   {
-   "title": "Keep funnel-cadence disabled; apmg-t2/t3 on watch",
-   "why": "funnel-cadence t2\u2013t6 booked ~0 on its sends; re-touch rates collapse after touch 1 (see first_touch_vs_retouch).",
-   "change": "leave com.belong.funnel-cadence.plist.disabled; review apmg-t2/t3 in enqueue_apm_google.py (touch tiers) against their per-1k",
-   "expected": "0 bookings/week change",
+   "title": "Keep funnel-cadence off and fix its insert path before any re-enable",
+   "why": "t4-t6: 1 booking on 383 sends; it inserts status='sent' directly, bypassing the holdout trigger \u2014 19 of 40 holdout addresses were emailed by t4-t6.",
+   "change": "leave com.belong.funnel-cadence.plist.disabled; also drop llc-network (0 on 172) and multiunit (0 on 237) from future plans",
+   "expected": "0 bookings/wk change",
    "risk": "none"
   }
  ],

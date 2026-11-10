@@ -39,9 +39,12 @@ const LANE_CONFIG = path.join(process.env.HOME ?? "", "Documents", "Obsidian Vau
 
 /** lane key -> binding constraint text. Accepts {lanes: {...}}, a keyed object, or an array of {key, ...}. */
 export function getLaneConstraints(): Record<string, string> {
-  if (!process.env.HOME || !fs.existsSync(LANE_CONFIG)) return {};
+  // Prefer the copy shipped with the site (public/data), so Vercel builds see it; the vault path is a local fallback.
+  const shipped = path.join(process.cwd(), "public", "data", "lane_config.json");
+  const src = fs.existsSync(shipped) ? shipped : process.env.HOME && fs.existsSync(LANE_CONFIG) ? LANE_CONFIG : null;
+  if (!src) return {};
   try {
-    const raw = JSON.parse(fs.readFileSync(LANE_CONFIG, "utf8")) as unknown;
+    const raw = JSON.parse(fs.readFileSync(src, "utf8")) as unknown;
     const root = raw && typeof raw === "object" && "lanes" in raw ? (raw as { lanes: unknown }).lanes : raw;
     const entries: [string, unknown][] = Array.isArray(root)
       ? root.map((r) => [String((r as { key?: string; lane?: string }).key ?? (r as { lane?: string }).lane ?? ""), r])
