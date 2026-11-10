@@ -1,58 +1,13 @@
 {
- "generated": "2026-11-10T12:46-05:00",
+ "generated": "2026-11-10T12:49-05:00",
  "agents": [
-  {
-   "name": "apm-google-enqueue",
-   "kind": "launchd",
-   "status": "FAILING",
-   "schedule": "13x daily",
-   "owned_metric": "",
-   "note": "last exit 1",
-   "proposal_path": null
-  },
-  {
-   "name": "calendar-sync",
-   "kind": "launchd",
-   "status": "FAILING",
-   "schedule": "every 60m",
-   "owned_metric": "",
-   "note": "last exit 1",
-   "proposal_path": null
-  },
-  {
-   "name": "inspection-adoption-enqueue",
-   "kind": "launchd",
-   "status": "FAILING",
-   "schedule": "11x daily",
-   "owned_metric": "",
-   "note": "last exit 1",
-   "proposal_path": null
-  },
-  {
-   "name": "llc-network-drain",
-   "kind": "launchd",
-   "status": "LATE",
-   "schedule": "32x daily",
-   "owned_metric": "",
-   "note": "log 15.7h old, expected every 0.2h",
-   "proposal_path": null
-  },
-  {
-   "name": "missed-call-followup",
-   "kind": "launchd",
-   "status": "FAILING",
-   "schedule": "44x daily",
-   "owned_metric": "",
-   "note": "last exit 1",
-   "proposal_path": null
-  },
   {
    "name": "reportcall-b56",
    "kind": "launchd",
    "status": "FAILING",
    "schedule": "2x daily",
    "owned_metric": "",
-   "note": "last exit 1",
+   "note": "last exit 2",
    "proposal_path": null
   },
   {
@@ -69,6 +24,24 @@
    "kind": "launchd",
    "status": "OK",
    "schedule": "07:30 daily",
+   "owned_metric": "",
+   "note": "",
+   "proposal_path": null
+  },
+  {
+   "name": "apm-google-enqueue",
+   "kind": "launchd",
+   "status": "OK",
+   "schedule": "13x daily",
+   "owned_metric": "",
+   "note": "",
+   "proposal_path": null
+  },
+  {
+   "name": "calendar-sync",
+   "kind": "launchd",
+   "status": "OK",
+   "schedule": "every 60m",
    "owned_metric": "",
    "note": "",
    "proposal_path": null
@@ -96,6 +69,33 @@
    "kind": "launchd",
    "status": "OK",
    "schedule": "3x daily",
+   "owned_metric": "",
+   "note": "",
+   "proposal_path": null
+  },
+  {
+   "name": "inspection-adoption-enqueue",
+   "kind": "launchd",
+   "status": "OK",
+   "schedule": "11x daily",
+   "owned_metric": "",
+   "note": "",
+   "proposal_path": null
+  },
+  {
+   "name": "llc-network-drain",
+   "kind": "launchd",
+   "status": "OK",
+   "schedule": "32x daily",
+   "owned_metric": "",
+   "note": "",
+   "proposal_path": null
+  },
+  {
+   "name": "missed-call-followup",
+   "kind": "launchd",
+   "status": "OK",
+   "schedule": "44x daily",
    "owned_metric": "",
    "note": "",
    "proposal_path": null
