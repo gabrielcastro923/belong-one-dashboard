@@ -26,6 +26,9 @@
   --critical: 0 61% 52%;
   --critical-ink: 0 65% 42%;
   --radius: 0.375rem;
+  /* categorical slots for per-lane series (dataviz reference palette, fixed order) */
+  --cat-1: #2a78d6; --cat-2: #eb6834; --cat-3: #1baf7a; --cat-4: #eda100;
+  --cat-5: #e87ba4; --cat-6: #008300; --cat-7: #4a3aa7;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -46,6 +49,8 @@
     --good-ink: 120 86% 44%;
     --warn-ink: 41 96% 60%;
     --critical-ink: 0 75% 66%;
+    --cat-1: #3987e5; --cat-2: #d95926; --cat-3: #199e70; --cat-4: #c98500;
+    --cat-5: #d55181; --cat-6: #008300; --cat-7: #9085e9;
     color-scheme: dark;
   }
 }
@@ -66,6 +71,8 @@
   --good-ink: 120 86% 44%;
   --warn-ink: 41 96% 60%;
   --critical-ink: 0 75% 66%;
+  --cat-1: #3987e5; --cat-2: #d95926; --cat-3: #199e70; --cat-4: #c98500;
+  --cat-5: #d55181; --cat-6: #008300; --cat-7: #9085e9;
   color-scheme: dark;
 }
 

@@ -161,3 +161,88 @@ export interface AgentsFile {
   agents: AgentRow[];
   readme?: string;
 }
+
+// Mirrors Pipeline/November 2026/outreach-contract.md
+
+export type LaneStatus = "OK" | "FAILING" | "LATE" | "DISABLED" | "unknown";
+
+export interface LanePeriod {
+  sent: number;
+  failed: number;
+  bounced: number;
+  unique_recipients: number;
+  replies: number;
+  bookings_consult: number;
+  bookings_report: number;
+  advanced: number;
+  agreements_after: number;
+  inspections_after: number;
+  bookings_per_1k: number | null;
+  replies_per_1k: number | null;
+}
+
+export interface LaneMonth extends LanePeriod {
+  month: string;
+}
+
+export interface Lane {
+  key: string;
+  label: string;
+  kind: string;
+  status: LaneStatus | string;
+  schedule: string;
+  cap_per_run: number | null;
+  cap_per_day: number | null;
+  owner_note: string;
+  months: LaneMonth[];
+  last_30d: LanePeriod;
+  supply: { candidates_today: number | null; sent_today: number | null; capped: boolean | null } | null;
+}
+
+export interface TouchRow {
+  touch_n: number;
+  sent: number;
+  bookings: number;
+  replies: number;
+  per_1k: number | null;
+}
+
+export interface TemplateRow {
+  template_version: string;
+  lane: string;
+  sent: number;
+  replies: number;
+  bookings: number;
+  per_1k: number | null;
+  first_sent: string;
+  last_sent: string;
+}
+
+export interface SubjectRow {
+  subject: string;
+  sent: number;
+  replies: number;
+  bookings: number;
+}
+
+export interface Outreach {
+  placeholder?: boolean;
+  generated: string;
+  db_at: string;
+  snapshot_at: string;
+  window_months: string[];
+  /** One-line attribution rule as the builder applied it. */
+  attribution?: string;
+  lanes: Lane[];
+  totals: { months: { month: string; sent: number; bookings_consult: number; bookings_report: number; replies: number; bookings_no_prior_email?: number }[] };
+  first_touch_vs_retouch: TouchRow[];
+  templates: TemplateRow[];
+  subjects: SubjectRow[];
+  day_of_week: { dow: string; sent: number; replies: number; bookings: number }[];
+  hour_et: { hour: number; sent: number; replies: number; bookings: number }[];
+  holdout: { arms: { arm: string; n: number; advanced: number; bookings?: number; emailed_after?: number }[]; note: string } | null;
+  bucket_at_send: { bucket: string; sent: number; bookings: number; advanced: number }[];
+  today: { sent: number; queued: number; failed: number; targeted: number; backfill: number; replies_pending_answer: number };
+  recommendations: { title: string; why: string; change: string; expected: string; risk: string }[];
+  caveats: string[];
+}
