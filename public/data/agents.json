@@ -1,0 +1,384 @@
+{
+ "generated": "2026-11-10T12:46-05:00",
+ "agents": [
+  {
+   "name": "apm-google-enqueue",
+   "kind": "launchd",
+   "status": "FAILING",
+   "schedule": "13x daily",
+   "owned_metric": "",
+   "note": "last exit 1",
+   "proposal_path": null
+  },
+  {
+   "name": "calendar-sync",
+   "kind": "launchd",
+   "status": "FAILING",
+   "schedule": "every 60m",
+   "owned_metric": "",
+   "note": "last exit 1",
+   "proposal_path": null
+  },
+  {
+   "name": "inspection-adoption-enqueue",
+   "kind": "launchd",
+   "status": "FAILING",
+   "schedule": "11x daily",
+   "owned_metric": "",
+   "note": "last exit 1",
+   "proposal_path": null
+  },
+  {
+   "name": "llc-network-drain",
+   "kind": "launchd",
+   "status": "LATE",
+   "schedule": "32x daily",
+   "owned_metric": "",
+   "note": "log 15.7h old, expected every 0.2h",
+   "proposal_path": null
+  },
+  {
+   "name": "missed-call-followup",
+   "kind": "launchd",
+   "status": "FAILING",
+   "schedule": "44x daily",
+   "owned_metric": "",
+   "note": "last exit 1",
+   "proposal_path": null
+  },
+  {
+   "name": "reportcall-b56",
+   "kind": "launchd",
+   "status": "FAILING",
+   "schedule": "2x daily",
+   "owned_metric": "",
+   "note": "last exit 1",
+   "proposal_path": null
+  },
+  {
+   "name": "walkthrough-queue",
+   "kind": "launchd",
+   "status": "FAILING",
+   "schedule": "06:50 daily",
+   "owned_metric": "",
+   "note": "last exit 1",
+   "proposal_path": null
+  },
+  {
+   "name": "agent-ideation",
+   "kind": "launchd",
+   "status": "OK",
+   "schedule": "07:30 daily",
+   "owned_metric": "",
+   "note": "",
+   "proposal_path": null
+  },
+  {
+   "name": "engagement-watch",
+   "kind": "launchd",
+   "status": "OK",
+   "schedule": "13x daily",
+   "owned_metric": "",
+   "note": "",
+   "proposal_path": null
+  },
+  {
+   "name": "eod-report",
+   "kind": "launchd",
+   "status": "OK",
+   "schedule": "21:03 daily",
+   "owned_metric": "",
+   "note": "",
+   "proposal_path": null
+  },
+  {
+   "name": "fleet-status",
+   "kind": "launchd",
+   "status": "OK",
+   "schedule": "3x daily",
+   "owned_metric": "",
+   "note": "",
+   "proposal_path": null
+  },
+  {
+   "name": "morning-brief",
+   "kind": "launchd",
+   "status": "OK",
+   "schedule": "07:33 daily",
+   "owned_metric": "",
+   "note": "",
+   "proposal_path": null
+  },
+  {
+   "name": "outreach-drain",
+   "kind": "launchd",
+   "status": "OK",
+   "schedule": "53x daily",
+   "owned_metric": "",
+   "note": "",
+   "proposal_path": null
+  },
+  {
+   "name": "outreach-followup",
+   "kind": "launchd",
+   "status": "OK",
+   "schedule": "08:30 daily",
+   "owned_metric": "",
+   "note": "",
+   "proposal_path": null
+  },
+  {
+   "name": "phoenix-llc-scrape",
+   "kind": "launchd",
+   "status": "OK",
+   "schedule": "06:00 daily",
+   "owned_metric": "",
+   "note": "",
+   "proposal_path": null
+  },
+  {
+   "name": "pipeline-brain",
+   "kind": "launchd",
+   "status": "OK",
+   "schedule": "2x daily",
+   "owned_metric": "",
+   "note": "",
+   "proposal_path": null
+  },
+  {
+   "name": "pipeline-tracker",
+   "kind": "launchd",
+   "status": "OK",
+   "schedule": "06:45 daily",
+   "owned_metric": "",
+   "note": "",
+   "proposal_path": null
+  },
+  {
+   "name": "sql-walkthrough-enqueue",
+   "kind": "launchd",
+   "status": "OK",
+   "schedule": "13x daily",
+   "owned_metric": "",
+   "note": "",
+   "proposal_path": null
+  },
+  {
+   "name": "stale-opp-alert",
+   "kind": "launchd",
+   "status": "OK",
+   "schedule": "15:07 daily",
+   "owned_metric": "",
+   "note": "",
+   "proposal_path": null
+  },
+  {
+   "name": "adoption-closer",
+   "kind": "subagent",
+   "status": "installed",
+   "schedule": "on demand",
+   "owned_metric": "",
+   "note": "\"Email-only engine for ADOPTED homes — owners who already have a resident in place. Adopted homes need NO inspection, so this lane skips the",
+   "proposal_path": null
+  },
+  {
+   "name": "closing-agent",
+   "kind": "subagent",
+   "status": "installed",
+   "schedule": "on demand",
+   "owned_metric": "",
+   "note": "Outbound closing agent for a named set of report-stage homeowners. For each, pulls their actual last Fireflies call + last Gmail/Intercom th",
+   "proposal_path": null
+  },
+  {
+   "name": "crm-hygiene",
+   "kind": "subagent",
+   "status": "installed",
+   "schedule": "on demand",
+   "owned_metric": "",
+   "note": "Triages stale Agreement-Negotiation deals (>30d untouched) + zombie approved-not-listed deals into a PROPOSED revive-or-mark-lost list for G",
+   "proposal_path": null
+  },
+  {
+   "name": "day-planner",
+   "kind": "subagent",
+   "status": "installed",
+   "schedule": "on demand",
+   "owned_metric": "",
+   "note": "Structures Gabriel's day on Google Calendar — lays high-leverage pipeline work into time blocks built AROUND existing commitments, enforcing",
+   "proposal_path": null
+  },
+  {
+   "name": "funnel-activation",
+   "kind": "subagent",
+   "status": "installed",
+   "schedule": "on demand",
+   "owned_metric": "",
+   "note": "Works my EXISTING warm top-of-funnel — new signups + live Agreement-Negotiation + Pending/Schedule-Inspection deals — and drives them DOWN t",
+   "proposal_path": null
+  },
+  {
+   "name": "inbound-triage",
+   "kind": "subagent",
+   "status": "installed",
+   "schedule": "on demand",
+   "owned_metric": "",
+   "note": "\"Handles fresh inbound signups that the automated lanes cannot see. New leads land in the homeowners admin (admin.bln.hm/homeowners/<id>), b",
+   "proposal_path": null
+  },
+  {
+   "name": "inspection-booker",
+   "kind": "subagent",
+   "status": "installed",
+   "schedule": "on demand",
+   "owned_metric": "",
+   "note": "\"Email-only engine that turns the existing pipeline into booked inspections. Owns bucket 3 (signed, no inspection — including the 25 whose i",
+   "proposal_path": null
+  },
+  {
+   "name": "inspection-completion",
+   "kind": "subagent",
+   "status": "installed",
+   "schedule": "on demand",
+   "owned_metric": "",
+   "note": "Leak #2. Watches scheduled inspections; DRAFTS a 24h confirmation for Gabriel's send (does not send), verifies prereqs/lockbox, flags at-ris",
+   "proposal_path": null
+  },
+  {
+   "name": "inspection-scheduler",
+   "kind": "subagent",
+   "status": "installed",
+   "schedule": "on demand",
+   "owned_metric": "",
+   "note": "\"#1b sales-growth leak. Owns owners who have an agreement out but NO inspection scheduled — both buckets: 2_agreement_sent_not_signed (get t",
+   "proposal_path": null
+  },
+  {
+   "name": "market-targeting",
+   "kind": "subagent",
+   "status": "installed",
+   "schedule": "on demand",
+   "owned_metric": "",
+   "note": "\"Decides WHERE outbound should point. Ranks geographies for prospecting using the three signals the book can actually support — owner supply",
+   "proposal_path": null
+  },
+  {
+   "name": "pipeline-ops",
+   "kind": "subagent",
+   "status": "installed",
+   "schedule": "on demand",
+   "owned_metric": "",
+   "note": "\"Captain of the send fleet. Runs the mechanical health check (outreach/fleet_status.py), then does the part a script cannot: diagnoses WHY a",
+   "proposal_path": null
+  },
+  {
+   "name": "pipeline-reviver",
+   "kind": "subagent",
+   "status": "installed",
+   "schedule": "on demand",
+   "owned_metric": "",
+   "note": "Revives DORMANT open pipeline — deals that had a real human touch but the conversation went quiet (no two-way contact in ~10+ business days)",
+   "proposal_path": null
+  },
+  {
+   "name": "pma-recovery",
+   "kind": "subagent",
+   "status": "installed",
+   "schedule": "on demand",
+   "owned_metric": "",
+   "note": "Recovers stalled \"Agreement Sent → Not Signed\" PMAs — Gabriel's #1 documented leak (James Spruill / Craig Bersen pattern). For each cold agr",
+   "proposal_path": null
+  },
+  {
+   "name": "portfolio-prospector",
+   "kind": "subagent",
+   "status": "installed",
+   "schedule": "on demand",
+   "owned_metric": "",
+   "note": "\"Cold email engine for multi-property owners — 800 in-state Maricopa owners holding exactly 5-6 single-family homes, sourced from free count",
+   "proposal_path": null
+  },
+  {
+   "name": "reply-responder",
+   "kind": "subagent",
+   "status": "installed",
+   "schedule": "on demand",
+   "owned_metric": "",
+   "note": "\"Answers homeowners who actually wrote to us. Reads the real Gmail thread (the local credential cannot), confirms a reply is genuinely owed,",
+   "proposal_path": null
+  },
+  {
+   "name": "report-close",
+   "kind": "subagent",
+   "status": "installed",
+   "schedule": "on demand",
+   "owned_metric": "",
+   "note": "Leak #1. For a deal with a Report Review Meeting in the next 2 days, read its dossier and build a close brief — comps walked to the recommen",
+   "proposal_path": null
+  },
+  {
+   "name": "signature-driver",
+   "kind": "subagent",
+   "status": "installed",
+   "schedule": "on demand",
+   "owned_metric": "",
+   "note": "Moves deals from agreement-SENT to agreement-SIGNED (or to a booked call). Uses each deal's context to draft a personalized SMS + email, app",
+   "proposal_path": null
+  },
+  {
+   "name": "walkthrough-scheduler",
+   "kind": "subagent",
+   "status": "installed",
+   "schedule": "on demand",
+   "owned_metric": "",
+   "note": "For owners whose inspection is COMPLETED but who have no walkthrough-results (Report Review) meeting booked, drafts a personalized SMS + ema",
+   "proposal_path": null
+  },
+  {
+   "name": "calendar-filler",
+   "kind": "subagent",
+   "status": "proposed",
+   "schedule": "",
+   "owned_metric": "report calls booked ahead (next 10 days), feeding report calls held",
+   "note": "draft",
+   "proposal_path": "Agents/Brain/proposed/calendar-filler.md"
+  },
+  {
+   "name": "dashboard-refresh",
+   "kind": "launchd",
+   "status": "proposed",
+   "schedule": "",
+   "owned_metric": "hours per day the dashboard shows data no older than the snapshot (freshness, never fake-fresh)",
+   "note": "none",
+   "proposal_path": "Agents/Brain/proposed/dashboard-refresh.md"
+  },
+  {
+   "name": "day-of-confirmations",
+   "kind": "launchd",
+   "status": "proposed",
+   "schedule": "",
+   "owned_metric": "no-show rate on report calls and inspections (held / booked)",
+   "note": "none",
+   "proposal_path": "Agents/Brain/proposed/day-of-confirmations.md"
+  },
+  {
+   "name": "inspection-fast-track",
+   "kind": "subagent",
+   "status": "proposed",
+   "schedule": "",
+   "owned_metric": "inspections completed by 11-17 (target ~22), the binding constraint",
+   "note": "draft",
+   "proposal_path": "Agents/Brain/proposed/inspection-fast-track.md"
+  },
+  {
+   "name": "progress-ledger",
+   "kind": "launchd",
+   "status": "proposed",
+   "schedule": "",
+   "owned_metric": "report calls held (the only metric that predicts a listing, ~2.5 per listing), recorded daily",
+   "note": "none",
+   "proposal_path": "Agents/Brain/proposed/progress-ledger.md"
+  }
+ ],
+ "readme": "---\nname: proposed-agents-2026-11-10\nstatus: proposed\nproposed: 2026-11-10\n---\n\n# Proposed agents, 2026-11-10\n\nNothing here is installed. Each file has its own install commands for Gabriel.\n\n1. [[dashboard-refresh]]: launchd 07:10/13:10, rebuilds dashboard JSON and pushes; skips if the snapshot is over 26h or empty.\n2. [[progress-ledger]]: launchd 20:30, one line a day (held, booked ahead, inspections, listed, did-we-hit-3/2).\n3. [[calendar-filler]]: subagent, drafts two-slot SMS and email for eligible owners with no report call in 10 days.\n4. [[inspection-fast-track]]: subagent, two inspection windows plus a report call behind each for b3 owners; flags terminal owners.\n5. [[day-of-confirmations]]: launchd 08:00, \"Confirm today\" list with SMS drafts for the next 36h.\n\n## Install order\n1. dashboard-refresh and progress-ledger first, both read-only. Install in either order, ledger first if the dashboard builder is not ready.\n2. day-of-confirmations next (launchd, read-only, but needs the calendar helper).\n3. calendar-filler, then inspection-fast-track (subagents, drafts only; try by hand for a day before trusting).\n\n## Prerequisites (resolved 2026-11-10 13:50)\n- `Tools/scripts/build_plan.py` exists and writes `~/Belong One Dashboard/public/data/{pipeline,plan,agents}.json` plus `Path to 20.md` and `Daily Call Schedule.md`.\n- `Tools/scripts/calendar_dump.py` exists: it reuses `outreach.sync_calendar_booked` (same gmail.json credential and Calendar scope) and writes `Tools/data/calendar_events.json` with dates, titles and attendees. Run it before `build_plan.py`. Progress-ledger and day-of-confirmations read that file instead of a new `calendar_counts.py`.\n- None of these fixes the dashboard-cookie outage that darkens the report-call email lane.\n- Phone is the only channel that has booked report calls; all drafts here assume Gabriel dials first.\n"
+}

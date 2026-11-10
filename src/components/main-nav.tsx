@@ -5,25 +5,27 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "/", label: "Today's Calls" },
-  { href: "/attention", label: "Attention Needed" },
+  { href: "/", label: "Scoreboard" },
   { href: "/plan", label: "Plan" },
+  { href: "/leads", label: "Leads" },
+  { href: "/progress", label: "Progress" },
+  { href: "/agents", label: "Agents" },
 ];
 
 export function MainNav() {
   const pathname = usePathname();
   return (
-    <nav className="flex flex-wrap gap-x-3 gap-y-1 text-sm">
+    <nav className="-mx-1.5 flex flex-wrap gap-x-1 gap-y-1 text-sm" aria-label="Pages">
       {links.map((n) => {
-        const active =
-          n.href === "/" ? pathname === "/" : pathname === n.href || pathname.startsWith(`${n.href}/`);
+        const active = n.href === "/" ? pathname === "/" : pathname.startsWith(n.href);
         return (
           <Link
             key={n.href}
             href={n.href}
+            aria-current={active ? "page" : undefined}
             className={cn(
-              "rounded-md px-1.5 py-0.5 transition-colors",
-              active ? "bg-muted text-foreground" : "text-muted-foreground hover:text-foreground"
+              "rounded-sm px-1.5 py-0.5 transition-colors",
+              active ? "bg-muted font-medium text-foreground" : "text-muted-foreground hover:text-foreground"
             )}
           >
             {n.label}

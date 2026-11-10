@@ -1,25 +1,38 @@
 import type { Config } from "tailwindcss";
 
+const t = (v: string) => `hsl(var(--${v}) / <alpha-value>)`;
+
 const config: Config = {
-  darkMode: "class",
+  darkMode: "media",
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
-      colors: {
-        border: "hsl(var(--border))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        muted: "hsl(var(--muted))",
-        "muted-foreground": "hsl(var(--muted-foreground))",
-        card: "hsl(var(--card))",
-        "card-foreground": "hsl(var(--card-foreground))",
-        primary: "hsl(var(--primary))",
-        "primary-foreground": "hsl(var(--primary-foreground))",
-        destructive: "hsl(var(--destructive))",
-        accent: "hsl(var(--accent))",
-        ring: "hsl(var(--ring))",
+      fontFamily: {
+        sans: ["var(--font-sans)", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
-      borderRadius: { lg: "var(--radius)", md: "calc(var(--radius) - 2px)", sm: "calc(var(--radius) - 4px)" },
+      colors: {
+        border: t("border"),
+        background: t("background"),
+        foreground: t("foreground"),
+        muted: t("muted"),
+        "muted-foreground": t("muted-foreground"),
+        card: t("card"),
+        "card-foreground": t("card-foreground"),
+        primary: t("primary"),
+        "primary-foreground": t("primary-foreground"),
+        accent: t("accent"),
+        ring: t("ring"),
+        series: t("series-1"),
+        track: t("series-track"),
+        good: t("good"),
+        "good-ink": t("good-ink"),
+        warn: t("warn"),
+        "warn-ink": t("warn-ink"),
+        critical: t("critical"),
+        "critical-ink": t("critical-ink"),
+      },
+      borderRadius: { lg: "var(--radius)", md: "calc(var(--radius) - 1px)", sm: "calc(var(--radius) - 2px)" },
     },
   },
   plugins: [require("tailwindcss-animate")],
