@@ -27,9 +27,10 @@ export const bucketShort = (key: string) => (/^\d/.test(key) ? `b${key.split("_"
 
 export const pct = (p: number) => `${Math.round(p * 100)}%`;
 
-export const telHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, "")}`;
+export const telHref = (phone: string | null | undefined) => `tel:${(phone ?? "").replace(/[^\d+]/g, "")}`;
 
-export function fmtPhone(phone: string): string {
+export function fmtPhone(phone: string | null | undefined): string {
+  if (!phone) return "";
   const d = phone.replace(/\D/g, "");
   const n = d.length === 11 && d.startsWith("1") ? d.slice(1) : d;
   return n.length === 10 ? `(${n.slice(0, 3)}) ${n.slice(3, 6)}-${n.slice(6)}` : phone;

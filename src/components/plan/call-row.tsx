@@ -25,10 +25,17 @@ export function CallRow({ call, id, done, onToggle }: { call: PlanCall; id: stri
           <span className="font-mono text-[11px] text-muted-foreground">{bucketShort(call.bucket)}</span>
         </div>
         <div className="tnum flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-muted-foreground">
-          <a href={telHref(call.phone)} className="inline-flex items-center gap-1 text-foreground hover:underline">
-            <Phone className="h-3 w-3" aria-hidden />
-            {fmtPhone(call.phone)}
-          </a>
+          {call.phone ? (
+            <a href={telHref(call.phone)} className="inline-flex items-center gap-1 text-foreground hover:underline">
+              <Phone className="h-3 w-3" aria-hidden />
+              {fmtPhone(call.phone)}
+            </a>
+          ) : (
+            <span className="inline-flex items-center gap-1">
+              <Phone className="h-3 w-3" aria-hidden />
+              phone in admin
+            </span>
+          )}
           <span>Their time {call.local_time}</span>
         </div>
         {call.script_hint && <p className="text-xs italic text-muted-foreground">{call.script_hint}</p>}
