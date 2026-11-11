@@ -1,7 +1,7 @@
 {
- "generated": "2026-11-10T14:59-05:00",
- "db_at": "2026-11-10T14:50-05:00",
- "snapshot_at": "2026-11-10T14:50-05:00",
+ "generated": "2026-11-11T11:47-05:00",
+ "db_at": "2026-11-11T11:45-05:00",
+ "snapshot_at": "2026-11-11T11:30-05:00",
  "window_months": [
   "2026-06",
   "2026-07",
@@ -105,10 +105,10 @@
     },
     {
      "month": "2026-11",
-     "sent": 65,
+     "sent": 70,
      "failed": 36,
      "bounced": 0,
-     "unique_recipients": 65,
+     "unique_recipients": 70,
      "replies": 7,
      "bookings_consult": 0,
      "bookings_report": 0,
@@ -116,32 +116,32 @@
      "agreements_after": 0,
      "inspections_after": 0,
      "bookings_per_1k": 0.0,
-     "replies_per_1k": 107.7,
+     "replies_per_1k": 100.0,
      "too_small": true
     }
    ],
    "last_30d": {
-    "sent": 813,
+    "sent": 772,
     "failed": 89,
     "bounced": 0,
-    "unique_recipients": 813,
+    "unique_recipients": 772,
     "replies": 25,
     "bookings_consult": 1,
     "bookings_report": 1,
     "advanced": 0,
     "agreements_after": 0,
     "inspections_after": 0,
-    "bookings_per_1k": 2.5,
-    "replies_per_1k": 30.8,
+    "bookings_per_1k": 2.6,
+    "replies_per_1k": 32.4,
     "too_small": false
    },
    "supply": {
     "candidates_today": null,
-    "sent_today": 21,
+    "sent_today": 3,
     "capped": false
    },
    "first_sent": "2026-09-09",
-   "last_sent": "2026-11-10"
+   "last_sent": "2026-11-11"
   },
   {
    "key": "sql-walkthrough",
@@ -363,18 +363,18 @@
     },
     {
      "month": "2026-11",
-     "sent": 100,
+     "sent": 101,
      "failed": 20,
      "bounced": 0,
-     "unique_recipients": 100,
+     "unique_recipients": 101,
      "replies": 5,
      "bookings_consult": 0,
      "bookings_report": 1,
      "advanced": 1,
      "agreements_after": 1,
      "inspections_after": 0,
-     "bookings_per_1k": 10.0,
-     "replies_per_1k": 50.0,
+     "bookings_per_1k": 9.9,
+     "replies_per_1k": 49.5,
      "too_small": false
     }
    ],
@@ -382,7 +382,7 @@
     "sent": 212,
     "failed": 20,
     "bounced": 0,
-    "unique_recipients": 156,
+    "unique_recipients": 157,
     "replies": 15,
     "bookings_consult": 0,
     "bookings_report": 4,
@@ -395,11 +395,138 @@
    },
    "supply": {
     "candidates_today": null,
-    "sent_today": 52,
+    "sent_today": 0,
     "capped": null
    },
    "first_sent": "2026-07-28",
    "last_sent": "2026-11-10"
+  },
+  {
+   "key": "other",
+   "label": "Other / one-off batches",
+   "kind": "manual",
+   "status": "unknown",
+   "schedule": null,
+   "cap_per_run": null,
+   "cap_per_day": null,
+   "owner_note": "28 small families (<100 sends each)",
+   "launchd_job": null,
+   "months": [
+    {
+     "month": "2026-06",
+     "sent": 126,
+     "failed": 0,
+     "bounced": 172,
+     "unique_recipients": 126,
+     "replies": 0,
+     "bookings_consult": 0,
+     "bookings_report": 1,
+     "advanced": 0,
+     "agreements_after": 0,
+     "inspections_after": 0,
+     "bookings_per_1k": 7.9,
+     "replies_per_1k": 0.0,
+     "too_small": false
+    },
+    {
+     "month": "2026-07",
+     "sent": 149,
+     "failed": 0,
+     "bounced": 96,
+     "unique_recipients": 148,
+     "replies": 0,
+     "bookings_consult": 1,
+     "bookings_report": 3,
+     "advanced": 1,
+     "agreements_after": 0,
+     "inspections_after": 0,
+     "bookings_per_1k": 26.8,
+     "replies_per_1k": 0.0,
+     "too_small": false
+    },
+    {
+     "month": "2026-08",
+     "sent": 120,
+     "failed": 0,
+     "bounced": 18,
+     "unique_recipients": 111,
+     "replies": 8,
+     "bookings_consult": 0,
+     "bookings_report": 5,
+     "advanced": 2,
+     "agreements_after": 0,
+     "inspections_after": 0,
+     "bookings_per_1k": 41.7,
+     "replies_per_1k": 66.7,
+     "too_small": false
+    },
+    {
+     "month": "2026-09",
+     "sent": 34,
+     "failed": 1,
+     "bounced": 11,
+     "unique_recipients": 34,
+     "replies": 0,
+     "bookings_consult": 0,
+     "bookings_report": 0,
+     "advanced": 0,
+     "agreements_after": 0,
+     "inspections_after": 0,
+     "bookings_per_1k": 0.0,
+     "replies_per_1k": 0.0,
+     "too_small": true
+    },
+    {
+     "month": "2026-10",
+     "sent": 9,
+     "failed": 0,
+     "bounced": 0,
+     "unique_recipients": 9,
+     "replies": 2,
+     "bookings_consult": 0,
+     "bookings_report": 0,
+     "advanced": 0,
+     "agreements_after": 0,
+     "inspections_after": 0,
+     "bookings_per_1k": 0.0,
+     "replies_per_1k": 222.2,
+     "too_small": true
+    },
+    {
+     "month": "2026-11",
+     "sent": 128,
+     "failed": 0,
+     "bounced": 0,
+     "unique_recipients": 128,
+     "replies": 2,
+     "bookings_consult": 0,
+     "bookings_report": 0,
+     "advanced": 0,
+     "agreements_after": 0,
+     "inspections_after": 0,
+     "bookings_per_1k": 0.0,
+     "replies_per_1k": 15.6,
+     "too_small": false
+    }
+   ],
+   "last_30d": {
+    "sent": 137,
+    "failed": 0,
+    "bounced": 0,
+    "unique_recipients": 134,
+    "replies": 4,
+    "bookings_consult": 0,
+    "bookings_report": 0,
+    "advanced": 0,
+    "agreements_after": 0,
+    "inspections_after": 0,
+    "bookings_per_1k": 0.0,
+    "replies_per_1k": 29.2,
+    "too_small": false
+   },
+   "supply": null,
+   "first_sent": "2026-06-11",
+   "last_sent": "2026-11-11"
   },
   {
    "key": "consult",
@@ -494,137 +621,57 @@
     },
     {
      "month": "2026-11",
-     "sent": 34,
+     "sent": 38,
      "failed": 1,
      "bounced": 0,
-     "unique_recipients": 34,
+     "unique_recipients": 38,
      "replies": 2,
-     "bookings_consult": 3,
+     "bookings_consult": 4,
      "bookings_report": 0,
      "advanced": 3,
      "agreements_after": 3,
      "inspections_after": 0,
-     "bookings_per_1k": 88.2,
-     "replies_per_1k": 58.8,
+     "bookings_per_1k": 105.3,
+     "replies_per_1k": 52.6,
      "too_small": true
     }
    ],
    "last_30d": {
-    "sent": 69,
+    "sent": 73,
     "failed": 5,
     "bounced": 0,
-    "unique_recipients": 69,
+    "unique_recipients": 73,
     "replies": 2,
-    "bookings_consult": 4,
+    "bookings_consult": 5,
     "bookings_report": 1,
     "advanced": 6,
     "agreements_after": 5,
     "inspections_after": 2,
-    "bookings_per_1k": 72.5,
-    "replies_per_1k": 29.0,
+    "bookings_per_1k": 82.2,
+    "replies_per_1k": 27.4,
     "too_small": true
    },
    "supply": {
     "candidates_today": null,
-    "sent_today": 5,
+    "sent_today": 3,
     "capped": null
    },
    "first_sent": "2026-07-28",
-   "last_sent": "2026-11-10"
+   "last_sent": "2026-11-11"
   },
   {
-   "key": "other",
-   "label": "Other / one-off batches",
-   "kind": "manual",
-   "status": "unknown",
-   "schedule": null,
-   "cap_per_run": null,
+   "key": "apmg-t1",
+   "label": "APM Google \u00b7 t1",
+   "kind": "auto",
+   "status": "FAILING",
+   "schedule": "13x daily",
+   "cap_per_run": 80,
    "cap_per_day": null,
-   "owner_note": "25 small families (<100 sends each)",
-   "launchd_job": null,
+   "owner_note": "first touch to fresh Google/APM/Zillow signups; supply-limited",
+   "launchd_job": "apm-google-enqueue",
    "months": [
     {
      "month": "2026-06",
-     "sent": 126,
-     "failed": 0,
-     "bounced": 172,
-     "unique_recipients": 126,
-     "replies": 0,
-     "bookings_consult": 0,
-     "bookings_report": 1,
-     "advanced": 0,
-     "agreements_after": 0,
-     "inspections_after": 0,
-     "bookings_per_1k": 7.9,
-     "replies_per_1k": 0.0,
-     "too_small": false
-    },
-    {
-     "month": "2026-07",
-     "sent": 149,
-     "failed": 0,
-     "bounced": 96,
-     "unique_recipients": 148,
-     "replies": 0,
-     "bookings_consult": 1,
-     "bookings_report": 3,
-     "advanced": 1,
-     "agreements_after": 0,
-     "inspections_after": 0,
-     "bookings_per_1k": 26.8,
-     "replies_per_1k": 0.0,
-     "too_small": false
-    },
-    {
-     "month": "2026-08",
-     "sent": 120,
-     "failed": 0,
-     "bounced": 18,
-     "unique_recipients": 111,
-     "replies": 8,
-     "bookings_consult": 0,
-     "bookings_report": 5,
-     "advanced": 2,
-     "agreements_after": 0,
-     "inspections_after": 0,
-     "bookings_per_1k": 41.7,
-     "replies_per_1k": 66.7,
-     "too_small": false
-    },
-    {
-     "month": "2026-09",
-     "sent": 34,
-     "failed": 1,
-     "bounced": 11,
-     "unique_recipients": 34,
-     "replies": 0,
-     "bookings_consult": 0,
-     "bookings_report": 0,
-     "advanced": 0,
-     "agreements_after": 0,
-     "inspections_after": 0,
-     "bookings_per_1k": 0.0,
-     "replies_per_1k": 0.0,
-     "too_small": true
-    },
-    {
-     "month": "2026-10",
-     "sent": 9,
-     "failed": 0,
-     "bounced": 0,
-     "unique_recipients": 9,
-     "replies": 2,
-     "bookings_consult": 0,
-     "bookings_report": 0,
-     "advanced": 0,
-     "agreements_after": 0,
-     "inspections_after": 0,
-     "bookings_per_1k": 0.0,
-     "replies_per_1k": 222.2,
-     "too_small": true
-    },
-    {
-     "month": "2026-11",
      "sent": 0,
      "failed": 0,
      "bounced": 0,
@@ -638,32 +685,116 @@
      "bookings_per_1k": null,
      "replies_per_1k": null,
      "too_small": true
+    },
+    {
+     "month": "2026-07",
+     "sent": 0,
+     "failed": 0,
+     "bounced": 0,
+     "unique_recipients": 0,
+     "replies": 0,
+     "bookings_consult": 0,
+     "bookings_report": 0,
+     "advanced": 0,
+     "agreements_after": 0,
+     "inspections_after": 0,
+     "bookings_per_1k": null,
+     "replies_per_1k": null,
+     "too_small": true
+    },
+    {
+     "month": "2026-08",
+     "sent": 115,
+     "failed": 1,
+     "bounced": 0,
+     "unique_recipients": 115,
+     "replies": 8,
+     "bookings_consult": 4,
+     "bookings_report": 2,
+     "advanced": 6,
+     "agreements_after": 4,
+     "inspections_after": 2,
+     "bookings_per_1k": 52.2,
+     "replies_per_1k": 69.6,
+     "too_small": false
+    },
+    {
+     "month": "2026-09",
+     "sent": 120,
+     "failed": 2,
+     "bounced": 0,
+     "unique_recipients": 120,
+     "replies": 15,
+     "bookings_consult": 7,
+     "bookings_report": 3,
+     "advanced": 9,
+     "agreements_after": 7,
+     "inspections_after": 4,
+     "bookings_per_1k": 83.3,
+     "replies_per_1k": 125.0,
+     "too_small": false
+    },
+    {
+     "month": "2026-10",
+     "sent": 90,
+     "failed": 0,
+     "bounced": 0,
+     "unique_recipients": 90,
+     "replies": 18,
+     "bookings_consult": 3,
+     "bookings_report": 6,
+     "advanced": 10,
+     "agreements_after": 5,
+     "inspections_after": 5,
+     "bookings_per_1k": 100.0,
+     "replies_per_1k": 200.0,
+     "too_small": true
+    },
+    {
+     "month": "2026-11",
+     "sent": 32,
+     "failed": 0,
+     "bounced": 0,
+     "unique_recipients": 32,
+     "replies": 4,
+     "bookings_consult": 2,
+     "bookings_report": 0,
+     "advanced": 1,
+     "agreements_after": 1,
+     "inspections_after": 0,
+     "bookings_per_1k": 62.5,
+     "replies_per_1k": 125.0,
+     "too_small": true
     }
    ],
    "last_30d": {
-    "sent": 9,
+    "sent": 78,
     "failed": 0,
     "bounced": 0,
-    "unique_recipients": 9,
-    "replies": 2,
-    "bookings_consult": 0,
-    "bookings_report": 0,
-    "advanced": 0,
-    "agreements_after": 0,
-    "inspections_after": 0,
-    "bookings_per_1k": 0.0,
-    "replies_per_1k": 222.2,
+    "unique_recipients": 78,
+    "replies": 17,
+    "bookings_consult": 3,
+    "bookings_report": 3,
+    "advanced": 4,
+    "agreements_after": 1,
+    "inspections_after": 2,
+    "bookings_per_1k": 76.9,
+    "replies_per_1k": 217.9,
     "too_small": true
    },
-   "supply": null,
-   "first_sent": "2026-06-11",
-   "last_sent": "2026-10-22"
+   "supply": {
+    "candidates_today": null,
+    "sent_today": 4,
+    "capped": null
+   },
+   "first_sent": "2026-08-04",
+   "last_sent": "2026-11-11"
   },
   {
    "key": "report-call-b56",
    "label": "Report call b5/b6",
    "kind": "auto",
-   "status": "OK",
+   "status": "LATE",
    "schedule": "2x daily",
    "cap_per_run": 25,
    "cap_per_day": 50,
@@ -784,148 +915,17 @@
    },
    "supply": {
     "candidates_today": null,
-    "sent_today": 12,
+    "sent_today": 0,
     "capped": false
    },
    "first_sent": "2026-08-06",
    "last_sent": "2026-11-10"
   },
   {
-   "key": "apmg-t1",
-   "label": "APM Google \u00b7 t1",
-   "kind": "auto",
-   "status": "OK",
-   "schedule": "13x daily",
-   "cap_per_run": 80,
-   "cap_per_day": null,
-   "owner_note": "first touch to fresh Google/APM/Zillow signups; supply-limited",
-   "launchd_job": "apm-google-enqueue",
-   "months": [
-    {
-     "month": "2026-06",
-     "sent": 0,
-     "failed": 0,
-     "bounced": 0,
-     "unique_recipients": 0,
-     "replies": 0,
-     "bookings_consult": 0,
-     "bookings_report": 0,
-     "advanced": 0,
-     "agreements_after": 0,
-     "inspections_after": 0,
-     "bookings_per_1k": null,
-     "replies_per_1k": null,
-     "too_small": true
-    },
-    {
-     "month": "2026-07",
-     "sent": 0,
-     "failed": 0,
-     "bounced": 0,
-     "unique_recipients": 0,
-     "replies": 0,
-     "bookings_consult": 0,
-     "bookings_report": 0,
-     "advanced": 0,
-     "agreements_after": 0,
-     "inspections_after": 0,
-     "bookings_per_1k": null,
-     "replies_per_1k": null,
-     "too_small": true
-    },
-    {
-     "month": "2026-08",
-     "sent": 115,
-     "failed": 1,
-     "bounced": 0,
-     "unique_recipients": 115,
-     "replies": 8,
-     "bookings_consult": 4,
-     "bookings_report": 2,
-     "advanced": 6,
-     "agreements_after": 4,
-     "inspections_after": 2,
-     "bookings_per_1k": 52.2,
-     "replies_per_1k": 69.6,
-     "too_small": false
-    },
-    {
-     "month": "2026-09",
-     "sent": 120,
-     "failed": 2,
-     "bounced": 0,
-     "unique_recipients": 120,
-     "replies": 15,
-     "bookings_consult": 7,
-     "bookings_report": 3,
-     "advanced": 9,
-     "agreements_after": 7,
-     "inspections_after": 4,
-     "bookings_per_1k": 83.3,
-     "replies_per_1k": 125.0,
-     "too_small": false
-    },
-    {
-     "month": "2026-10",
-     "sent": 90,
-     "failed": 0,
-     "bounced": 0,
-     "unique_recipients": 90,
-     "replies": 18,
-     "bookings_consult": 3,
-     "bookings_report": 6,
-     "advanced": 10,
-     "agreements_after": 5,
-     "inspections_after": 5,
-     "bookings_per_1k": 100.0,
-     "replies_per_1k": 200.0,
-     "too_small": true
-    },
-    {
-     "month": "2026-11",
-     "sent": 28,
-     "failed": 0,
-     "bounced": 0,
-     "unique_recipients": 28,
-     "replies": 4,
-     "bookings_consult": 2,
-     "bookings_report": 0,
-     "advanced": 1,
-     "agreements_after": 1,
-     "inspections_after": 0,
-     "bookings_per_1k": 71.4,
-     "replies_per_1k": 142.9,
-     "too_small": true
-    }
-   ],
-   "last_30d": {
-    "sent": 77,
-    "failed": 0,
-    "bounced": 0,
-    "unique_recipients": 77,
-    "replies": 17,
-    "bookings_consult": 3,
-    "bookings_report": 5,
-    "advanced": 5,
-    "agreements_after": 1,
-    "inspections_after": 2,
-    "bookings_per_1k": 103.9,
-    "replies_per_1k": 220.8,
-    "too_small": true
-   },
-   "supply": {
-    "candidates_today": null,
-    "sent_today": 5,
-    "capped": null
-   },
-   "first_sent": "2026-08-04",
-   "last_sent": "2026-11-10"
-  },
-  {
    "key": "apmg-t2",
    "label": "APM Google \u00b7 t2",
    "kind": "auto",
-   "status": "OK",
+   "status": "FAILING",
    "schedule": "13x daily",
    "cap_per_run": 80,
    "cap_per_day": null,
@@ -1018,35 +1018,35 @@
      "failed": 0,
      "bounced": 0,
      "unique_recipients": 11,
-     "replies": 1,
+     "replies": 2,
      "bookings_consult": 0,
      "bookings_report": 0,
      "advanced": 0,
      "agreements_after": 0,
      "inspections_after": 0,
      "bookings_per_1k": 0.0,
-     "replies_per_1k": 90.9,
+     "replies_per_1k": 181.8,
      "too_small": true
     }
    ],
    "last_30d": {
-    "sent": 75,
+    "sent": 73,
     "failed": 0,
     "bounced": 0,
-    "unique_recipients": 75,
-    "replies": 7,
+    "unique_recipients": 73,
+    "replies": 8,
     "bookings_consult": 0,
     "bookings_report": 0,
     "advanced": 1,
     "agreements_after": 1,
     "inspections_after": 0,
     "bookings_per_1k": 0.0,
-    "replies_per_1k": 93.3,
+    "replies_per_1k": 109.6,
     "too_small": true
    },
    "supply": {
     "candidates_today": null,
-    "sent_today": 1,
+    "sent_today": 0,
     "capped": null
    },
    "first_sent": "2026-08-04",
@@ -1445,7 +1445,7 @@
    "key": "apmg-t3",
    "label": "APM Google \u00b7 t3",
    "kind": "auto",
-   "status": "OK",
+   "status": "FAILING",
    "schedule": "13x daily",
    "cap_per_run": 80,
    "cap_per_day": null,
@@ -1550,10 +1550,10 @@
     }
    ],
    "last_30d": {
-    "sent": 64,
+    "sent": 63,
     "failed": 0,
     "bounced": 0,
-    "unique_recipients": 64,
+    "unique_recipients": 63,
     "replies": 9,
     "bookings_consult": 0,
     "bookings_report": 0,
@@ -1561,12 +1561,12 @@
     "agreements_after": 0,
     "inspections_after": 0,
     "bookings_per_1k": 0.0,
-    "replies_per_1k": 140.6,
+    "replies_per_1k": 142.9,
     "too_small": true
    },
    "supply": {
     "candidates_today": null,
-    "sent_today": 7,
+    "sent_today": 0,
     "capped": null
    },
    "first_sent": "2026-08-04",
@@ -1576,7 +1576,7 @@
    "key": "llc-network",
    "label": "LLC network",
    "kind": "auto",
-   "status": "OK",
+   "status": "LATE",
    "schedule": "32x daily",
    "cap_per_run": 4,
    "cap_per_day": null,
@@ -1681,18 +1681,18 @@
     }
    ],
    "last_30d": {
-    "sent": 22,
+    "sent": 0,
     "failed": 0,
     "bounced": 0,
-    "unique_recipients": 22,
+    "unique_recipients": 0,
     "replies": 0,
     "bookings_consult": 0,
     "bookings_report": 0,
     "advanced": 0,
     "agreements_after": 0,
     "inspections_after": 0,
-    "bookings_per_1k": 0.0,
-    "replies_per_1k": 0.0,
+    "bookings_per_1k": null,
+    "replies_per_1k": null,
     "too_small": true
    },
    "supply": {
@@ -2501,8 +2501,8 @@
     "bookings_report": 8,
     "replies": 2,
     "bookings_all_consult": 16,
-    "bookings_all_report": 27,
-    "bookings_no_prior_email": 29
+    "bookings_all_report": 28,
+    "bookings_no_prior_email": 30
    },
    {
     "month": "2026-08",
@@ -2536,35 +2536,35 @@
    },
    {
     "month": "2026-11",
-    "sent": 281,
-    "bookings_consult": 5,
+    "sent": 423,
+    "bookings_consult": 6,
     "bookings_report": 1,
-    "replies": 19,
-    "bookings_all_consult": 11,
+    "replies": 22,
+    "bookings_all_consult": 13,
     "bookings_all_report": 8,
-    "bookings_no_prior_email": 12
+    "bookings_no_prior_email": 13
    }
   ],
-  "bookings_since_june": 278,
-  "bookings_email_preceded": 142,
-  "bookings_no_prior_email": 136
+  "bookings_since_june": 281,
+  "bookings_email_preceded": 143,
+  "bookings_no_prior_email": 138
  },
  "first_touch_vs_retouch": [
   {
    "touch_n": 1,
-   "sent": 5319,
+   "sent": 5329,
    "replies": 96,
-   "bookings": 76,
-   "bookings_consult": 38,
+   "bookings": 77,
+   "bookings_consult": 39,
    "bookings_report": 38,
    "advanced": 60,
-   "per_1k": 14.3,
+   "per_1k": 14.4,
    "too_small": false
   },
   {
    "touch_n": 2,
-   "sent": 5912,
-   "replies": 175,
+   "sent": 5918,
+   "replies": 176,
    "bookings": 45,
    "bookings_consult": 17,
    "bookings_report": 28,
@@ -2574,40 +2574,40 @@
   },
   {
    "touch_n": 3,
-   "sent": 823,
-   "replies": 78,
+   "sent": 909,
+   "replies": 80,
    "bookings": 13,
    "bookings_consult": 7,
    "bookings_report": 6,
    "advanced": 11,
-   "per_1k": 15.8,
+   "per_1k": 14.3,
    "too_small": false
   },
   {
    "touch_n": 4,
-   "sent": 450,
+   "sent": 458,
    "replies": 27,
    "bookings": 6,
    "bookings_consult": 3,
    "bookings_report": 3,
    "advanced": 3,
-   "per_1k": 13.3,
+   "per_1k": 13.1,
    "too_small": false
   },
   {
    "touch_n": 5,
-   "sent": 286,
+   "sent": 298,
    "replies": 6,
    "bookings": 1,
    "bookings_consult": 1,
    "bookings_report": 0,
    "advanced": 0,
-   "per_1k": 3.5,
+   "per_1k": 3.4,
    "too_small": false
   },
   {
    "touch_n": "6+",
-   "sent": 621,
+   "sent": 641,
    "replies": 9,
    "bookings": 1,
    "bookings_consult": 0,
@@ -2621,13 +2621,13 @@
   {
    "lane": "apmg-t1",
    "touch": "1",
-   "sent": 345,
+   "sent": 349,
    "replies": 45,
    "bookings": 27,
    "bookings_consult": 16,
    "bookings_report": 11,
    "advanced": 26,
-   "per_1k": 78.3,
+   "per_1k": 77.4,
    "too_small": false
   },
   {
@@ -2646,7 +2646,7 @@
    "lane": "apmg-t2",
    "touch": "2+",
    "sent": 340,
-   "replies": 12,
+   "replies": 13,
    "bookings": 7,
    "bookings_consult": 4,
    "bookings_report": 3,
@@ -2669,13 +2669,13 @@
   {
    "lane": "consult",
    "touch": "1",
-   "sent": 370,
+   "sent": 374,
    "replies": 22,
-   "bookings": 12,
-   "bookings_consult": 11,
+   "bookings": 13,
+   "bookings_consult": 12,
    "bookings_report": 1,
    "advanced": 17,
-   "per_1k": 32.4,
+   "per_1k": 34.8,
    "too_small": false
   },
   {
@@ -2693,13 +2693,13 @@
   {
    "lane": "consult-inspection",
    "touch": "1",
-   "sent": 243,
+   "sent": 244,
    "replies": 21,
    "bookings": 14,
    "bookings_consult": 2,
    "bookings_report": 12,
    "advanced": 11,
-   "per_1k": 57.6,
+   "per_1k": 57.4,
    "too_small": false
   },
   {
@@ -2741,7 +2741,7 @@
   {
    "lane": "drain-backfill",
    "touch": "2+",
-   "sent": 4889,
+   "sent": 4894,
    "replies": 134,
    "bookings": 9,
    "bookings_consult": 8,
@@ -2897,7 +2897,7 @@
   {
    "lane": "other",
    "touch": "1",
-   "sent": 346,
+   "sent": 347,
    "replies": 6,
    "bookings": 6,
    "bookings_consult": 1,
@@ -2909,14 +2909,14 @@
   {
    "lane": "other",
    "touch": "2+",
-   "sent": 92,
-   "replies": 4,
+   "sent": 219,
+   "replies": 6,
    "bookings": 4,
    "bookings_consult": 0,
    "bookings_report": 4,
    "advanced": 1,
-   "per_1k": 43.5,
-   "too_small": true
+   "per_1k": 18.3,
+   "too_small": false
   },
   {
    "lane": "report-call-b56",
@@ -2971,7 +2971,7 @@
   {
    "template_version": "drain-backfill-v1-retouch",
    "lane": "drain-backfill",
-   "sent": 4889,
+   "sent": 4894,
    "replies": 134,
    "bookings": 9,
    "bookings_consult": 8,
@@ -2980,7 +2980,7 @@
    "per_1k": 1.8,
    "too_small": false,
    "first_sent": "2026-09-09",
-   "last_sent": "2026-11-10"
+   "last_sent": "2026-11-11"
   },
   {
    "template_version": "sql-walkthrough-v1",
@@ -3013,27 +3013,27 @@
   {
    "template_version": "sql-walkthrough-v1",
    "lane": "consult",
-   "sent": 532,
+   "sent": 536,
    "replies": 24,
-   "bookings": 13,
-   "bookings_consult": 12,
+   "bookings": 14,
+   "bookings_consult": 13,
    "bookings_report": 1,
    "advanced": 17,
-   "per_1k": 24.4,
+   "per_1k": 26.1,
    "too_small": false,
    "first_sent": "2026-07-28",
-   "last_sent": "2026-11-10"
+   "last_sent": "2026-11-11"
   },
   {
    "template_version": "consult-unsigned-v1",
    "lane": "consult-inspection",
-   "sent": 361,
+   "sent": 362,
    "replies": 15,
    "bookings": 7,
    "bookings_consult": 2,
    "bookings_report": 5,
    "advanced": 2,
-   "per_1k": 19.4,
+   "per_1k": 19.3,
    "too_small": false,
    "first_sent": "2026-09-21",
    "last_sent": "2026-11-10"
@@ -3042,7 +3042,7 @@
    "template_version": "apmg-reframe-t2",
    "lane": "apmg-t2",
    "sent": 340,
-   "replies": 12,
+   "replies": 13,
    "bookings": 7,
    "bookings_consult": 4,
    "bookings_report": 3,
@@ -3111,16 +3111,16 @@
   {
    "template_version": "apmg-walkthrough-t1",
    "lane": "apmg-t1",
-   "sent": 194,
+   "sent": 198,
    "replies": 21,
    "bookings": 14,
    "bookings_consult": 8,
    "bookings_report": 6,
    "advanced": 15,
-   "per_1k": 72.2,
+   "per_1k": 70.7,
    "too_small": false,
    "first_sent": "2026-08-04",
-   "last_sent": "2026-11-10"
+   "last_sent": "2026-11-11"
   },
   {
    "template_version": "apmg-lastcall-t3",
@@ -3263,6 +3263,20 @@
    "last_sent": "2026-09-30"
   },
   {
+   "template_version": "drain-backfill-v1-fallback",
+   "lane": "other",
+   "sent": 82,
+   "replies": 0,
+   "bookings": 0,
+   "bookings_consult": 0,
+   "bookings_report": 0,
+   "advanced": 0,
+   "per_1k": 0.0,
+   "too_small": true,
+   "first_sent": "2026-11-10",
+   "last_sent": "2026-11-11"
+  },
+  {
    "template_version": "llc-phoenix-discovery-v1",
    "lane": "other",
    "sent": 50,
@@ -3303,6 +3317,20 @@
    "too_small": true,
    "first_sent": "2026-06-15",
    "last_sent": "2026-07-27"
+  },
+  {
+   "template_version": "b2-sign-push-v1",
+   "lane": "other",
+   "sent": 37,
+   "replies": 1,
+   "bookings": 0,
+   "bookings_consult": 0,
+   "bookings_report": 0,
+   "advanced": 0,
+   "per_1k": 0.0,
+   "too_small": true,
+   "first_sent": "2026-11-10",
+   "last_sent": "2026-11-11"
   },
   {
    "template_version": "funnel-reengage-inspection-v1",
@@ -3501,6 +3529,20 @@
    "last_sent": "2026-10-22"
   },
   {
+   "template_version": "b1-consult-push-v1",
+   "lane": "other",
+   "sent": 9,
+   "replies": 1,
+   "bookings": 0,
+   "bookings_consult": 0,
+   "bookings_report": 0,
+   "advanced": 0,
+   "per_1k": 0.0,
+   "too_small": true,
+   "first_sent": "2026-11-10",
+   "last_sent": "2026-11-11"
+  },
+  {
    "template_version": "pipeline-backlog-walkthrough-v1",
    "lane": "other",
    "sent": 6,
@@ -3689,7 +3731,7 @@
    "lanes": [
     "drain-backfill"
    ],
-   "sent": 4804,
+   "sent": 4809,
    "replies": 132,
    "bookings": 9,
    "bookings_consult": 8,
@@ -3705,13 +3747,13 @@
     "consult",
     "other"
    ],
-   "sent": 505,
+   "sent": 506,
    "replies": 44,
-   "bookings": 23,
-   "bookings_consult": 16,
+   "bookings": 24,
+   "bookings_consult": 17,
    "bookings_report": 7,
-   "advanced": 24,
-   "per_1k": 45.5,
+   "advanced": 22,
+   "per_1k": 47.4,
    "too_small": false
   },
   {
@@ -3720,13 +3762,13 @@
     "apmg-t1",
     "consult-inspection"
    ],
-   "sent": 350,
-   "replies": 53,
-   "bookings": 12,
-   "bookings_consult": 10,
-   "bookings_report": 2,
-   "advanced": 11,
-   "per_1k": 34.3,
+   "sent": 320,
+   "replies": 48,
+   "bookings": 10,
+   "bookings_consult": 9,
+   "bookings_report": 1,
+   "advanced": 8,
+   "per_1k": 31.2,
    "too_small": false
   },
   {
@@ -3791,13 +3833,13 @@
    "lanes": [
     "consult-inspection"
    ],
-   "sent": 119,
+   "sent": 120,
    "replies": 0,
    "bookings": 1,
    "bookings_consult": 0,
    "bookings_report": 1,
    "advanced": 1,
-   "per_1k": 8.4,
+   "per_1k": 8.3,
    "too_small": false
   },
   {
@@ -3835,6 +3877,48 @@
    ],
    "sent": 82,
    "replies": 2,
+   "bookings": 0,
+   "bookings_consult": 0,
+   "bookings_report": 0,
+   "advanced": 0,
+   "per_1k": 0.0,
+   "too_small": true
+  },
+  {
+   "subject": "Closing your file unless you say otherwise",
+   "lanes": [
+    "other"
+   ],
+   "sent": 42,
+   "replies": 0,
+   "bookings": 0,
+   "bookings_consult": 0,
+   "bookings_report": 0,
+   "advanced": 0,
+   "per_1k": 0.0,
+   "too_small": true
+  },
+  {
+   "subject": "{name}, closing your file unless you say otherwise",
+   "lanes": [
+    "other"
+   ],
+   "sent": 40,
+   "replies": 0,
+   "bookings": 0,
+   "bookings_consult": 0,
+   "bookings_report": 0,
+   "advanced": 0,
+   "per_1k": 0.0,
+   "too_small": true
+  },
+  {
+   "subject": "{name}, your agreement is still open",
+   "lanes": [
+    "other"
+   ],
+   "sent": 37,
+   "replies": 1,
    "bookings": 0,
    "bookings_consult": 0,
    "bookings_report": 0,
@@ -3886,9 +3970,10 @@
    "too_small": true
   },
   {
-   "subject": "Your Miami duplex \u2014 quick idea",
+   "subject": "your team \u2014 a Belong walkthrough slot",
    "lanes": [
-    "multiunit-miami"
+    "apmg-t1",
+    "consult"
    ],
    "sent": 18,
    "replies": 0,
@@ -3900,12 +3985,11 @@
    "too_small": true
   },
   {
-   "subject": "your team \u2014 a Belong walkthrough slot",
+   "subject": "Your Miami duplex \u2014 quick idea",
    "lanes": [
-    "apmg-t1",
-    "consult"
+    "multiunit-miami"
    ],
-   "sent": 17,
+   "sent": 18,
    "replies": 0,
    "bookings": 0,
    "bookings_consult": 0,
@@ -3928,48 +4012,6 @@
    "advanced": 0,
    "per_1k": 0.0,
    "too_small": true
-  },
-  {
-   "subject": "Following up on your Houston report review",
-   "lanes": [
-    "report-call-b56"
-   ],
-   "sent": 12,
-   "replies": 0,
-   "bookings": 0,
-   "bookings_consult": 0,
-   "bookings_report": 0,
-   "advanced": 0,
-   "per_1k": 0.0,
-   "too_small": true
-  },
-  {
-   "subject": "Following up on your Denver report review",
-   "lanes": [
-    "report-call-b56"
-   ],
-   "sent": 11,
-   "replies": 0,
-   "bookings": 0,
-   "bookings_consult": 0,
-   "bookings_report": 0,
-   "advanced": 0,
-   "per_1k": 0.0,
-   "too_small": true
-  },
-  {
-   "subject": "Your first month of management is on us",
-   "lanes": [
-    "other"
-   ],
-   "sent": 10,
-   "replies": 0,
-   "bookings": 0,
-   "bookings_consult": 0,
-   "bookings_report": 0,
-   "advanced": 0,
-   "per_1k": 0.0,
-   "too_small": true
   }
  ],
  "day_of_week": [
@@ -3986,24 +4028,24 @@
   },
   {
    "dow": "Tue",
-   "sent": 2895,
-   "replies": 55,
-   "bookings": 25,
-   "bookings_consult": 12,
+   "sent": 2976,
+   "replies": 58,
+   "bookings": 26,
+   "bookings_consult": 13,
    "bookings_report": 13,
    "advanced": 12,
-   "per_1k": 8.6,
+   "per_1k": 8.7,
    "too_small": false
   },
   {
    "dow": "Wed",
-   "sent": 2349,
+   "sent": 2410,
    "replies": 72,
    "bookings": 20,
    "bookings_consult": 13,
    "bookings_report": 7,
    "advanced": 18,
-   "per_1k": 8.5,
+   "per_1k": 8.3,
    "too_small": false
   },
   {
@@ -4065,13 +4107,13 @@
   },
   {
    "hour": 8,
-   "sent": 366,
+   "sent": 381,
    "replies": 9,
    "bookings": 2,
    "bookings_consult": 2,
    "bookings_report": 0,
    "advanced": 1,
-   "per_1k": 5.5,
+   "per_1k": 5.2,
    "too_small": false
   },
   {
@@ -4087,30 +4129,30 @@
   },
   {
    "hour": 10,
-   "sent": 1225,
+   "sent": 1246,
    "replies": 40,
    "bookings": 12,
    "bookings_consult": 7,
    "bookings_report": 5,
    "advanced": 10,
-   "per_1k": 9.8,
+   "per_1k": 9.6,
    "too_small": false
   },
   {
    "hour": 11,
-   "sent": 1171,
+   "sent": 1196,
    "replies": 51,
    "bookings": 12,
    "bookings_consult": 7,
    "bookings_report": 5,
    "advanced": 6,
-   "per_1k": 10.2,
+   "per_1k": 10.0,
    "too_small": false
   },
   {
    "hour": 12,
    "sent": 1430,
-   "replies": 36,
+   "replies": 37,
    "bookings": 5,
    "bookings_consult": 2,
    "bookings_report": 3,
@@ -4142,40 +4184,40 @@
   },
   {
    "hour": 15,
-   "sent": 1052,
-   "replies": 26,
+   "sent": 1077,
+   "replies": 28,
    "bookings": 17,
    "bookings_consult": 4,
    "bookings_report": 13,
    "advanced": 10,
-   "per_1k": 16.2,
+   "per_1k": 15.8,
    "too_small": false
   },
   {
    "hour": 16,
-   "sent": 698,
+   "sent": 752,
    "replies": 13,
    "bookings": 10,
    "bookings_consult": 2,
    "bookings_report": 8,
    "advanced": 4,
-   "per_1k": 14.3,
+   "per_1k": 13.3,
    "too_small": false
   },
   {
    "hour": 17,
-   "sent": 1309,
+   "sent": 1310,
    "replies": 18,
-   "bookings": 13,
-   "bookings_consult": 8,
+   "bookings": 14,
+   "bookings_consult": 9,
    "bookings_report": 5,
    "advanced": 11,
-   "per_1k": 9.9,
+   "per_1k": 10.7,
    "too_small": false
   },
   {
    "hour": 18,
-   "sent": 887,
+   "sent": 888,
    "replies": 24,
    "bookings": 6,
    "bookings_consult": 6,
@@ -4256,7 +4298,7 @@
     "n": 435,
     "advanced": 5,
     "won": 0,
-    "gone": 316,
+    "gone": 317,
     "bookings": 9,
     "emailed_after": 356,
     "advanced_pct": 1.1
@@ -4341,7 +4383,7 @@
  "bucket_at_send": [
   {
    "bucket": "00_lead_not_sql",
-   "sent": 291,
+   "sent": 293,
    "replies": 9,
    "bookings": 0,
    "bookings_consult": 0,
@@ -4352,8 +4394,8 @@
   },
   {
    "bucket": "1_sql_no_agreement_sent",
-   "sent": 634,
-   "replies": 14,
+   "sent": 643,
+   "replies": 15,
    "bookings": 3,
    "bookings_consult": 1,
    "bookings_report": 2,
@@ -4363,19 +4405,19 @@
   },
   {
    "bucket": "2_agreement_sent_not_signed",
-   "sent": 1748,
-   "replies": 58,
+   "sent": 1785,
+   "replies": 59,
    "bookings": 26,
    "bookings_consult": 13,
    "bookings_report": 13,
    "advanced": 16,
-   "per_1k": 14.9,
+   "per_1k": 14.6,
    "too_small": false
   },
   {
    "bucket": "3_agreement_signed_no_inspection",
    "sent": 288,
-   "replies": 66,
+   "replies": 67,
    "bookings": 15,
    "bookings_consult": 6,
    "bookings_report": 9,
@@ -4407,13 +4449,13 @@
   },
   {
    "bucket": "6_report_published_no_confirm",
-   "sent": 378,
+   "sent": 379,
    "replies": 23,
    "bookings": 9,
    "bookings_consult": 1,
    "bookings_report": 8,
    "advanced": 1,
-   "per_1k": 23.8,
+   "per_1k": 23.7,
    "too_small": false
   },
   {
@@ -4484,10 +4526,10 @@
   },
   {
    "bucket": "unknown",
-   "sent": 9887,
+   "sent": 9980,
    "replies": 186,
-   "bookings": 62,
-   "bookings_consult": 44,
+   "bookings": 63,
+   "bookings_consult": 45,
    "bookings_report": 18,
    "advanced": 46,
    "per_1k": 6.3,
@@ -4495,13 +4537,13 @@
   }
  ],
  "today": {
-  "sent": 103,
-  "queued": 0,
-  "failed": 0,
-  "targeted": 82,
-  "backfill": 21,
-  "replies_pending_answer": 24,
-  "source": "outreach.fleet_status --json (0.1s)"
+  "sent": 61,
+  "queued": 12,
+  "failed": null,
+  "targeted": 58,
+  "backfill": 3,
+  "replies_pending_answer": 26,
+  "source": "db fallback"
  },
  "recommendations": [
   {
@@ -4513,28 +4555,28 @@
   },
   {
    "title": "Answer the Gmail replies nobody answered",
-   "why": "24 Gmail replies in the last 7 days have no later send to that address.",
+   "why": "26 Gmail replies in the last 7 days have no later send to that address.",
    "change": "python3 -m outreach.engagement_watch --report, then the reply-responder agent (logistics auto-send only; price/contract held for Gabriel)",
    "expected": "one-time ~1-3 bookings if ~10% are bookable (the 10-22 check found most replies were declines)",
    "risk": "replying to declines/opt-outs; read each thread first"
   },
   {
    "title": "Consult-inspection: hold volume, stop crediting its report bookings",
-   "why": "first touch 14 bookings on 243 (57.6/1k); re-touch 16 on 756 (21.2/1k), but >=8 of the report-call credits went to owners already in bucket 4 at send, i.e. the inspection was booked before the email.",
+   "why": "first touch 14 bookings on 244 (57.4/1k); re-touch 16 on 756 (21.2/1k), but >=8 of the report-call credits went to owners already in bucket 4 at send, i.e. the inspection was booked before the email.",
    "change": "no cap change (INSPECTION_CAP=200 in com.belong.inspection-adoption-enqueue.plist is not binding); in scripts/enqueue_inspection_consult.py re-check the live bucket at send time so b4+ owners drop out",
    "expected": "~16 first touches/wk x ~0.058 = ~0.9 bookings/wk, unchanged; removes stage-mismatched sends",
    "risk": "COOLOFF_DAYS=14 re-touches signed owners; opt-outs from bucket 3 are the costliest"
   },
   {
    "title": "apmg-t1: widen source scope to the remaining inbound sources",
-   "why": "best first-touch rate in the book: 27 bookings on 345 (78.3/1k) and the most inspections_after per send. Supply-limited; the cap is irrelevant.",
+   "why": "best first-touch rate in the book: 27 bookings on 349 (77.4/1k) and the most inspections_after per send. Supply-limited; the cap is irrelevant.",
    "change": "com.belong.apm-google-enqueue.plist EnvironmentVariables APMG_SOURCES='google ads,google seo,apm,zillow,craigslist,apartments.com,chatgpt.com,inbound_unknown,public_records,customer.io,parcl,facebook'",
    "expected": "~12 extra SQLs since 10-01 in those sources = ~2/wk x ~0.08 = +0.15 bookings/wk",
    "risk": "Intercom consent + current-customer pass on each new source; consult lane also touches SQLs (5-day gap); t1 opens cold, wrong for a signup Gabriel just phoned"
   },
   {
    "title": "Cut drain-backfill tier B",
-   "why": "last 30d 813 sends -> 2 bookings (2.5/1k); since 09-09 ~11 bookings on ~4,900 sends, indistinguishable from the organic rate on a pool that large.",
+   "why": "last 30d 772 sends -> 2 bookings (2.6/1k); since 09-09 ~11 bookings on ~4,900 sends, indistinguishable from the organic rate on a pool that large.",
    "change": "com.belong.outreach-drain.plist EnvironmentVariables: DRAIN_BACKFILL_TIER_B=0",
    "expected": "<=0.5 bookings/wk lost; ~800 fewer re-touches/mo",
    "risk": "drain idles when the queue is empty \u2014 that is the honest state"
@@ -4548,9 +4590,9 @@
   }
  ],
  "caveats": [
-  "bookings come from engagement_signals + calendar_booked.txt matched on email and name; 278 distinct bookings since 2026-06-01, 142 had a sent email in the 21 days before the call, 136 did not (organic/inbound or booked under an address we never emailed); 43 name-only bookings never resolved to an address.",
+  "bookings come from engagement_signals + calendar_booked.txt matched on email and name; 281 distinct bookings since 2026-06-01, 143 had a sent email in the 21 days before the call, 138 did not (organic/inbound or booked under an address we never emailed); 44 name-only bookings never resolved to an address.",
   "booking dates are the CALL date, not the date the owner clicked the link, so a send between booking and call can collect the credit (inflates every lane slightly).",
-  "replies = inbound Gmail replies only; 553 'CRM: replied/asked for callback' flags are excluded because the snapshot has no inbound/outbound direction. Replies include declines and auto-replies that slipped the filter.",
+  "replies = inbound Gmail replies only; 557 'CRM: replied/asked for callback' flags are excluded because the snapshot has no inbound/outbound direction. Replies include declines and auto-replies that slipped the filter.",
   "advanced / agreements_after / inspections_after use the CRM's CURRENT-cycle *_effective_dt dates only; a milestone that was later reset or re-cycled is lost.",
   "bucket_at_send = bucket in the nearest dated CRM snapshot at or before the send (<=7 days old; snapshots start 2026-07-08), else the holdout bucket_at_assign, else null. Most cold/backfill recipients are not in Gabriel's book and read null.",
   "replies_pending_answer = Gmail replies in the last 7 days with no later send to that address; a phone answer or hand reply outside the send log is invisible here.",
